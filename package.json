@@ -1,10 +1,17 @@
 {
   "name": "code-vault",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "type": "module",
   "author": "woong-jae",
   "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@code-vault/core": "workspace:*"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "@typescript-eslint/eslint-plugin": "^5.61.0",

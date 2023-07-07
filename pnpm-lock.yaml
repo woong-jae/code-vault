@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@code-vault/core':
+        specifier: workspace:*
+        version: link:packages/core
     devDependencies:
       '@types/jest':
         specifier: ^29.5.2
@@ -39,7 +43,17 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
-  packages/core: {}
+  packages/core:
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.2
+        version: 29.5.2
+      jest:
+        specifier: ^29.6.1
+        version: 29.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
 
 packages:
 

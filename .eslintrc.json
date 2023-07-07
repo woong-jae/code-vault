@@ -9,7 +9,7 @@
   "overrides": [
     {
       "files": ["**/*.@(spec|test).@(js|ts)?(x)"],
-      "plugins": ["jest", "jest-dom"],
+      "plugins": ["jest"],
       "extends": ["plugin:jest/recommended", "plugin:jest-dom/recommended"],
       "env": {
         "jest/globals": true,

@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "strict": true,
-    "target": "es6",
-    "lib": ["DOM", "DOM.Iterable", "ES5", "ES6", "ESNext"],
+    "target": "ESNext",
+    "module": "esnext",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "isolatedModules": true,
     "types": ["jest"]
   },
