@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["**/*.@(spec|test).@(js|ts)?(x)"],
+      "plugins": ["jest", "jest-dom"],
+      "extends": ["plugin:jest/recommended", "plugin:jest-dom/recommended"],
+      "env": {
+        "jest/globals": true,
+        "node": true
+      },
+      "rules": {
+        "@typescript-eslint/unbound-method": "off",
+        "jest/unbound-method": "error"
+      }
+    }
+  ],
+  "root": true
+}

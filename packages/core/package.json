@@ -1,12 +1,8 @@
 {
   "name": "@code-vault/core",
   "version": "1.0.0",
-  "description": "Business logics",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "core business logics",
+  "type": "module",
+  "author": "woong-jae",
   "license": "ISC"
 }
