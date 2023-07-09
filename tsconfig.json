@@ -9,8 +9,7 @@
     "module": "esnext",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "types": ["jest"]
+    "isolatedModules": true
   },
   "exclude": ["packages/**/dist/**"]
 }

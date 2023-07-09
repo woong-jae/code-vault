@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"]
-    }
+    },
+    "types": ["jest"]
   },
   "include": ["**/*"]
 }
