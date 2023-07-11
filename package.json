@@ -12,8 +12,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "pnpm@8.6.6",
   "scripts": {
-    "core": "pnpm --filter @code-vault/core"
+    "core": "pnpm --filter @code-vault/core",
+    "extension": "pnpm --filter @code-vault/extension"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.61.0",
