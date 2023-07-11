@@ -1,16 +1,12 @@
-import Repository from '~/adapter/Repository';
-import SolveProblem from '.';
+import ProblemSolver from '.';
 import Solution from '~/entity/Solution';
+import Archive from '~/adapter/Archive';
 
-const dummyRepository: Repository<{ platform: string; id: string }, Solution> =
-  {
-    async getItem() {
-      return null;
-    },
-    async setItem() {
-      return;
-    },
-  };
+const dummyArchive: Archive<Solution> = {
+  async save() {
+    return;
+  },
+};
 const solutionData = {
   id: '12345',
   code: 'console.log("hello")',
@@ -18,16 +14,16 @@ const solutionData = {
   platform: 'boj',
 };
 
-let solveProblem: SolveProblem;
+let solveProblem: ProblemSolver;
 
 beforeEach(() => {
-  solveProblem = new SolveProblem(dummyRepository);
+  solveProblem = new ProblemSolver(dummyArchive);
 });
 afterEach(() => {
   jest.restoreAllMocks();
 });
 
-describe('SolveProblem', () => {
+describe('ProblemSolver', () => {
   it('초기값으로 solution은 null을 가진다', () => {
     expect(solveProblem.getSolution()).toBeNull();
   });
@@ -43,7 +39,7 @@ describe('SolveProblem', () => {
   });
 
   it('solution이 존재하면 setSolution으로 저장소에 제출할 수 있다', () => {
-    const spy = jest.spyOn(dummyRepository, 'setItem');
+    const spy = jest.spyOn(dummyArchive, 'save');
 
     solveProblem.submitSolution();
     expect(spy).not.toHaveBeenCalled();

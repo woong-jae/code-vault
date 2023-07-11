@@ -24,4 +24,8 @@ export default class Solution {
     this.language = language;
     this.date = date;
   }
+
+  get key() {
+    return `${this.platform}/${this.id}`;
+  }
 }
