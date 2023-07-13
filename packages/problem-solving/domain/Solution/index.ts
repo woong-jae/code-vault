@@ -1,31 +1,31 @@
 export default class Solution {
+  readonly problemId: string;
   readonly platform: string;
-  readonly id: string;
-  readonly code: string;
   readonly language: string;
   readonly date: Date;
+  code: string;
 
   constructor({
+    problemId,
     platform,
-    id,
-    code,
     language,
+    code,
     date,
   }: {
+    problemId: string;
     platform: string;
-    id: string;
-    code: string;
     language: string;
+    code: string;
     date: Date;
   }) {
-    this.id = id;
+    this.problemId = problemId;
     this.platform = platform;
-    this.code = code;
     this.language = language;
+    this.code = code;
     this.date = date;
   }
 
   get key() {
-    return `${this.platform}/${this.id}`;
+    return `${this.platform}/${this.problemId}`;
   }
 }

@@ -1,9 +1,10 @@
 {
-  "name": "@code-vault/core",
+  "name": "@component/problem-solving",
   "version": "1.0.0",
   "private": true,
-  "description": "core business logics",
+  "description": "problem solving component",
   "type": "module",
+  "main": "index.ts",
   "author": "woong-jae",
   "license": "ISC",
   "scripts": {
