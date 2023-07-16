@@ -1,5 +1,5 @@
 {
-  "name": "@code-vault/extension",
+  "name": "@code-vault/chrome-extension",
   "version": "1.0.0",
   "description": "code-vault chrome extension",
   "type": "module",

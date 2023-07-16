@@ -15,7 +15,7 @@
   "packageManager": "pnpm@8.6.6",
   "scripts": {
     "problem-solving": "pnpm --filter @core/problem-solving",
-    "extension": "pnpm --filter @code-vault/extension"
+    "chrome-extension": "pnpm --filter @code-vault/chrome-extension"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.61.0",
