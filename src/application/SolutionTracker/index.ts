@@ -24,9 +24,7 @@ export default class SolutionTracker {
   }
 
   async saveSolution(solution: Solution) {
-    const isSuccessful = this.solutionArchive.save(solution);
-    if (!isSuccessful) {
-      throw new Error('Saving solution failed');
-    }
+    const isSuccessful = await this.solutionArchive.save(solution);
+    return isSuccessful;
   }
 }

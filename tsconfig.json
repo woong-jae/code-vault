@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "types": ["jest", "chrome"],
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
@@ -11,5 +16,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "exclude": ["packages/**/dist/**"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
