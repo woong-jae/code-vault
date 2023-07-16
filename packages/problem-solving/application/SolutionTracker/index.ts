@@ -1,7 +1,6 @@
 import Solution from '~/domain/Solution';
 import { SolveListener } from './types';
-import { SolutionArchive } from './ports';
-import SolutionInterceptor from '../SolutionInterceptor';
+import { SolutionArchive, SolutionInterceptor } from './ports';
 
 export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];

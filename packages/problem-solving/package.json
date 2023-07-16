@@ -4,7 +4,6 @@
   "private": true,
   "description": "problem solving logics",
   "type": "module",
-  "main": "index.ts",
   "author": "woong-jae",
   "license": "ISC",
   "scripts": {
