@@ -1,9 +1,9 @@
 export default class Solution {
   readonly problemId: string;
   readonly platform: string;
+  readonly code: string;
   readonly language: string;
   readonly date: Date;
-  code: string;
 
   constructor({
     problemId,

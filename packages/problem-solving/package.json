@@ -1,8 +1,8 @@
 {
-  "name": "@component/problem-solving",
+  "name": "@core/problem-solving",
   "version": "1.0.0",
   "private": true,
-  "description": "problem solving component",
+  "description": "problem solving logics",
   "type": "module",
   "main": "index.ts",
   "author": "woong-jae",
