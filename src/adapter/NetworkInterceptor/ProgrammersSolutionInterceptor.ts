@@ -1,14 +1,10 @@
-import BaseSolutionInterceptor from './BaseSolutionInterceptor';
+import BaseSolutionInterceptor from './BaseNetworkInterceptor';
 
 export default class ProgrammersSolutionInterceptor extends BaseSolutionInterceptor {
   constructor() {
     super();
     this.injectWsRequestInterceptor();
     this.injectWsResponseInterceptor();
-  }
-
-  protected notify(bojJsonString: string) {
-    super.notify();
   }
 
   private injectWsRequestInterceptor() {
