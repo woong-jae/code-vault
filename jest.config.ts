@@ -1,6 +1,6 @@
 import type { JestConfigWithTsJest } from 'ts-jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
-import { compilerOptions } from './packages/problem-solving/tsconfig.json';
+import { compilerOptions } from './tsconfig.json';
 
 const jestConfig: JestConfigWithTsJest = {
   extensionsToTreatAsEsm: ['.ts'],
