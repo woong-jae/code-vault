@@ -1,9 +1,9 @@
 import {
   Process,
-  SolutionData,
   SolutionStatus,
-} from '~/application/SolutionTracker/types';
+} from '~/core/application/SolutionTracker/types';
 import { PacketInterpreter } from '../../application/SolutionTracker/ports';
+import { ProgrammingLanguage, Solution } from '~/core/domain/Solution/types';
 
 type ProgrammersPacket = Partial<{
   command: string;
@@ -30,7 +30,7 @@ type ProgrammersCode = {
 export default class ProgrammersPacketToSolutionStatusMapper
   implements PacketInterpreter
 {
-  private platform = 'programmers';
+  private readonly platform = 'programmers';
   // private messageRegex = /\d+\.?\d+/g;
 
   parse(packet: string): SolutionStatus | undefined {
@@ -44,7 +44,9 @@ export default class ProgrammersPacketToSolutionStatusMapper
     };
   }
 
-  parseProcess(programmersPacket: ProgrammersPacket): Process | undefined {
+  private parseProcess(
+    programmersPacket: ProgrammersPacket,
+  ): Process | undefined {
     if (programmersPacket?.command) return Process.START;
     if (programmersPacket?.message) {
       const { type, passed } = programmersPacket.message;
@@ -56,10 +58,10 @@ export default class ProgrammersPacketToSolutionStatusMapper
     return undefined;
   }
 
-  parsePayload(
+  private parsePayload(
     process: Process,
     programmersPacket: ProgrammersPacket,
-  ): Partial<SolutionData> {
+  ): Partial<Solution> {
     if (process === Process.START) {
       // 문제 아이디와 언어 추출
       if (programmersPacket?.identifier === undefined) return {};
@@ -78,7 +80,7 @@ export default class ProgrammersPacketToSolutionStatusMapper
         platform: this.platform,
         problemId: problemId.toString(),
         code,
-        language,
+        language: this.parseLanguage(language),
       };
     }
 
@@ -101,5 +103,13 @@ export default class ProgrammersPacketToSolutionStatusMapper
     // }
 
     return {};
+  }
+
+  private parseLanguage(language: string): ProgrammingLanguage {
+    console.log(
+      '🚀 ~ file: ProgrammersPacketToSolutionStatusMapper.ts:106 ~ parseLanguage ~ language:',
+      language,
+    );
+    return 'javascript';
   }
 }

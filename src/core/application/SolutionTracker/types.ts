@@ -1,11 +1,6 @@
-export type SolutionData = {
-  problemId: string;
-  platform: string;
-  code: string;
-  language: string;
-};
+import { Solution } from '~/core/domain/Solution/types';
 
-export type SolveListener = (solutionData: SolutionData) => void;
+export type SolveListener = (solutionData: Solution) => void;
 
 export type InterceptListener = (packet: string) => void;
 
@@ -18,5 +13,5 @@ export enum Process {
 
 export type SolutionStatus = {
   process: Process;
-  payload: Partial<SolutionData>;
+  payload: Partial<Solution>;
 };

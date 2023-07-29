@@ -1,9 +1,11 @@
-import { Process, SolutionData, SolutionStatus, SolveListener } from './types';
+import createSolution from '~/core/domain/Solution/createSolution';
+import { Process, SolutionStatus, SolveListener } from './types';
 import { NetworkInterceptor, PacketInterpreter } from './ports';
+import { Solution } from '~/core/domain/Solution/types';
 
 export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];
-  private _solutionData: Partial<SolutionData> = {};
+  private _solutionData: Partial<Solution> = {};
 
   constructor(
     private networkInterceptor: NetworkInterceptor,
@@ -25,8 +27,8 @@ export default class SolutionTracker {
     };
   }
 
-  private notify(solutionData: SolutionData) {
-    this.solveListeners.forEach(listener => listener({ ...solutionData }));
+  private notify(solution: Solution) {
+    this.solveListeners.forEach(listener => listener({ ...solution }));
   }
 
   private handlePacket({ process, payload }: SolutionStatus) {
@@ -38,17 +40,19 @@ export default class SolutionTracker {
     this.updateSolutionData(payload);
 
     if (process === Process.SUCCESS) {
-      const solutionData = this.getSolutionData();
-      if (!solutionData) {
-        throw new Error('Missing data for submitted solution!');
+      const newSolution = this.getSolution();
+      if (!newSolution) {
+        throw new Error('Missing data for submitted solution...');
       }
-      this.notify(solutionData);
+
+      this.notify(newSolution);
+
       this.clearSolutionData();
       return;
     }
   }
 
-  private getSolutionData(): SolutionData | null {
+  private getSolution(): Solution | null {
     const { problemId, platform, code, language } = this._solutionData;
 
     if (problemId === undefined) return null;
@@ -56,15 +60,15 @@ export default class SolutionTracker {
     if (code === undefined) return null;
     if (language === undefined) return null;
 
-    return {
+    return createSolution({
       problemId,
       platform,
       code,
       language,
-    };
+    });
   }
 
-  private updateSolutionData(data: Partial<SolutionData>) {
+  private updateSolutionData(data: Partial<Solution>) {
     this._solutionData = {
       ...this._solutionData,
       ...data,

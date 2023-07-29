@@ -1,5 +1,5 @@
-import { NetworkInterceptor } from '~/application/SolutionTracker/ports';
-import { InterceptListener } from '~/application/SolutionTracker/types';
+import { NetworkInterceptor } from '~/core/application/SolutionTracker/ports';
+import { InterceptListener } from '~/core/application/SolutionTracker/types';
 
 export default abstract class BaseNetworkInterceptor
   implements NetworkInterceptor
