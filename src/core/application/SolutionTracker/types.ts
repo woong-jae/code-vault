@@ -1,6 +1,6 @@
 import { Solution } from '~/core/domain/Solution/types';
 
-export type SolveListener = (solutionData: Solution) => void;
+export type SolveListener = (solution: Solution) => void;
 
 export type InterceptListener = (packet: string) => void;
 
