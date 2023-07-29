@@ -7,6 +7,7 @@ export const ProgrammingLanguage = z.enum([
   'c',
   'cpp',
   'python',
+  'unknown',
 ]);
 
 const Solution = z.object({

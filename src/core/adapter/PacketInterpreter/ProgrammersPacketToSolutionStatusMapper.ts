@@ -105,11 +105,15 @@ export default class ProgrammersPacketToSolutionStatusMapper
     return {};
   }
 
+  /* TODO: 언어 값 확인 후 작업 */
   private parseLanguage(language: string): ProgrammingLanguage {
     console.log(
       '🚀 ~ file: ProgrammersPacketToSolutionStatusMapper.ts:106 ~ parseLanguage ~ language:',
       language,
     );
-    return 'javascript';
+    switch (language) {
+      default:
+        return 'unknown';
+    }
   }
 }
