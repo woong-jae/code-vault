@@ -1,3 +1,4 @@
+import renderApp from '~/app';
 import ProgrammersSolutionInterceptor from '~/core/adapter/NetworkInterceptor/ProgrammersSolutionInterceptor';
 import ProgrammersPacketToSolutionStatusMapper from '~/core/adapter/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
 import SolutionTracker from '~/core/application/SolutionTracker';
@@ -12,3 +13,5 @@ const solutionTracker = new SolutionTracker(
 solutionTracker.onSolve(solution => {
   console.log(solution);
 });
+
+renderApp(document.body);

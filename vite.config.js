@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import preact from '@preact/preset-vite';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), preact()],
+  plugins: [tsconfigPaths(), preact(), cssInjectedByJsPlugin()],
   build: {
     rollupOptions: {
       input: {
