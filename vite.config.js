@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         background: 'src/chrome-extension/background/index.ts',
-        programmers: 'src/chrome-extension/platforms/programmers/index.ts',
+        programmers: 'src/chrome-extension/scripts/programmers/index.ts',
       },
       output: {
         entryFileNames: '[name].js',

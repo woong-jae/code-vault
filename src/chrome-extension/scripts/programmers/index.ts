@@ -1,7 +1,6 @@
-import renderApp from '~/app';
+import SolutionTracker from '~/core/application/SolutionTracker';
 import ProgrammersSolutionInterceptor from '~/core/adapter/NetworkInterceptor/ProgrammersSolutionInterceptor';
 import ProgrammersPacketToSolutionStatusMapper from '~/core/adapter/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
-import SolutionTracker from '~/core/application/SolutionTracker';
 
 console.log('CodeVault loaded...');
 
@@ -13,5 +12,3 @@ const solutionTracker = new SolutionTracker(
 solutionTracker.onSolve(solution => {
   console.log(solution);
 });
-
-renderApp(document.body);
