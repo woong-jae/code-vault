@@ -1,7 +1,13 @@
+import { closeApp } from '../signals/appState';
+
 export default function SubmitWidget() {
+  function handleClose() {
+    closeApp();
+  }
+
   return (
     <>
-      <button class="absolute top-3 right-3">
+      <button class="absolute top-3 right-3" onClick={handleClose}>
         <svg
           width="16px"
           height="16px"
@@ -24,7 +30,7 @@ export default function SubmitWidget() {
       </button>
       <div class="flex flex-col items-center">
         <div class="mt-2">
-          <svg width="128px" height="128px" viewBox="0 0 117 117">
+          <svg class="animate-bounce" width="128px" height="128px" viewBox="0 0 117 117">
             <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
               <g fill-rule="nonzero">
                 <path
