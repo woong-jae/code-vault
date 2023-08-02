@@ -59,7 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
   ],
   devServer: {
-    port: 3000,
+    port: 8080,
     open: true,
     hot: true,
     compress: true,
