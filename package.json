@@ -44,6 +44,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@preact/signals": "^1.1.5",
     "preact": "^10.16.0",
     "zod": "^3.21.4"
   }
