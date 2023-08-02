@@ -1,14 +1,21 @@
-import SolutionTracker from '~/core/application/SolutionTracker';
-import ProgrammersSolutionInterceptor from '~/core/adapter/NetworkInterceptor/ProgrammersSolutionInterceptor';
-import ProgrammersPacketToSolutionStatusMapper from '~/core/adapter/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
+import createEventHub from '~/chrome-extension/common/createEventHub';
+import ProgrammersSolutionInterceptor from '~/core/infrastructure/NetworkInterceptor/ProgrammersSolutionInterceptor';
+import ProgrammersPacketToSolutionStatusMapper from '~/core/infrastructure/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
 
 console.log('CodeVault loaded...');
 
-const solutionTracker = new SolutionTracker(
-  new ProgrammersSolutionInterceptor(),
-  new ProgrammersPacketToSolutionStatusMapper(),
-);
+const eventHub = createEventHub('world', window);
+const networkInterceptor = new ProgrammersSolutionInterceptor();
+const packetParser = new ProgrammersPacketToSolutionStatusMapper();
 
-solutionTracker.onSolve(solution => {
-  console.log(solution);
+networkInterceptor.onIntercept(packet => {
+  if (!packet) return;
+
+  const parsedPacket = packetParser.parse(packet);
+  if (!parsedPacket) return;
+
+  eventHub.emit({
+    type: 'solution',
+    payload: JSON.stringify(parsedPacket),
+  });
 });

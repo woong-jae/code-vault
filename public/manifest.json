@@ -8,5 +8,22 @@
     "service_worker": "background.js"
   },
   "permissions": ["tabs", "activeTab", "scripting", "webRequest"],
-  "host_permissions": ["https://*/*"]
+  "host_permissions": ["https://*/*"],
+  "content_scripts": [
+    {
+      "id": "CodeVault-programmers",
+      "matches": [
+        "https://school.programmers.co.kr/learn/courses/30/lessons/*"
+      ],
+      "js": ["programmers.js"],
+      "world": "MAIN"
+    },
+    {
+      "id": "CodeVault-common_isolated",
+      "matches": [
+        "https://school.programmers.co.kr/learn/courses/30/lessons/*"
+      ],
+      "js": ["common_isolated.js"]
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import { InterceptListener } from '~/core/application/SolutionTracker/types';
+import { InterceptListener } from './types';
 
 export default abstract class BaseNetworkInterceptor {
   protected interceptListeners: InterceptListener[] = [];

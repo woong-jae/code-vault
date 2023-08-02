@@ -1,9 +1,5 @@
-import { InterceptListener, SolutionStatus } from './types';
+import { SolutionInterceptListener } from './types';
 
-export interface NetworkInterceptor {
-  onIntercept(callback: InterceptListener): void;
-}
-
-export interface PacketInterpreter {
-  parse(packet: string): SolutionStatus | undefined;
+export interface SolutionInterceptor {
+  onIntercept(callback: SolutionInterceptListener): void;
 }

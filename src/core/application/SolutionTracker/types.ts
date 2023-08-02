@@ -4,6 +4,8 @@ export type SolveListener = (solution: Solution) => void;
 
 export type InterceptListener = (packet: string) => void;
 
+export type SolutionInterceptListener = (data: SolutionStatus) => void;
+
 export enum Process {
   START = 'START',
   SCORE = 'SCORE',

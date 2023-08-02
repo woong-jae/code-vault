@@ -1,19 +1,15 @@
 import createSolution from '~/core/domain/Solution/createSolution';
 import { Process, SolutionStatus, SolveListener } from './types';
-import { NetworkInterceptor, PacketInterpreter } from './ports';
+
 import { Solution } from '~/core/domain/Solution/types';
+import { SolutionInterceptor } from './ports';
 
 export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];
   private _solutionData: Partial<Solution> = {};
 
-  constructor(
-    private networkInterceptor: NetworkInterceptor,
-    private packetInterpreter: PacketInterpreter,
-  ) {
-    this.networkInterceptor.onIntercept(rawPacket => {
-      const packet = this.packetInterpreter.parse(rawPacket);
-      if (!packet) return;
+  constructor(private solutionInterceptor: SolutionInterceptor) {
+    this.solutionInterceptor.onIntercept(packet => {
       this.handlePacket(packet);
     });
   }

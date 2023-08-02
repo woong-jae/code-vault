@@ -2,30 +2,13 @@ import {
   Process,
   SolutionStatus,
 } from '~/core/application/SolutionTracker/types';
-import { PacketInterpreter } from '../../application/SolutionTracker/ports';
 import { ProgrammingLanguage, Solution } from '~/core/domain/Solution/types';
-
-type ProgrammersPacket = Partial<{
-  command: string;
-  message: {
-    type: string;
-    passed: boolean;
-    msg: string;
-  };
-  identifier: string;
-  data: string;
-}>;
-
-type ProgrammersIdentifier = {
-  lesson_id: number;
-  language: string;
-};
-
-type ProgrammersCode = {
-  codes: {
-    [name: string]: string;
-  };
-};
+import PacketInterpreter from '.';
+import {
+  ProgrammersPacket,
+  ProgrammersIdentifier,
+  ProgrammersCode,
+} from './types';
 
 export default class ProgrammersPacketToSolutionStatusMapper
   implements PacketInterpreter
