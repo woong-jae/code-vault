@@ -1,11 +1,17 @@
 import CloseButton from '../components/CloseButton';
 
 export default function SettingWidget() {
+  function handleClick() {
+    window.open(
+      'https://github.com/login/oauth/authorize?client_id=e1f73f73ee1f2865bcd5&scope=user,repo',
+    );
+  }
+
   return (
     <>
       <CloseButton />
       <div class="flex flex-col items-center">
-        <div class='mt-2'>
+        <div class="mt-2">
           <svg width="96px" height="96px" viewBox="0 0 117 117">
             <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
               <g fill-rule="nonzero">
@@ -21,10 +27,11 @@ export default function SettingWidget() {
             </g>
           </svg>
         </div>
-        <div class="text-xl font-semibold my-2">
-          기본 설정을 해주세요
-        </div>
-        <button class="min-w-full py-1 rounded-md font-medium bg-gray-600 hover:brightness-90 text-white">
+        <div class="text-xl font-semibold my-2">기본 설정을 해주세요</div>
+        <button
+          class="min-w-full py-1 rounded-md font-medium bg-gray-600 hover:brightness-90 text-white"
+          onClick={handleClick}
+        >
           설정하기
         </button>
       </div>
