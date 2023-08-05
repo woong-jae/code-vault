@@ -56,7 +56,9 @@ module.exports = {
       patterns: [{ from: '.', to: '.', context: 'public' }],
       options: {},
     }),
-    new HtmlWebpackPlugin({ template: 'src/index.html' }),
+    ...(isProduction
+      ? []
+      : [new HtmlWebpackPlugin({ template: 'src/dev.html' })]),
   ],
   devServer: {
     port: 8080,
