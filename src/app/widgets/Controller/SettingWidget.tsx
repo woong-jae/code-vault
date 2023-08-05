@@ -28,7 +28,7 @@ export default function SettingWidget() {
             </g>
           </svg>
         </div>
-        <div class="text-xl font-semibold my-2">기본 설정을 해주세요</div>
+        <div class="my-2 text-xl font-semibold">기본 설정을 해주세요</div>
         <Button color="gray" content="설정하기" onClick={handleClick} />
       </div>
     </>

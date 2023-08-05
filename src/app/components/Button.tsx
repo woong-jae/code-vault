@@ -1,7 +1,6 @@
 type ButtonColor = 'green' | 'gray';
 
 export function Button({
-  color = 'green',
   content,
   onClick,
 }: {
@@ -11,7 +10,7 @@ export function Button({
 }) {
   return (
     <button
-      class={`min-w-full py-1 px-4 rounded-md font-medium bg-${color}-600 hover:brightness-90 text-white`}
+      class="min-w-full rounded-md bg-green-600 px-4 py-1 font-medium text-white hover:brightness-90"
       onClick={onClick}
     >
       {content}

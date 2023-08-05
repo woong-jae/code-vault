@@ -17,8 +17,8 @@ export default function Controller() {
   const state = appState.value;
 
   return state ? (
-    <div class="fixed top-4 right-4 z-50">
-      <section class="sticky py-4 px-8 border rounded-md bg-white">
+    <div class="fixed right-4 top-4 z-50">
+      <section class="sticky rounded-md border bg-white px-8 py-4">
         {renderWidget(state)}
       </section>
     </div>

@@ -28,7 +28,7 @@ export default function SubmitWidget() {
             </g>
           </svg>
         </div>
-        <div class="text-xl font-semibold my-2">고생하셨습니다!</div>
+        <div class="my-2 text-xl font-semibold">고생하셨습니다!</div>
         <Button content="제출하기" onClick={() => {}} />
       </div>
     </>

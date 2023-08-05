@@ -6,7 +6,7 @@ export default function CloseButton() {
   }
 
   return (
-    <button class="absolute top-3 right-3" onClick={handleClose}>
+    <button class="absolute right-3 top-3" onClick={handleClose}>
       <svg
         width="16px"
         height="16px"
