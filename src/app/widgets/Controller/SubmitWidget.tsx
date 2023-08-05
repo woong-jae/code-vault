@@ -1,3 +1,4 @@
+import { Button } from '~/app/components/Button';
 import CloseButton from '~/app/components/CloseButton';
 
 export default function SubmitWidget() {
@@ -28,9 +29,7 @@ export default function SubmitWidget() {
           </svg>
         </div>
         <div class="text-xl font-semibold my-2">고생하셨습니다!</div>
-        <button class="w-full py-1 rounded-md font-medium bg-green-600 hover:brightness-90 text-white">
-          제출하기
-        </button>
+        <Button content="제출하기" onClick={() => {}} />
       </div>
     </>
   );

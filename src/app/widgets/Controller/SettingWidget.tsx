@@ -1,3 +1,4 @@
+import { Button } from '~/app/components/Button';
 import CloseButton from '../../components/CloseButton';
 
 export default function SettingWidget() {
@@ -28,12 +29,7 @@ export default function SettingWidget() {
           </svg>
         </div>
         <div class="text-xl font-semibold my-2">기본 설정을 해주세요</div>
-        <button
-          class="min-w-full py-1 rounded-md font-medium bg-gray-600 hover:brightness-90 text-white"
-          onClick={handleClick}
-        >
-          설정하기
-        </button>
+        <Button color="gray" content="설정하기" onClick={handleClick} />
       </div>
     </>
   );
