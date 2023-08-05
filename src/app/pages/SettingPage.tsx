@@ -1,3 +1,3 @@
 export default function SettingPage() {
-  return <div class="bg-gray-800"></div>;
+  return <div class="bg-gray-800">Hello world!</div>;
 }
