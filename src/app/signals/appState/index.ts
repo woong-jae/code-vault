@@ -1,6 +1,6 @@
 import { signal } from '@preact/signals';
 
-type AppState = 'submit' | 'setting';
+export type AppState = 'submit' | 'setting';
 
 const appState = signal<AppState | null>(null);
 

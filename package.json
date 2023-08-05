@@ -11,7 +11,8 @@
   },
   "packageManager": "pnpm@8.6.6",
   "scripts": {
-    "dev": "webpack serve",
+    "dev:app": "DEV_TARGET=app webpack serve",
+    "dev:setting": "DEV_TARGET=setting webpack serve",
     "build": "NODE_ENV=production webpack",
     "test": "pnpm jest --watch"
   },

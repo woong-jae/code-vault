@@ -1,28 +1,26 @@
-import appState from './signals/appState';
+import appState, { AppState } from './signals/appState';
 import SettingWidget from './widgets/SettingWidget';
 import SubmitWidget from './widgets/SubmitWidget';
+
+function renderWidget(appState: AppState) {
+  switch (appState) {
+    case 'submit':
+      return <SubmitWidget />;
+    case 'setting':
+      return <SettingWidget />;
+    default:
+      return null;
+  }
+}
 
 export function App() {
   const state = appState.value;
 
-  switch (state) {
-    case 'submit':
-      return (
-        <div class="fixed top-5 right-5 z-50">
-          <section class="sticky py-4 px-8 border rounded-md bg-white">
-            <SubmitWidget />
-          </section>
-        </div>
-      );
-    case 'setting':
-      return (
-        <div class="fixed top-5 right-5 z-50">
-          <section class="sticky py-4 px-8 border rounded-md bg-white">
-            <SettingWidget />
-          </section>
-        </div>
-      );
-    default:
-      return null;
-  }
+  return state ? (
+    <div class="fixed top-5 right-5 z-50">
+      <section class="sticky py-4 px-8 border rounded-md bg-white">
+        {renderWidget(state)}
+      </section>
+    </div>
+  ) : null;
 }
