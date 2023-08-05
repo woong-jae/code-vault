@@ -1,10 +1,7 @@
-type ButtonColor = 'green' | 'gray';
-
 export function Button({
   content,
   onClick,
 }: {
-  color?: ButtonColor;
   content: string;
   onClick: () => void;
 }) {

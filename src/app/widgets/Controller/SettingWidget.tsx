@@ -29,7 +29,7 @@ export default function SettingWidget() {
           </svg>
         </div>
         <div class="my-2 text-xl font-semibold">기본 설정을 해주세요</div>
-        <Button color="gray" content="설정하기" onClick={handleClick} />
+        <Button content="설정하기" onClick={handleClick} />
       </div>
     </>
   );
