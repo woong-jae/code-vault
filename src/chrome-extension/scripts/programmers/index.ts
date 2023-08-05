@@ -1,4 +1,4 @@
-import renderApp from '~/app';
+import renderApp from '~/app/renderController';
 import { setAppState } from '~/app/signals/appState';
 import createEventHub from '~/chrome-extension/common/createEventHub';
 import ProgrammersSolutionInterceptor from '~/core/infrastructure/NetworkInterceptor/ProgrammersSolutionInterceptor';

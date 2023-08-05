@@ -1,4 +1,4 @@
-import CloseButton from '../components/CloseButton';
+import CloseButton from '~/app/components/CloseButton';
 
 export default function SubmitWidget() {
   return (

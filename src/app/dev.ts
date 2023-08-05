@@ -1,6 +1,6 @@
-import renderApp from '.';
+import renderController from './renderController';
 import { setAppState } from './signals/appState';
+import './renderSettingPage';
 
-renderApp();
-
+renderController();
 setAppState('setting');

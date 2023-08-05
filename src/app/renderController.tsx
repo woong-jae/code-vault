@@ -1,9 +1,9 @@
 import { render } from 'preact';
-import { App } from './App';
+import Controller from './widgets/Controller';
 import './index.css';
 
-export default function renderApp() {
+export default function renderController() {
   const container = document.createElement('div');
   document.body.append(container);
-  render(<App />, container);
+  render(<Controller />, container);
 }

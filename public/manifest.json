@@ -9,6 +9,12 @@
   },
   "permissions": ["tabs", "activeTab", "scripting", "webRequest", "storage"],
   "host_permissions": ["https://*/*"],
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["setting.html", "setting.js"]
+    }
+  ],
   "content_scripts": [
     {
       "id": "CodeVault-programmers",

@@ -1,6 +1,6 @@
-import appState, { AppState } from './signals/appState';
-import SettingWidget from './widgets/SettingWidget';
-import SubmitWidget from './widgets/SubmitWidget';
+import appState, { AppState } from '../../signals/appState';
+import SettingWidget from './SettingWidget';
+import SubmitWidget from './SubmitWidget';
 
 function renderWidget(appState: AppState) {
   switch (appState) {
@@ -13,7 +13,7 @@ function renderWidget(appState: AppState) {
   }
 }
 
-export function App() {
+export default function Controller() {
   const state = appState.value;
 
   return state ? (
