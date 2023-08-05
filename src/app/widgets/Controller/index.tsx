@@ -1,4 +1,3 @@
-import Card from '~/app/components/Card';
 import appState, { AppState } from '../../signals/appState';
 import SettingWidget from './SettingWidget';
 import SubmitWidget from './SubmitWidget';
@@ -19,9 +18,7 @@ export default function Controller() {
 
   return state ? (
     <div class="fixed right-4 top-4 z-50">
-      <div class="sticky">
-        <Card>{renderWidget(state)}</Card>
-      </div>
+      <div class="sticky">{renderWidget(state)}</div>
     </div>
   ) : null;
 }

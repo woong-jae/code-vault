@@ -1,9 +1,10 @@
 import { Button } from '~/app/components/Button';
+import Card from '~/app/components/Card';
 import CloseButton from '~/app/components/CloseButton';
 
 export default function SubmitWidget() {
   return (
-    <>
+    <Card>
       <CloseButton />
       <div class="flex flex-col items-center">
         <div class="mt-4">
@@ -31,6 +32,6 @@ export default function SubmitWidget() {
         <div class="my-2 text-xl font-semibold">고생하셨습니다!</div>
         <Button content="제출하기" onClick={() => {}} />
       </div>
-    </>
+    </Card>
   );
 }

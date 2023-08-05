@@ -16,5 +16,6 @@ if (code) {
   if (access_token) {
     const github = new Github(access_token);
     github.getUserStatus().then(status => console.log(status));
+    github.getRepositories().then(list => console.log(list));
   }
 }

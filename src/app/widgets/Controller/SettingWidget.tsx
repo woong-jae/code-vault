@@ -1,5 +1,6 @@
 import { Button } from '~/app/components/Button';
 import CloseButton from '../../components/CloseButton';
+import Card from '~/app/components/Card';
 
 export default function SettingWidget() {
   function handleClick() {
@@ -9,7 +10,7 @@ export default function SettingWidget() {
   }
 
   return (
-    <>
+    <Card>
       <CloseButton />
       <div class="flex flex-col items-center">
         <div class="mt-2">
@@ -31,6 +32,6 @@ export default function SettingWidget() {
         <div class="my-2 text-xl font-semibold">기본 설정을 해주세요</div>
         <Button content="설정하기" onClick={handleClick} />
       </div>
-    </>
+    </Card>
   );
 }

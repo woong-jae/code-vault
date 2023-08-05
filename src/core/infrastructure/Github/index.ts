@@ -33,8 +33,15 @@ export default class Github {
     const res = await this.githubApiClient.rest.users.getAuthenticated();
 
     if (!res.data) return null;
+    return res.data;
+  }
 
-    const { login, avatar_url, name } = res.data;
-    return { login, avatar_url, name };
+  async getRepositories() {
+    const res = await this.githubApiClient.rest.repos.listForAuthenticatedUser({
+      type: 'owner',
+    });
+
+    if (!res.data) return null;
+    return res.data;
   }
 }
