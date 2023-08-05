@@ -10,6 +10,10 @@ export default class EventHub {
     if (currentContext !== 'world') {
       chrome.runtime.onMessage.addListener((event: Event) => {
         if (event.from === currentContext) return;
+        if (currentContext === 'isolated') {
+          this.pipeFromIsolated(event);
+          return;
+        }
         this.notify(event);
       });
     }
@@ -18,6 +22,10 @@ export default class EventHub {
       this.window?.addEventListener('message', event => {
         const { data }: { data: Event } = event;
         if (data.from === currentContext) return;
+        if (currentContext === 'isolated') {
+          this.pipeFromIsolated(data);
+          return;
+        }
         this.notify(data);
       });
     }
@@ -38,12 +46,6 @@ export default class EventHub {
           ...event,
         });
         break;
-      case 'isolated':
-        this.emitFromIsolated({
-          from: 'isolated',
-          ...event,
-        });
-        break;
       case 'world':
         this.emitFromWorld({
           from: 'world',
@@ -57,9 +59,13 @@ export default class EventHub {
     this.listeners.forEach(listener => listener(event));
   }
 
-  private emitFromIsolated(event: Event) {
-    chrome.runtime.sendMessage(event);
-    this.window?.postMessage(event);
+  private pipeFromIsolated(event: Event) {
+    if (event.from === 'world') {
+      chrome.runtime.sendMessage({ ...event, from: 'isolated' });
+    }
+    if (event.from === 'background') {
+      this.window?.postMessage({ ...event, from: 'isolated' });
+    }
   }
 
   private emitFromWorld(event: Event) {

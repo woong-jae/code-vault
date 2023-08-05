@@ -10,4 +10,8 @@ solutionTracker.onSolve(solution => {
     '🚀 ~ file: index.ts:27 ~ solutionTracker.onSolve ~ solution:',
     solution,
   );
+
+  eventHub.emit({
+    type: 'needSetting',
+  });
 });

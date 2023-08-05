@@ -1,36 +1,17 @@
-import { closeApp } from '../signals/appState';
+import CloseButton from '../components/CloseButton';
 
 export default function SubmitWidget() {
-  function handleClose() {
-    closeApp();
-  }
-
   return (
     <>
-      <button class="absolute top-3 right-3" onClick={handleClose}>
-        <svg
-          width="16px"
-          height="16px"
-          viewBox="-0.5 0 25 25"
-          class="stroke-neutral-800 hover:stroke-neutral-500"
-        >
-          <path
-            d="M3 21.32L21 3.32001"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M3 3.32001L21 21.32"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
+      <CloseButton />
       <div class="flex flex-col items-center">
-        <div class="mt-2">
-          <svg class="animate-bounce" width="128px" height="128px" viewBox="0 0 117 117">
+        <div class="mt-4">
+          <svg
+            class="animate-bounce"
+            width="96px"
+            height="96px"
+            viewBox="0 0 117 117"
+          >
             <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
               <g fill-rule="nonzero">
                 <path

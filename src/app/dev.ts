@@ -3,4 +3,4 @@ import { setAppState } from './signals/appState';
 
 renderApp();
 
-setAppState('submit');
+setAppState('setting');
