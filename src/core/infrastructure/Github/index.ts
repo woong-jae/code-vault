@@ -1,9 +1,15 @@
+import { Octokit } from 'octokit';
+
 const clientId = 'e1f73f73ee1f2865bcd5';
 const clientSecret = 'aceb34e7192ba7b6181d0c0649373b9fce57cda0';
 const access_token_url = 'https://github.com/login/oauth/access_token';
 
 export default class Github {
-  constructor() {}
+  private githubApiClient: Octokit;
+
+  constructor(access_token: string) {
+    this.githubApiClient = new Octokit({ auth: access_token });
+  }
 
   static async getAccessToken(code: string): Promise<string | null> {
     const url = new URL(access_token_url);
@@ -21,5 +27,14 @@ export default class Github {
 
     const data = await response.formData();
     return data.get('access_token') as string | null;
+  }
+
+  async getUserStatus() {
+    const res = await this.githubApiClient.rest.users.getAuthenticated();
+
+    if (!res.data) return null;
+
+    const { login, avatar_url, name } = res.data;
+    return { login, avatar_url, name };
   }
 }

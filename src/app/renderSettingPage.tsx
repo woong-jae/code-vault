@@ -7,14 +7,14 @@ const app = document.createElement('div');
 app.id = 'app';
 document.body.append(app);
 
+render(<SettingPage />, app);
+
 const url = new URL(location.href);
 const code = url.searchParams.get('code');
 if (code) {
   const access_token = await Github.getAccessToken(code);
-  console.log(
-    '🚀 ~ file: renderSettingPage.tsx:14 ~ access_token:',
-    access_token,
-  );
+  if (access_token) {
+    const github = new Github(access_token);
+    github.getUserStatus().then(status => console.log(status));
+  }
 }
-
-render(<SettingPage />, app);
