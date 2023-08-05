@@ -4,6 +4,7 @@ export const Platform = z.enum(['boj', 'programmers']);
 export const ProgrammingLanguage = z.enum([
   'javascript',
   'java',
+  'kotlin',
   'c',
   'cpp',
   'python',

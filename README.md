@@ -5,4 +5,4 @@ PS(Problem Solving) 플랫폼에서 푼 문제를 깃허브에 쉽게 업로드�
 ## 지원 플랫폼
 
 - Programmers
-- 백준
+- TODO: 백준

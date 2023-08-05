@@ -96,6 +96,8 @@ export default class ProgrammersPacketToSolutionStatusMapper
         return 'cpp';
       case 'java':
         return 'java';
+      case 'kotlin':
+        return 'kotlin';
       case 'javascript':
         return 'javascript';
       case 'python':
