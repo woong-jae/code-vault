@@ -26,13 +26,17 @@ export default function Select({
   return (
     <div class="relative flex items-center">
       <select
-        class="appearance-none rounded-md border bg-transparent py-1 pl-2 pr-6 selection:appearance-none"
+        class="w-full appearance-none rounded-md border bg-transparent py-1 pl-2 pr-6 selection:appearance-none"
         value={selected?.value ?? ''}
         onChange={handleChange}
       >
-        <option value="">없음</option>
+        <option class="w-full" value="">
+          없음
+        </option>
         {items.map(item => (
-          <option value={item.value}>{item.content}</option>
+          <option class="w-full" value={item.value}>
+            {item.content}
+          </option>
         ))}
       </select>
       <svg
