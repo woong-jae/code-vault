@@ -44,4 +44,65 @@ export default class Github {
     if (!res.data) return null;
     return res.data;
   }
+
+  async getRepositoryContent({
+    owner,
+    repo,
+    path,
+  }: {
+    owner: string;
+    repo: string;
+    path: string;
+  }) {
+    try {
+      const { data } = await this.githubApiClient.rest.repos.getContent({
+        owner,
+        repo,
+        path,
+      });
+
+      if (data instanceof Array) {
+        return data[0];
+      }
+      return data;
+    } catch {
+      return undefined;
+    }
+  }
+
+  async createRepositoryContent({
+    owner,
+    repo,
+    path,
+    userName,
+    email,
+    content,
+  }: {
+    owner: string;
+    repo: string;
+    path: string;
+    userName: string;
+    email: string;
+    content: string;
+  }) {
+    try {
+      const oldContent = await this.getRepositoryContent({ owner, repo, path });
+
+      this.githubApiClient.rest.repos.createOrUpdateFileContents({
+        owner,
+        repo,
+        path,
+        message: 'my commit message',
+        committer: {
+          name: userName,
+          email: email,
+        },
+        content,
+        sha: oldContent?.sha,
+      });
+      return true;
+    } catch {
+      return false;
+    }
+  }
 }
