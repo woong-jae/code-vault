@@ -26,7 +26,7 @@ export default function Select({
   return (
     <div class="relative flex items-center">
       <select
-        class="appearance-none rounded-md border bg-transparent py-1 pl-2 pr-4 selection:appearance-none"
+        class="appearance-none rounded-md border bg-transparent py-1 pl-2 pr-6 selection:appearance-none"
         value={selected?.value ?? ''}
         onChange={handleChange}
       >
