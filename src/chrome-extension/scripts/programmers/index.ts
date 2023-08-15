@@ -1,21 +1,13 @@
-import renderApp from '~/app/renderController';
-import { setAppState } from '~/app/signals/appState';
 import createEventHub from '~/chrome-extension/common/createEventHub';
 import ProgrammersSolutionInterceptor from '~/core/infrastructure/NetworkInterceptor/ProgrammersSolutionInterceptor';
 import ProgrammersPacketToSolutionStatusMapper from '~/core/infrastructure/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
 
 console.log('CodeVault loaded...');
 
-renderApp();
-
 const eventHub = createEventHub('world', window);
-eventHub.listen(({ type }) => {
-  if (type === 'needSetting') {
-    setAppState('setting');
-  }
-  if (type === 'success') {
-    setAppState('submit');
-  }
+eventHub.listen(({ type, payload }) => {
+  if (type !== 'solved') return;
+  if (payload) console.log(JSON.parse(payload));
 });
 
 const networkInterceptor = new ProgrammersSolutionInterceptor();

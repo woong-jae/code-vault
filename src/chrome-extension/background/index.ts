@@ -12,6 +12,8 @@ solutionTracker.onSolve(solution => {
   );
 
   eventHub.emit({
-    type: 'needSetting',
+    type: 'solved',
   });
 });
+
+chrome.action.onClicked.addListener(() => console.log('clicked'));
