@@ -1,12 +1,6 @@
-import { closeApp } from '../signals/appState';
-
 export default function CloseButton() {
-  function handleClose() {
-    closeApp();
-  }
-
   return (
-    <button class="absolute right-3 top-3" onClick={handleClose}>
+    <button class="absolute right-3 top-3">
       <svg
         width="16px"
         height="16px"

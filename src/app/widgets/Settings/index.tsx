@@ -1,11 +1,11 @@
 import Card from '~/app/components/Card';
 import Select from '~/app/components/Select';
 
-export default function Settings() {
+export default function SettingsWidget() {
   return (
     <div class="w-96">
       <Card>
-        <h2 class="mb-1 font-semibold">선택한 저장소</h2>
+        <h2 class="mb-1 text-base font-semibold">선택한 저장소</h2>
         <Select
           onChange={value => console.log(value)}
           items={[

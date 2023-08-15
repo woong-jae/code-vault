@@ -1,12 +1,8 @@
 import { signal } from '@preact/signals';
 
-export type AppState = 'submit' | 'setting';
+export type AppState = 'loading' | 'login' | 'setting';
 
-const appState = signal<AppState | null>(null);
-
-export function closeApp() {
-  appState.value = null;
-}
+const appState = signal<AppState>('loading');
 
 export function setAppState(newState: AppState) {
   appState.value = newState;

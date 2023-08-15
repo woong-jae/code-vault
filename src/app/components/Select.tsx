@@ -26,15 +26,15 @@ export default function Select({
   return (
     <div class="relative flex items-center">
       <select
-        class="w-full appearance-none rounded-md border bg-transparent py-1 pl-2 pr-6 selection:appearance-none"
+        class="w-full appearance-none rounded-md border bg-transparent py-1 pl-2 pr-6 text-base selection:appearance-none"
         value={selected?.value ?? ''}
         onChange={handleChange}
       >
-        <option class="w-full" value="">
+        <option class="w-full text-base" value="">
           없음
         </option>
         {items.map(item => (
-          <option class="w-full" value={item.value}>
+          <option class="w-full text-base" value={item.value}>
             {item.content}
           </option>
         ))}

@@ -4,6 +4,7 @@ import Url from '~/common/const/Url';
 export default function LoginWidget() {
   function handleLogin() {
     window.open(Url.GITHUB_OAUTH_CODE);
+    window.close();
   }
 
   return (
