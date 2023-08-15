@@ -1,6 +1,6 @@
 import createEventHub from '~/chrome-extension/common/createEventHub';
-import ProgrammersSolutionInterceptor from '~/core/infrastructure/NetworkInterceptor/ProgrammersSolutionInterceptor';
-import ProgrammersPacketToSolutionStatusMapper from '~/core/infrastructure/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
+import ProgrammersPacketToSolutionStatusMapper from '~/features/SolutionTracker/infrastructure/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
+import ProgrammersSolutionInterceptor from '~/features/solutionTracker/infrastructure/SolutionInterceptor/ProgrammersSolutionInterceptor';
 
 console.log('CodeVault loaded...');
 

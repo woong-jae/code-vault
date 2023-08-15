@@ -1,4 +1,4 @@
-import BaseSolutionInterceptor from './BaseNetworkInterceptor';
+import BaseSolutionInterceptor from './BaseSolutionInterceptor';
 
 /* TODO: 프로그래머스 작업 후 예정 */
 export default class BojSolutionInterceptor extends BaseSolutionInterceptor {

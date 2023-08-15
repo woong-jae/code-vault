@@ -1,8 +1,7 @@
-import createSolution from '~/core/domain/Solution/createSolution';
-import { Process, SolutionStatus, SolveListener } from './types';
-
-import { Solution } from '~/core/domain/Solution/types';
+import createSolution from '../domain/Solution/createSolution';
+import { Solution } from '../domain/Solution/types';
 import { SolutionInterceptor } from './ports';
+import { Process, SolutionStatus, SolveListener } from './types';
 
 export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];

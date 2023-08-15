@@ -1,6 +1,6 @@
-import SolutionTracker from '~/core/application/SolutionTracker';
+import SolutionTracker from '~/features/solutionTracker/core/SolutionTracker';
 import createEventHub from '../common/createEventHub';
-import EventHubAdaptor from '~/core/adaptor/SolutionInterceptor/EventHubAdaptor';
+import EventHubAdaptor from '~/features/solutionTracker/adaptor/SolutionInterceptor/EventHubAdaptor';
 
 const eventHub = createEventHub('background');
 

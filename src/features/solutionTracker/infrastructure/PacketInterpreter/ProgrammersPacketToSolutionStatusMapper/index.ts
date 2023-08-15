@@ -1,14 +1,7 @@
-import {
-  Process,
-  SolutionStatus,
-} from '~/core/application/SolutionTracker/types';
-import { ProgrammingLanguage, Solution } from '~/core/domain/Solution/types';
 import PacketInterpreter from '.';
-import {
-  ProgrammersPacket,
-  ProgrammersIdentifier,
-  ProgrammersCode,
-} from './types';
+import { ProgrammingLanguage, Solution } from '~/features/solutionTracker/core/domain/Solution/types'
+import { SolutionStatus, Process } from '~/features/solutionTracker/core/SolutionTracker/types';
+import { ProgrammersCode, ProgrammersIdentifier, ProgrammersPacket } from './types';
 
 export default class ProgrammersPacketToSolutionStatusMapper
   implements PacketInterpreter

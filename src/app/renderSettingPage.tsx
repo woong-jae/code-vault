@@ -1,7 +1,7 @@
 import { render } from 'preact';
 import SettingPage from './pages/SettingPage';
 import './index.css';
-import Github from '~/core/infrastructure/Github';
+import Github from '~/services/Github';
 
 const app = document.createElement('div');
 app.id = 'app';

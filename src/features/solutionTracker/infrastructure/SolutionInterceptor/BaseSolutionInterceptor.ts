@@ -1,6 +1,6 @@
 import { InterceptListener } from './types';
 
-export default abstract class BaseNetworkInterceptor {
+export default abstract class BaseSolutionInterceptor {
   protected interceptListeners: InterceptListener[] = [];
 
   onIntercept(callback: InterceptListener): void {

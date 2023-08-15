@@ -1,6 +1,6 @@
-import { SolutionInterceptor } from '~/core/application/SolutionTracker/ports';
-import { SolutionInterceptListener } from '~/core/application/SolutionTracker/types';
-import EventHub from '~/core/infrastructure/EventHub';
+import { SolutionInterceptor } from '~/features/solutionTracker/core/SolutionTracker/ports';
+import { SolutionInterceptListener } from '~/features/solutionTracker/core/SolutionTracker/types';
+import EventHub from '~/services/EventHub';
 
 export default class EventHubAdaptor implements SolutionInterceptor {
   private onInterceptCallback: SolutionInterceptListener | undefined;
