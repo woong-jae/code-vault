@@ -2,6 +2,7 @@ import SolutionTracker from '~/features/solutionTracker/core/SolutionTracker';
 import createEventHub from '../common/createEventHub';
 import EventHubAdaptor from '~/features/solutionTracker/adaptor/SolutionInterceptor/EventHubAdaptor';
 import Url from '~/common/const/Url';
+import EventTypes from '~/services/EventHub/EventTypes';
 
 const eventHub = createEventHub('background');
 
@@ -13,7 +14,7 @@ solutionTracker.onSolve(solution => {
   );
 
   eventHub.emit({
-    type: 'solved',
+    type: EventTypes.CONFIRM_REQUEST,
   });
 });
 

@@ -1,5 +1,8 @@
 import { Event, EventListener, Context } from './types';
 
+/**
+ * Chrome background와 탭간 통신을 위한 이벤트 허브
+ */
 export default class EventHub {
   private listeners: EventListener[] = [];
 

@@ -7,7 +7,7 @@ console.log('CodeVault loaded...');
 
 const eventHub = createEventHub('world', window);
 eventHub.listen(({ type, payload }) => {
-  if (type !== EventTypes.CONFIRM) {
+  if (type === EventTypes.CONFIRM_REQUEST) {
     if (payload) console.log(JSON.parse(payload));
   }
 });
