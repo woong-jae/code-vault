@@ -1,6 +1,7 @@
 import SolutionTracker from '~/features/solutionTracker/core/SolutionTracker';
 import createEventHub from '../common/createEventHub';
 import EventHubAdaptor from '~/features/solutionTracker/adaptor/SolutionInterceptor/EventHubAdaptor';
+import Url from '~/common/const/Url';
 
 const eventHub = createEventHub('background');
 
@@ -16,4 +17,9 @@ solutionTracker.onSolve(solution => {
   });
 });
 
-chrome.action.onClicked.addListener(() => console.log('clicked'));
+/* Chrome extension 아이콘 클릭시 세팅 페이지 탭 열기 */
+chrome.action.onClicked.addListener(() => {
+  chrome.tabs.create({
+    url: Url.SETTING_PAGE,
+  });
+});

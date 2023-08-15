@@ -1,4 +1,4 @@
-import { Solution } from '~/features/solutionTracker/core/domain/Solution/types';
+import { Solution } from '~/features/solutionTracker/core/types';
 
 export type SolveListener = (solution: Solution) => void;
 

@@ -1,13 +1,15 @@
 import createEventHub from '~/chrome-extension/common/createEventHub';
 import ProgrammersPacketToSolutionStatusMapper from '~/features/SolutionTracker/infrastructure/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
 import ProgrammersSolutionInterceptor from '~/features/solutionTracker/infrastructure/SolutionInterceptor/ProgrammersSolutionInterceptor';
+import EventTypes from '~/services/EventHub/EventTypes';
 
 console.log('CodeVault loaded...');
 
 const eventHub = createEventHub('world', window);
 eventHub.listen(({ type, payload }) => {
-  if (type !== 'solved') return;
-  if (payload) console.log(JSON.parse(payload));
+  if (type !== EventTypes.CONFIRM) {
+    if (payload) console.log(JSON.parse(payload));
+  }
 });
 
 const networkInterceptor = new ProgrammersSolutionInterceptor();
@@ -20,7 +22,7 @@ networkInterceptor.onIntercept(packet => {
   if (!parsedPacket) return;
 
   eventHub.emit({
-    type: 'solution',
+    type: EventTypes.SOLUTION_INTERCEPTED,
     payload: JSON.stringify(parsedPacket),
   });
 });

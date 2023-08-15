@@ -1,5 +1,5 @@
 import createSolution from '../domain/Solution/createSolution';
-import { Solution } from '../domain/Solution/types';
+import { Solution } from '../types';
 import { SolutionInterceptor } from './ports';
 import { Process, SolutionStatus, SolveListener } from './types';
 

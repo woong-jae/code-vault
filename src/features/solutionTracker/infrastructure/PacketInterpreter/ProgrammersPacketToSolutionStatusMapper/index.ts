@@ -1,5 +1,5 @@
 import PacketInterpreter from '.';
-import { ProgrammingLanguage, Solution } from '~/features/solutionTracker/core/domain/Solution/types'
+import { ProgrammingLanguage, Solution } from '~/features/solutionTracker/core/types'
 import { SolutionStatus, Process } from '~/features/solutionTracker/core/SolutionTracker/types';
 import { ProgrammersCode, ProgrammersIdentifier, ProgrammersPacket } from './types';
 
