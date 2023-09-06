@@ -66,7 +66,7 @@ export default class Github {
       }
       return data;
     } catch {
-      return undefined;
+      return null;
     }
   }
 
@@ -77,6 +77,7 @@ export default class Github {
     userName,
     email,
     content,
+    message,
   }: {
     owner: string;
     repo: string;
@@ -84,6 +85,7 @@ export default class Github {
     userName: string;
     email: string;
     content: string;
+    message: string;
   }) {
     try {
       const oldContent = await this.getRepositoryContent({ owner, repo, path });
@@ -92,7 +94,7 @@ export default class Github {
         owner,
         repo,
         path,
-        message: 'my commit message',
+        message,
         committer: {
           name: userName,
           email: email,

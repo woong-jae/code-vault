@@ -1,5 +1,5 @@
 import { Button } from '~/app/components/Button';
-import Url from '~/common/const/Url';
+import Url from '~/shared/const/Url';
 
 export default function LoginWidget() {
   function handleLogin() {
