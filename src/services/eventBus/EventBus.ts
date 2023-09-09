@@ -4,12 +4,16 @@ import { Context, EmittedEvent, EventBusListener } from '~/shared/kernel';
  * Chrome background와 탭간 통신을 위한 이벤트 허브
  */
 export default class EventBus {
+  private static _eventBusInstance: EventBus;
+
   private listeners: EventBusListener[] = [];
 
   constructor(
     private readonly currentContext: Context,
     private readonly window?: Window,
   ) {
+    if (EventBus._eventBusInstance) return EventBus._eventBusInstance;
+
     if (currentContext !== 'world') {
       chrome.runtime.onMessage.addListener((event: EmittedEvent) => {
         if (event.from === currentContext) return;
@@ -32,6 +36,8 @@ export default class EventBus {
         this.notify(data);
       });
     }
+
+    EventBus._eventBusInstance = this;
   }
 
   listen(listener: EventBusListener) {

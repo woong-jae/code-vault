@@ -63,7 +63,6 @@ export default class SolutionTracker {
       platform,
       code,
       language,
-      date: new Date(),
     };
   }
 

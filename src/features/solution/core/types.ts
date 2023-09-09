@@ -13,7 +13,6 @@ export type Solution = {
   platform: Platform;
   language: ProgrammingLanguage;
   code: string;
-  date: Date;
 };
 
 /* SolutionTracker */
