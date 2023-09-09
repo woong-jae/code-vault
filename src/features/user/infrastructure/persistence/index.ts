@@ -4,6 +4,7 @@ import {
   PersistRepositoryToken,
   RetrieveRepositories,
   RetrieveRepositoryToken,
+  RetrieveSelectedRepository,
 } from '../../core/ports.output';
 import {
   localStoragePersist,
@@ -38,3 +39,7 @@ export const persistSelectedRepository: PersistSelectedRepository =
   repositoryName => {
     localStoragePersist(selectedRepositoryKey, repositoryName);
   };
+
+export const retrieveSelectedRepository: RetrieveSelectedRepository = () => {
+  return localStorageRetrieve(selectedRepositoryKey);
+};

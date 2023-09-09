@@ -13,3 +13,4 @@ export type RetrieveRepositories = (
 export type PersistSelectedRepository = (
   repositoryName: RepositoryName,
 ) => void;
+export type RetrieveSelectedRepository = () => RepositoryName | null;

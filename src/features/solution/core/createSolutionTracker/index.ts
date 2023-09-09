@@ -1,5 +1,5 @@
 import { CreateSolutionTracker } from '../ports.input';
-import createSolutionEventBus from '../../adaptor/createSolutionEventBus';
+import createSolutionEventBus from '../../infrastructure/eventBus';
 import SolutionTracker from './SolutionTracker';
 
 const createSolutionTracker: CreateSolutionTracker = () => {
