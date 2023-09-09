@@ -1,14 +1,17 @@
-import createSolution from '../domain/Solution/createSolution';
-import { Solution } from '../types';
-import { SolutionInterceptor } from './ports';
-import { Process, SolutionStatus, SolveListener } from './types';
+import {
+  Process,
+  Solution,
+  SolutionEventBus,
+  SolutionStatus,
+  SolveListener,
+} from '../types';
 
 export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];
   private _solutionData: Partial<Solution> = {};
 
-  constructor(private solutionInterceptor: SolutionInterceptor) {
-    this.solutionInterceptor.onIntercept(packet => {
+  constructor(private solutionEventBus: SolutionEventBus) {
+    this.solutionEventBus.onIntercept(packet => {
       this.handlePacket(packet);
     });
   }
@@ -55,12 +58,13 @@ export default class SolutionTracker {
     if (code === undefined) return null;
     if (language === undefined) return null;
 
-    return createSolution({
+    return {
       problemId,
       platform,
       code,
       language,
-    });
+      date: new Date(),
+    };
   }
 
   private updateSolutionData(data: Partial<Solution>) {

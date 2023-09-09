@@ -1,4 +1,4 @@
-import { SolutionStatus } from '~/features/solutionTracker/core/SolutionTracker/types';
+import { SolutionStatus } from '../../types';
 
 export default interface PacketInterpreter {
   parse(packet: string): SolutionStatus | undefined;

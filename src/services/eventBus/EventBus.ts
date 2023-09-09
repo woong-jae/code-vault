@@ -1,17 +1,17 @@
-import { Event, EventListener, Context } from './types';
+import { Context, EmittedEvent, EventBusListener } from '~/shared/kernel';
 
 /**
  * Chrome background와 탭간 통신을 위한 이벤트 허브
  */
-export default class EventHub {
-  private listeners: EventListener[] = [];
+export default class EventBus {
+  private listeners: EventBusListener[] = [];
 
   constructor(
     private readonly currentContext: Context,
     private readonly window?: Window,
   ) {
     if (currentContext !== 'world') {
-      chrome.runtime.onMessage.addListener((event: Event) => {
+      chrome.runtime.onMessage.addListener((event: EmittedEvent) => {
         if (event.from === currentContext) return;
         if (currentContext === 'isolated') {
           this.pipeFromIsolated(event);
@@ -23,7 +23,7 @@ export default class EventHub {
 
     if (currentContext !== 'background') {
       this.window?.addEventListener('message', event => {
-        const { data }: { data: Event } = event;
+        const { data }: { data: EmittedEvent } = event;
         if (data.from === currentContext) return;
         if (currentContext === 'isolated') {
           this.pipeFromIsolated(data);
@@ -34,14 +34,14 @@ export default class EventHub {
     }
   }
 
-  listen(listener: EventListener) {
+  listen(listener: EventBusListener) {
     this.listeners.push(listener);
     return () => {
       this.listeners = this.listeners.filter(item => item !== listener);
     };
   }
 
-  emit(event: Omit<Event, 'from'>) {
+  emit(event: Omit<EmittedEvent, 'from'>) {
     switch (this.currentContext) {
       case 'background':
         this.emitFromBackground({
@@ -58,11 +58,11 @@ export default class EventHub {
     }
   }
 
-  private notify(event: Event) {
+  private notify(event: EmittedEvent) {
     this.listeners.forEach(listener => listener(event));
   }
 
-  private pipeFromIsolated(event: Event) {
+  private pipeFromIsolated(event: EmittedEvent) {
     if (event.from === 'world') {
       chrome.runtime.sendMessage({ ...event, from: 'isolated' });
     }
@@ -71,11 +71,11 @@ export default class EventHub {
     }
   }
 
-  private emitFromWorld(event: Event) {
+  private emitFromWorld(event: EmittedEvent) {
     this.window?.postMessage(event, '*');
   }
 
-  private emitFromBackground(event: Event) {
+  private emitFromBackground(event: EmittedEvent) {
     this.getCurrentTab().then(tab => {
       if (!tab.id) return;
       chrome.tabs.sendMessage(tab.id, event);
