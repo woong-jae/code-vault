@@ -8,22 +8,22 @@ import {
   PersistContent,
   RetrieveUserProfile,
 } from '../../core/ports.output';
-import {
-  localStoragePersist,
-  localStorageRetrieve,
-} from '~/services/persistence/localStorage';
 import Github from '~/services/Github';
+import {
+  chromeLocalStoragePersist,
+  chromeLocalStorageRetrieve,
+} from '~/services/persistence/chromeLocalStorage';
 
 const repositoryTokenKey = 'repository-token:code-vault';
 const selectedRepositoryKey = 'selected-repository:code-vault';
 
-export const persistRepositoryToken: PersistRepositoryToken = (
+export const persistRepositoryToken: PersistRepositoryToken = async (
   repositoryToken: RepositoryToken,
 ) => {
-  localStoragePersist(repositoryTokenKey, repositoryToken);
+  await chromeLocalStoragePersist(repositoryTokenKey, repositoryToken);
 };
-export const retrieveRepositoryToken: RetrieveRepositoryToken = () => {
-  return localStorageRetrieve(repositoryTokenKey);
+export const retrieveRepositoryToken: RetrieveRepositoryToken = async () => {
+  return chromeLocalStorageRetrieve(repositoryTokenKey);
 };
 
 export const retrieveUserProfile: RetrieveUserProfile = async (
@@ -83,10 +83,11 @@ export const persistContent: PersistContent = async ({
 };
 
 export const persistSelectedRepository: PersistSelectedRepository =
-  repositoryName => {
-    localStoragePersist(selectedRepositoryKey, repositoryName);
+  async repositoryName => {
+    await chromeLocalStoragePersist(selectedRepositoryKey, repositoryName);
   };
 
-export const retrieveSelectedRepository: RetrieveSelectedRepository = () => {
-  return localStorageRetrieve(selectedRepositoryKey);
-};
+export const retrieveSelectedRepository: RetrieveSelectedRepository =
+  async () => {
+    return chromeLocalStorageRetrieve(selectedRepositoryKey);
+  };

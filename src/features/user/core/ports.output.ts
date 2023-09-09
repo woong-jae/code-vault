@@ -6,10 +6,10 @@ export type RetrieveUserProfile = (
 ) => Promise<UserProfile>;
 
 /* Repository token */
-export type PersistRepositoryToken = (token: RepositoryToken) => void;
-export type RetrieveRepositoryToken = () => RepositoryToken | null;
+export type PersistRepositoryToken = (token: RepositoryToken) => Promise<void>;
+export type RetrieveRepositoryToken = () => Promise<RepositoryToken | null>;
 
-/* Repositories */
+/* Repository */
 export type RetrieveRepositories = (
   repositoryToken: RepositoryToken,
 ) => Promise<RepositoryName[]>;
@@ -25,5 +25,5 @@ export type PersistContent = (persistContentParams: {
 /* User selected repository */
 export type PersistSelectedRepository = (
   repositoryName: RepositoryName,
-) => void;
-export type RetrieveSelectedRepository = () => RepositoryName | null;
+) => Promise<void>;
+export type RetrieveSelectedRepository = () => Promise<RepositoryName | null>;

@@ -14,5 +14,5 @@ export interface EventBus {
 
 // Persistence:
 type PersistenceKey = string;
-export type Persist = <T>(key: PersistenceKey, value: T) => void;
-export type Retrieve = <T>(key: PersistenceKey) => T | null;
+export type Persist = <T>(key: PersistenceKey, value: T) => Promise<void>;
+export type Retrieve = <T>(key: PersistenceKey) => Promise<T | null>;

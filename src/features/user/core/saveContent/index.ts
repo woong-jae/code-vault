@@ -6,8 +6,8 @@ import {
 import { SaveContent } from '../ports.input';
 
 const saveContent: SaveContent = async (path, content, message) => {
-  const repositoryToken = retrieveRepositoryToken();
-  const selectedRepositoryName = retrieveSelectedRepository();
+  const repositoryToken = await retrieveRepositoryToken();
+  const selectedRepositoryName = await retrieveSelectedRepository();
 
   if (!repositoryToken || !selectedRepositoryName) return false;
 

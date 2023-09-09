@@ -1,6 +1,5 @@
 import { EventBus } from '~/shared/kernel';
 import { SolutionEventBus, SolutionInterceptListener } from '../../core/types';
-
 import EventTypes from '~/services/eventBus/EventTypes';
 
 export default class EventBusAdaptor implements SolutionEventBus {
