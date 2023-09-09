@@ -32,8 +32,16 @@ export default class Github {
   async getUserStatus() {
     const res = await this.githubApiClient.rest.users.getAuthenticated();
 
-    if (!res.data) return null;
+    if (!res.data) {
+      throw new Error('Not authenticated');
+    }
     return res.data;
+  }
+
+  async getUserPrimaryEmail() {
+    const res =
+      await this.githubApiClient.rest.users.listEmailsForAuthenticatedUser();
+    return res.data.find(addedEmail => addedEmail.primary)?.email || null;
   }
 
   async getRepositories() {
