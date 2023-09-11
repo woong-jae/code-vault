@@ -17,9 +17,13 @@ export default function UserProfile() {
       </CardHeader>
       <CardContent>
         <img
-          className="rounded-xl"
+          className="rounded-full"
           src="https://avatars.githubusercontent.com/u/33976823?v=4"
         />
+        <div className="mt-2">
+          <p className="text-sm">Name</p>
+          <p className="line-clamp-1 rounded-sm border px-2 py-1">woong-jae</p>
+        </div>
       </CardContent>
       <CardFooter>
         <Button className="w-full" variant={'destructive'}>

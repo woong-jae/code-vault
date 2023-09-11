@@ -17,7 +17,7 @@ import {
 
 export default function RepositorySelector() {
   return (
-    <Card className="w-[350px]">
+    <Card className="h-min w-[350px]">
       <CardHeader>
         <CardTitle>Repository</CardTitle>
         <CardDescription>선택한 저장소</CardDescription>
