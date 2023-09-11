@@ -18,7 +18,7 @@ const repositoryTokenKey = 'repository-token:code-vault';
 const selectedRepositoryKey = 'selected-repository:code-vault';
 
 export const persistRepositoryToken: PersistRepositoryToken = async (
-  repositoryToken: RepositoryToken,
+  repositoryToken: RepositoryToken | null,
 ) => {
   await chromeLocalStoragePersist(repositoryTokenKey, repositoryToken);
 };

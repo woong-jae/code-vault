@@ -5,7 +5,7 @@
       "~/*": ["./*"]
     },
     "types": ["jest", "chrome"],
-    "target": "ES2020",
+    "target": "ES5",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -13,10 +13,12 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
+    "jsxImportSource": "react",
 
     /* Linting */
     "strict": true,

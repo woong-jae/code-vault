@@ -1,5 +1,9 @@
-import { RepositoryName } from './types';
+import { RepositoryName, UserProfile } from './types';
 
+export type Login = () => Promise<boolean>;
+export type Logout = () => Promise<boolean>;
+
+export type GetUserProfile = () => Promise<UserProfile | null>;
 export type GetRepositories = () => Promise<RepositoryName[] | null>;
 export type SaveContent = (
   path: string,

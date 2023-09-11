@@ -5,7 +5,7 @@ import {
 } from '../../infrastructure/persistence';
 
 const getRepositories: GetRepositories = async () => {
-  const repositoryToken = retrieveRepositoryToken();
+  const repositoryToken = await retrieveRepositoryToken();
   if (!repositoryToken) return null;
 
   return retrieveRepositories(repositoryToken);

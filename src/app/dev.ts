@@ -1,4 +1,3 @@
-import { setAppState } from './signals/appState';
-import './renderSettingPage';
+import { renderSettingApp } from './setting';
 
-setAppState('setting');
+renderSettingApp();

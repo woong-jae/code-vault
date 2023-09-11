@@ -6,7 +6,8 @@ export type RetrieveUserProfile = (
 ) => Promise<UserProfile>;
 
 /* Repository token */
-export type PersistRepositoryToken = (token: RepositoryToken) => Promise<void>;
+export type GetInitialToken = () => Promise<RepositoryToken | null>;
+export type PersistRepositoryToken = (token: RepositoryToken | null) => Promise<void>;
 export type RetrieveRepositoryToken = () => Promise<RepositoryToken | null>;
 
 /* Repository */

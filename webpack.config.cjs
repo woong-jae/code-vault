@@ -4,20 +4,21 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const src = path.join(__dirname, 'src');
 
-const isProduction = process.env.NODE_ENV === 'production';
+const mode = process.env.NODE_ENV ?? 'development';
+const isProduction = mode === 'production';
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
+  mode,
   entry: isProduction
     ? {
-        background: path.join(src, 'chrome-extension/background/index.ts'),
+        background: path.join(src, 'app/chrome-extension/background/index.ts'),
         programmers: path.join(
           src,
-          'chrome-extension/scripts/programmers/index.ts',
+          'app/chrome-extension/scripts/programmers/index.ts',
         ),
         common_isolated: path.join(
           src,
-          'chrome-extension/scripts/common-isolated/index.ts',
+          'app/chrome-extension/scripts/common-isolated/index.ts',
         ),
         setting: path.join(src, 'app/renderSettingPage.tsx'),
       }
