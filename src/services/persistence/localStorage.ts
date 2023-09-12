@@ -1,4 +1,4 @@
-import { Persist, Retrieve } from '~/shared/kernel';
+import { type Persist, type Retrieve } from '~/shared/kernel';
 
 export const localStoragePersist: Persist = async (key, value) => {
   window.localStorage.setItem(key, JSON.stringify(value));

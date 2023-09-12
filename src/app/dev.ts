@@ -1,3 +1,3 @@
-import { renderSettingApp } from './setting';
+import { renderSettingApp } from './setting/renderSettingApp';
 
 renderSettingApp();

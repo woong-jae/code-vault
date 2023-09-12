@@ -1,4 +1,8 @@
-import { Context, EmittedEvent, EventBusListener } from '~/shared/kernel';
+import {
+  type Context,
+  type EmittedEvent,
+  type EventBusListener,
+} from '~/shared/kernel';
 
 /**
  * Chrome background와 탭간 통신을 위한 이벤트 허브

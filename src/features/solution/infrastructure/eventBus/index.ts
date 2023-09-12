@@ -1,5 +1,5 @@
 import createEventBus from '~/services/eventBus';
-import { CreateSolutionEventBus } from '../../core/ports.output';
+import type { CreateSolutionEventBus } from '../../core/ports.output';
 import EventHubAdaptor from './EventBusAdaptor';
 
 const createSolutionEventBus: CreateSolutionEventBus = () => {

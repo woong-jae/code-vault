@@ -1,4 +1,4 @@
-import { GetRepositories } from '../ports.input';
+import type { GetRepositories } from '../ports.input';
 import {
   retrieveRepositories,
   retrieveRepositoryToken,

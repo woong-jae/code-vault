@@ -1,9 +1,15 @@
-import { Login } from '../ports.input';
-import { PersistRepositoryToken, GetInitialToken } from '../ports.output';
+import { saveUser } from '../../infrastructure/store';
+import type { Login } from '../ports.input';
+import type {
+  PersistRepositoryToken,
+  GetInitialToken,
+  SaveUser,
+} from '../ports.output';
 
 type Dependencies = {
   getInitialToken: GetInitialToken;
   persistRepositoryToken: PersistRepositoryToken;
+  saveUser: SaveUser;
 };
 
 export const createLogin =
@@ -13,6 +19,7 @@ export const createLogin =
     if (!token) return false;
 
     await persistRepositoryToken(token);
+    saveUser({ isLoggedIn: true });
 
     return true;
   };

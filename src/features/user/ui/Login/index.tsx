@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import Url from '~/shared/const/Url';
 import { Button } from '~/shared/ui/Button';
+import login from '../../core/login';
 
 export default function Login() {
+  useEffect(() => {
+    login();
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center pb-16">
       <h1 className="mb-6 text-8xl font-bold text-neutral-700">Code Vault</h1>

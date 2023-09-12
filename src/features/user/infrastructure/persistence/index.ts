@@ -1,5 +1,5 @@
-import { RepositoryName, RepositoryToken } from '../../core/types';
-import {
+import type { RepositoryName, RepositoryToken } from '../../core/types';
+import type {
   PersistSelectedRepository,
   PersistRepositoryToken,
   RetrieveRepositories,
@@ -14,8 +14,8 @@ import {
   chromeLocalStorageRetrieve,
 } from '~/services/persistence/chromeLocalStorage';
 
-const repositoryTokenKey = 'repository-token:code-vault';
-const selectedRepositoryKey = 'selected-repository:code-vault';
+export const repositoryTokenKey = 'repository-token:code-vault';
+export const selectedRepositoryKey = 'selected-repository:code-vault';
 
 export const persistRepositoryToken: PersistRepositoryToken = async (
   repositoryToken: RepositoryToken | null,
@@ -65,8 +65,8 @@ export const persistContent: PersistContent = async ({
   const githubRepository = new Github(repositoryToken);
 
   const userProfile = await githubRepository.getUserStatus();
-
   const primaryEmail = await githubRepository.getUserPrimaryEmail();
+
   if (!primaryEmail) {
     throw new Error('No primary email set for user');
   }

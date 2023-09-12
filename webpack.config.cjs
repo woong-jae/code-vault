@@ -20,7 +20,7 @@ module.exports = {
           src,
           'app/chrome-extension/scripts/common-isolated/index.ts',
         ),
-        setting: path.join(src, 'app/renderSettingPage.tsx'),
+        setting: path.join(src, 'app/setting/index.ts'),
       }
     : './src/app/dev.ts',
   output: isProduction

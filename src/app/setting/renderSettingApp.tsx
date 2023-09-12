@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import '../style.css';
 import SettingApp from './App';
+import '../style.css';
 
 export function renderSettingApp() {
   const $app = document.getElementById('app');

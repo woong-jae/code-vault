@@ -1,9 +1,9 @@
 import {
   Process,
-  Solution,
-  SolutionEventBus,
-  SolutionStatus,
-  SolveListener,
+  type Solution,
+  type SolutionEventBus,
+  type SolutionStatus,
+  type SolveListener,
 } from '../types';
 
 export default class SolutionTracker {
@@ -25,6 +25,27 @@ export default class SolutionTracker {
     };
   }
 
+  get solution(): Solution | null {
+    const { problemId, platform, code, language, time, memory } =
+      this._solutionData;
+
+    if (problemId === undefined) return null;
+    if (platform === undefined) return null;
+    if (code === undefined) return null;
+    if (language === undefined) return null;
+    if (time === undefined) return null;
+    if (memory === undefined) return null;
+
+    return {
+      problemId,
+      platform,
+      code,
+      language,
+      time,
+      memory,
+    };
+  }
+
   private notify(solution: Solution) {
     this.solveListeners.forEach(listener => listener({ ...solution }));
   }
@@ -38,38 +59,34 @@ export default class SolutionTracker {
     this.updateSolutionData(payload);
 
     if (process === Process.SUCCESS) {
-      const newSolution = this.getSolution();
+      const newSolution = this.solution;
       if (!newSolution) {
         throw new Error('Missing data for submitted solution...');
       }
 
       this.notify(newSolution);
 
-      this.clearSolutionData();
       return;
     }
   }
 
-  private getSolution(): Solution | null {
-    const { problemId, platform, code, language } = this._solutionData;
-
-    if (problemId === undefined) return null;
-    if (platform === undefined) return null;
-    if (code === undefined) return null;
-    if (language === undefined) return null;
-
-    return {
-      problemId,
-      platform,
-      code,
-      language,
-    };
-  }
-
   private updateSolutionData(data: Partial<Solution>) {
+    const newData = { ...data };
+    const { time: previousTime, memory: previousMemory } = this._solutionData;
+
+    if (previousTime && newData.time) {
+      this._solutionData.time = Math.max(previousTime, newData.time);
+      delete newData.time;
+    }
+
+    if (previousMemory && newData.memory) {
+      this._solutionData.memory = Math.max(previousMemory, newData.memory);
+      delete newData.memory;
+    }
+
     this._solutionData = {
       ...this._solutionData,
-      ...data,
+      ...newData,
     };
   }
 

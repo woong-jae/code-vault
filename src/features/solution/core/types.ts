@@ -1,5 +1,7 @@
 /* Solution */
 export type Platform = 'programmers' | 'boj';
+export type MilliSecond = number;
+export type MegaByte = number;
 export type ProgrammingLanguage =
   | 'javascript'
   | 'java'
@@ -13,6 +15,8 @@ export type Solution = {
   platform: Platform;
   language: ProgrammingLanguage;
   code: string;
+  time: MilliSecond;
+  memory: MegaByte;
 };
 
 /* SolutionTracker */

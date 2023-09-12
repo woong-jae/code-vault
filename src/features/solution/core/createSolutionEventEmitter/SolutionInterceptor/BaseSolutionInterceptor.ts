@@ -1,4 +1,4 @@
-import { InterceptListener } from './types';
+import type { InterceptListener } from './types';
 
 export default abstract class BaseSolutionInterceptor {
   protected interceptListeners: InterceptListener[] = [];

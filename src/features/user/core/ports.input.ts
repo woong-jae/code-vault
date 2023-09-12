@@ -1,5 +1,9 @@
-import { RepositoryName, UserProfile } from './types';
+import type { RepositoryName, UserProfile } from './types';
 
+export type SelectIsUserLoggedIn = () => boolean;
+export type SelectSelectedRepository = () => RepositoryName | null;
+
+export type IsLoggedIn = () => Promise<boolean>;
 export type Login = () => Promise<boolean>;
 export type Logout = () => Promise<boolean>;
 
@@ -11,4 +15,7 @@ export type SaveContent = (
   message: string,
 ) => Promise<boolean>;
 
-export type SetSelectedRepository = (repositoryName: RepositoryName) => void;
+export type GetSelectedRepository = () => Promise<RepositoryName | null>;
+export type SetSelectedRepository = (
+  repositoryName: RepositoryName | null,
+) => Promise<void>;

@@ -1,4 +1,5 @@
 import { Octokit } from 'octokit';
+import { stringToBase64 } from '~/shared/infrastructure/file';
 
 const clientId = 'e1f73f73ee1f2865bcd5';
 const clientSecret = 'aceb34e7192ba7b6181d0c0649373b9fce57cda0';
@@ -98,6 +99,8 @@ export default class Github {
     try {
       const oldContent = await this.getRepositoryContent({ owner, repo, path });
 
+      const base64Content = stringToBase64(content);
+
       this.githubApiClient.rest.repos.createOrUpdateFileContents({
         owner,
         repo,
@@ -107,11 +110,13 @@ export default class Github {
           name: userName,
           email: email,
         },
-        content,
+        content: base64Content,
         sha: oldContent?.sha,
       });
+
       return true;
-    } catch {
+    } catch (e) {
+      console.log(e);
       return false;
     }
   }

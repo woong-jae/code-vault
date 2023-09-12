@@ -1,8 +1,16 @@
+import type { Logout } from '../ports.input';
+import { saveUser } from '../../infrastructure/store';
 import { persistRepositoryToken } from '../../infrastructure/persistence';
-import { Logout } from '../ports.input';
+import setSelectedRepository from '../setSelectedRepository';
 
 const logout: Logout = async () => {
-  await persistRepositoryToken(null);
+  saveUser({ isLoggedIn: false });
+
+  await Promise.allSettled([
+    persistRepositoryToken(null),
+    setSelectedRepository(null),
+  ]);
+
   return true;
 };
 

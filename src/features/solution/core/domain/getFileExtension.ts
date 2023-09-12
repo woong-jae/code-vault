@@ -1,4 +1,4 @@
-import { ProgrammingLanguage } from '../types';
+import type { ProgrammingLanguage } from '../types';
 
 export type GetFileExtension = (
   programmingLanguage: ProgrammingLanguage,

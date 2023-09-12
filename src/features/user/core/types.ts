@@ -5,3 +5,8 @@ export type UserProfile = {
   email: string;
   avatarUrl: string;
 };
+
+export type UserModel = {
+  isLoggedIn: boolean;
+  selectedRepository: RepositoryName | null;
+};

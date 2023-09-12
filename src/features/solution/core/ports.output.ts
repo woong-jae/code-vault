@@ -1,4 +1,4 @@
-import { SolutionEventBus } from './types';
+import type { SolutionEventBus } from './types';
 
 export type CreateSolutionEventBus = () => SolutionEventBus;
 

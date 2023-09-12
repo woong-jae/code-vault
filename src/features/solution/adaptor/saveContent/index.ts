@@ -1,4 +1,4 @@
-import { SaveContentAdaptor } from '../../core/ports.output';
+import type { SaveContentAdaptor } from '../../core/ports.output';
 import callFeature from '~/features/user/core/saveContent';
 
 const saveContent: SaveContentAdaptor = async (

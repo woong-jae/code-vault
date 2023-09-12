@@ -1,16 +1,26 @@
-import { RepositoryName, RepositoryToken, UserProfile } from './types';
+import type {
+  RepositoryName,
+  RepositoryToken,
+  UserModel,
+  UserProfile,
+} from './types';
 
-/* User Profile */
+export type GetInitialToken = () => Promise<RepositoryToken | null>;
+
+/* Store */
+export type ReadUser = () => UserModel;
+export type SaveUser = (patch: Partial<UserModel>) => void;
+
+/* Persistence */
 export type RetrieveUserProfile = (
   token: RepositoryToken,
 ) => Promise<UserProfile>;
 
-/* Repository token */
-export type GetInitialToken = () => Promise<RepositoryToken | null>;
-export type PersistRepositoryToken = (token: RepositoryToken | null) => Promise<void>;
+export type PersistRepositoryToken = (
+  token: RepositoryToken | null,
+) => Promise<void>;
 export type RetrieveRepositoryToken = () => Promise<RepositoryToken | null>;
 
-/* Repository */
 export type RetrieveRepositories = (
   repositoryToken: RepositoryToken,
 ) => Promise<RepositoryName[]>;
@@ -23,8 +33,7 @@ export type PersistContent = (persistContentParams: {
   message: string;
 }) => Promise<boolean>;
 
-/* User selected repository */
 export type PersistSelectedRepository = (
-  repositoryName: RepositoryName,
+  repositoryName: RepositoryName | null,
 ) => Promise<void>;
 export type RetrieveSelectedRepository = () => Promise<RepositoryName | null>;

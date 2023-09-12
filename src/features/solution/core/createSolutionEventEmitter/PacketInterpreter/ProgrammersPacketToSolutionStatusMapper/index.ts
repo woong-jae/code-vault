@@ -1,15 +1,15 @@
 import PacketInterpreter from '.';
 import {
   Process,
-  ProgrammingLanguage,
-  Solution,
-  SolutionStatus,
+  type ProgrammingLanguage,
+  type Solution,
+  type SolutionStatus,
 } from '~/features/solution/core/types';
 
 import {
-  ProgrammersCode,
-  ProgrammersIdentifier,
-  ProgrammersPacket,
+  type ProgrammersCode,
+  type ProgrammersIdentifier,
+  type ProgrammersPacket,
 } from './types';
 
 export default class ProgrammersPacketToSolutionStatusMapper
@@ -69,23 +69,23 @@ export default class ProgrammersPacketToSolutionStatusMapper
       };
     }
 
-    // if (process === Process.SCORE) {
-    //   if (programmersPacket?.message === undefined) return {};
-    //   const { passed, msg } = programmersPacket.message;
-    //   if (passed) {
-    //     const [timeMatch, memoryMatch] = msg.matchAll(messageRegex);
+    if (process === Process.SCORE) {
+      if (programmersPacket?.message === undefined) return {};
+      const { passed, msg } = programmersPacket.message;
+      if (passed) {
+        const [timeMatch, memoryMatch] = msg.matchAll(/\d+\.?\d+/g);
 
-    //     return {
-    //       time: parseFloat(timeMatch[0]),
-    //       memory: parseFloat(memoryMatch[0]),
-    //     };
-    //   }
+        return {
+          time: parseFloat(timeMatch[0]),
+          memory: parseFloat(memoryMatch[0]),
+        };
+      }
 
-    //   return {
-    //     time: 0,
-    //     memory: 0,
-    //   };
-    // }
+      return {
+        time: 0,
+        memory: 0,
+      };
+    }
 
     return {};
   }
