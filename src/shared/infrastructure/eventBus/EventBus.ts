@@ -54,6 +54,11 @@ export default class EventBusService implements EventBus {
   }
 
   emit(event: Omit<EmittedEvent, 'from'>) {
+    this.notify({
+      type: event.type,
+      payload: event.payload,
+    });
+
     switch (this.currentContext) {
       case 'background':
         this.emitFromBackground({
@@ -70,7 +75,7 @@ export default class EventBusService implements EventBus {
     }
   }
 
-  private notify(event: EmittedEvent) {
+  private notify(event: Omit<EmittedEvent, 'from'>) {
     this.listeners.forEach(listener => listener(event));
   }
 
@@ -89,14 +94,17 @@ export default class EventBusService implements EventBus {
 
   private emitFromBackground(event: EmittedEvent) {
     this.getCurrentTab().then(tab => {
-      if (!tab.id) return;
+      if (!tab?.id) return;
+
       chrome.tabs.sendMessage(tab.id, event);
     });
   }
 
   private async getCurrentTab() {
-    const queryOptions = { active: true, lastFocusedWindow: true };
-    const [tab] = await chrome.tabs.query(queryOptions);
+    const [tab] = await chrome.tabs.query({
+      lastFocusedWindow: true,
+      active: true,
+    });
     return tab;
   }
 }

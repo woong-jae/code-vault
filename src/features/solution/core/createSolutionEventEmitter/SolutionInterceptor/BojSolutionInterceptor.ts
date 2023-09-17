@@ -19,6 +19,7 @@ declare global {
 export default class BojSolutionInterceptor extends BaseSolutionInterceptor {
   constructor() {
     super();
+    this.injectPusherMessageInterceptor();
   }
 
   injectPusherMessageInterceptor() {
