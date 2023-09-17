@@ -39,10 +39,7 @@
     },
     {
       "id": "CodeVault-common_isolated",
-      "matches": [
-        "https://school.programmers.co.kr/learn/courses/30/lessons/*",
-        "https://www.acmicpc.net/status*"
-      ],
+      "matches": ["https://*/*"],
       "js": ["common_isolated.js"]
     }
   ]

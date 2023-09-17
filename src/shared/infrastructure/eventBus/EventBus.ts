@@ -25,7 +25,6 @@ export default class EventBusService implements EventBus {
         if (event.from === currentContext) return;
         if (currentContext === 'isolated') {
           this.pipeFromIsolated(event);
-          return;
         }
         this.notify(event);
       });
@@ -37,7 +36,6 @@ export default class EventBusService implements EventBus {
         if (data.from === currentContext) return;
         if (currentContext === 'isolated') {
           this.pipeFromIsolated(data);
-          return;
         }
         this.notify(data);
       });
@@ -69,6 +67,12 @@ export default class EventBusService implements EventBus {
       case 'world':
         this.emitFromWorld({
           from: 'world',
+          ...event,
+        });
+        break;
+      case 'isolated':
+        this.pipeFromIsolated({
+          from: 'isolated',
           ...event,
         });
         break;
