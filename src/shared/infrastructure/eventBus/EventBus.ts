@@ -96,7 +96,9 @@ export default class EventBusService implements EventBus {
     this.getCurrentTab().then(tab => {
       if (!tab?.id) return;
 
-      chrome.tabs.sendMessage(tab.id, event);
+      chrome.tabs.sendMessage(tab.id, event).catch(() => {
+        console.log('EventBus: emitFromBackground failed...');
+      });
     });
   }
 

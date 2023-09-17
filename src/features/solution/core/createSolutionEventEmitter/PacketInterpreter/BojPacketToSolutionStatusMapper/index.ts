@@ -24,11 +24,13 @@ export default class BojPacketToSolutionStatusMapper
             time,
           },
         };
-      default: // 이외는 실패로 간주
+      case 6: // 실패
         return {
           process: Process.FAIL,
           payload: {},
         };
+      default:
+        return undefined;
     }
   }
 }
