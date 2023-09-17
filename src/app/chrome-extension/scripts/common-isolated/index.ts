@@ -1,3 +1,3 @@
-import createEventBus from '~/services/eventBus';
+import createEventBus from '~/shared/infrastructure/eventBus';
 
 createEventBus('isolated');

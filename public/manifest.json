@@ -3,7 +3,6 @@
   "name": "Code-Vault",
   "description": "Code-Vault에서 제공하는 크롬 확장도구입니다.",
   "version": "0.1",
-  "action": {},
   "background": {
     "service_worker": "background.js"
   },
@@ -32,9 +31,17 @@
       "world": "MAIN"
     },
     {
+      "id": "CodeVault-boj",
+      "matches": ["https://www.acmicpc.net/status*"],
+      "js": ["boj.js"],
+      "world": "MAIN"
+    },
+    {
       "id": "CodeVault-common_isolated",
       "matches": [
-        "https://school.programmers.co.kr/learn/courses/30/lessons/*"
+        "https://school.programmers.co.kr/learn/courses/30/lessons/*",
+        "https://www.acmicpc.net/submit/*",
+        "https://www.acmicpc.net/status*"
       ],
       "js": ["common_isolated.js"]
     }

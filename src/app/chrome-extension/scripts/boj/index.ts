@@ -1,4 +1,4 @@
-import { initProgrammersSolutionEventEmitter } from '~/features/solution/core/createSolutionEventEmitter';
+import { initBojSolutionEventEmitterFromWorld } from '~/features/solution/core/createSolutionEventEmitter';
 import {
   onAlert,
   onCrossContextConfirm,
@@ -6,7 +6,7 @@ import {
 
 console.log('CodeVault loaded...');
 
-initProgrammersSolutionEventEmitter();
+initBojSolutionEventEmitterFromWorld();
 
 onCrossContextConfirm('world', message => {
   const isConfirm = confirm(message);

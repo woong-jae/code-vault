@@ -13,12 +13,16 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
   const description = createMarkdown(solution);
   const message = createMessage(solution);
 
-  return Promise.all([
-    saveContent(descriptionPath, description, message),
-    saveContent(codePath, solution.code, message),
-  ])
-    .then(() => true)
-    .catch(() => false);
+  try {
+    const result = await Promise.all([
+      saveContent(descriptionPath, description, message),
+      saveContent(codePath, solution.code, message),
+    ]);
+
+    return !result.includes(false);
+  } catch {
+    return false;
+  }
 };
 
 export default saveSolution;

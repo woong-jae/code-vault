@@ -1,14 +1,15 @@
 import {
   type Context,
   type EmittedEvent,
+  type EventBus,
   type EventBusListener,
 } from '~/shared/kernel';
 
 /**
  * Chrome background와 탭간 통신을 위한 이벤트 허브
  */
-export default class EventBus {
-  private static _eventBusInstance: EventBus;
+export default class EventBusService implements EventBus {
+  private static _eventBusInstance: EventBusService;
 
   private listeners: EventBusListener[] = [];
 
@@ -16,7 +17,8 @@ export default class EventBus {
     private readonly currentContext: Context,
     private readonly window?: Window,
   ) {
-    if (EventBus._eventBusInstance) return EventBus._eventBusInstance;
+    if (EventBusService._eventBusInstance)
+      return EventBusService._eventBusInstance;
 
     if (currentContext !== 'world') {
       chrome.runtime.onMessage.addListener((event: EmittedEvent) => {
@@ -41,7 +43,7 @@ export default class EventBus {
       });
     }
 
-    EventBus._eventBusInstance = this;
+    EventBusService._eventBusInstance = this;
   }
 
   listen(listener: EventBusListener) {

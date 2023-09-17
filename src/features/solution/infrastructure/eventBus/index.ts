@@ -1,4 +1,4 @@
-import createEventBus from '~/services/eventBus';
+import createEventBus from '~/shared/infrastructure/eventBus';
 import type { CreateSolutionEventBus } from '../../core/ports.output';
 import EventHubAdaptor from './EventBusAdaptor';
 
