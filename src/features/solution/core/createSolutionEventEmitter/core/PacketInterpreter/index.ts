@@ -1,4 +1,4 @@
-import type { SolutionStatus } from '../../types';
+import type { SolutionStatus } from '../../../types';
 
 export default interface PacketInterpreter {
   parse(packet: string): SolutionStatus | undefined;

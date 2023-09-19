@@ -1,5 +1,5 @@
 import type PacketInterpreter from '..';
-import { Process, type SolutionStatus } from '../../../types';
+import { Process, type SolutionStatus } from '../../../../types';
 import type { BojPacket } from './types';
 
 export default class BojPacketToSolutionStatusMapper

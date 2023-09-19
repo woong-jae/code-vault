@@ -84,10 +84,10 @@ export default class EventBusService implements EventBus {
   }
 
   private pipeFromIsolated(event: EmittedEvent) {
-    if (event.from === 'world') {
+    if (event.from !== 'background') {
       chrome.runtime.sendMessage({ ...event, from: 'isolated' });
     }
-    if (event.from === 'background') {
+    if (event.from !== 'world') {
       this.window?.postMessage({ ...event, from: 'isolated' });
     }
   }

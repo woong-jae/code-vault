@@ -17,6 +17,10 @@ module.exports = {
           'app/chrome-extension/scripts/programmers/index.ts',
         ),
         boj: path.join(src, 'app/chrome-extension/scripts/boj/index.ts'),
+        leetcode: path.join(
+          src,
+          'app/chrome-extension/scripts/leetcode/index.ts',
+        ),
         common_isolated: path.join(
           src,
           'app/chrome-extension/scripts/common-isolated/index.ts',

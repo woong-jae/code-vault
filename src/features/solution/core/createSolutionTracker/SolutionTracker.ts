@@ -56,6 +56,10 @@ export default class SolutionTracker {
       return;
     }
 
+    if (process === Process.START) {
+      this.clearSolutionData();
+    }
+
     this.updateSolutionData(payload);
 
     if (process === Process.SUCCESS) {
@@ -65,8 +69,6 @@ export default class SolutionTracker {
       }
 
       this.notify(newSolution);
-
-      return;
     }
   }
 

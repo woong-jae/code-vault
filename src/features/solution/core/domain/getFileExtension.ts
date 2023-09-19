@@ -16,6 +16,8 @@ export const getFileExtension: GetFileExtension = programmingLanguage => {
       return 'kt';
     case 'javascript':
       return 'js';
+    case 'typescript':
+      return 'ts';
     default:
       throw new Error(`Invalid programming language: ${programmingLanguage}`);
   }

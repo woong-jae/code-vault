@@ -1,9 +1,10 @@
 /* Solution */
-export type Platform = 'programmers' | 'boj';
+export type Platform = 'programmers' | 'boj' | 'leetcode';
 export type MilliSecond = number;
 export type MegaByte = number;
 export type ProgrammingLanguage =
   | 'javascript'
+  | 'typescript'
   | 'java'
   | 'kotlin'
   | 'c'

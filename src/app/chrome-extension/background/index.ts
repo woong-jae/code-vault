@@ -1,4 +1,5 @@
 import { initBojSolutionEventEmitterFromBackground } from '~/features/solution/core/createSolutionEventEmitter';
+import { initLeetcodeSolutionEventEmitterFromBackground } from '~/features/solution/core/createSolutionEventEmitter/platforms/leetcode';
 import createSolutionTracker from '~/features/solution/core/createSolutionTracker';
 import saveSolution from '~/features/solution/core/saveSolution';
 import Url from '~/shared/const/Url';
@@ -8,6 +9,7 @@ import {
 } from '~/shared/infrastructure/chrome-extension';
 
 initBojSolutionEventEmitterFromBackground();
+initLeetcodeSolutionEventEmitterFromBackground();
 
 const solutionTracker = createSolutionTracker();
 // TODO: saveSolution 내부로 넣기
@@ -16,6 +18,7 @@ solutionTracker.onSolve(async solution => {
     'background',
     '[Code-Vault]\n정답입니다!🎉 풀이를 저장하겠습니까?',
   );
+
   if (!isConfirm) return;
 
   const isSuccess = await saveSolution(solution);
