@@ -1,4 +1,4 @@
-import { initLeetcodeSolutionEventEmitter } from '~/features/solution/core/createSolutionEventEmitter/platforms/leetcode';
+import { initLeetcodeSolutionEventEmitter } from "~/features/solution/core/createSolutionEventEmitter";
 
 console.log('CodeVault loaded...');
 

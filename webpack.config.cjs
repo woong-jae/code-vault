@@ -42,6 +42,21 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /(node_modules)/,
+        use: {
+          // `.swcrc` can be used to configure swc
+          loader: "swc-loader",
+          options: {
+            jsc: {
+              parser: {
+                syntax: 'typescript'
+              }
+            }
+          }
+        }
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: 'ts-loader',
       },
@@ -68,10 +83,14 @@ module.exports = {
       : [new HtmlWebpackPlugin({ template: 'src/dev.html' })]),
   ],
   devServer: {
-    port: 8080,
-    open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
+    // client: {
+    //   webSocketURL: 'ws://localhost:8080/ws',
+    // },
+    // devMiddleware: {
+    //   writeToDisk: true,
+    // },
   },
 };
