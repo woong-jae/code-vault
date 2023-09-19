@@ -45,20 +45,15 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           // `.swcrc` can be used to configure swc
-          loader: "swc-loader",
+          loader: 'swc-loader',
           options: {
             jsc: {
               parser: {
-                syntax: 'typescript'
-              }
-            }
-          }
-        }
-      },
-      {
-        test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
-        use: 'ts-loader',
+                syntax: 'typescript',
+              },
+            },
+          },
+        },
       },
       {
         test: /\.css$/i,
