@@ -51,6 +51,11 @@ module.exports = {
               parser: {
                 syntax: 'typescript',
               },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                },
+              },
             },
           },
         },

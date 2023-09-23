@@ -4,7 +4,6 @@
   "description": "Code-Vault에서 제공하는 크롬 확장도구입니다.",
   "version": "1.0.0",
   "version_name": "1.0.0 beta",
-  "default_locale": "ko",
   "author": "jwchung0828@gmail.com",
   "homepage_url": "https://github.com/woong-jae/code-vault",
   "action": {},
