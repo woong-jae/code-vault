@@ -20,7 +20,8 @@ export default class BojPacketToSolutionStatusMapper
         return {
           process: Process.SUCCESS,
           payload: {
-            memory,
+            /* 백준은 KB */
+            memory: memory ? memory / 1000 : 0,
             time,
           },
         };
