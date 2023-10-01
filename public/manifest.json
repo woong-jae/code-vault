@@ -15,10 +15,20 @@
     "activeTab",
     "scripting",
     "webRequest",
-    "storage",
-    "unlimitedStorage"
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage"
   ],
   "host_permissions": ["https://*/*"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
   "web_accessible_resources": [
     {
       "matches": ["<all_urls>"],

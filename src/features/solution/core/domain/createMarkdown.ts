@@ -3,9 +3,12 @@ import type { Solution } from '../types';
 export type CreateMarkdown = (solution: Solution) => string;
 
 export const createMarkdown: CreateMarkdown = (solution: Solution) => {
-  const title = `# [${solution.platform}] ${solution.problemId}`;
+  const title =
+    solution.platform === 'leetcode'
+      ? `# ${solution.title}`
+      : `# [${solution.problemId}] ${solution.title}`;
 
-  const linkToProblem = `[문제 링크](${solution.link})`;
+  const linkToProblem = `[문제 출처](${solution.link})`;
 
   const performanceSubtitle = '## 성능';
   const performance = [

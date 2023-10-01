@@ -6,10 +6,11 @@ import { createMessage } from '../domain/createMessage';
 import { getFileExtension } from '../domain/getFileExtension';
 
 const saveSolution: SaveSolution = async (solution: Solution) => {
-  const descriptionPath = `${solution.platform}/${solution.problemId}/README.md`;
-  const codePath = `${solution.platform}/${solution.problemId}/${
-    solution.problemId
-  }.${getFileExtension(solution.language)}`;
+  const dir = `${solution.platform}/[${solution.problemId}] ${solution.title}`;
+  const descriptionPath = `${dir}/README.md`;
+  const codePath = `${dir}/${solution.problemId}.${getFileExtension(
+    solution.language,
+  )}`;
 
   const description = createMarkdown(solution);
   const message = createMessage(solution);
@@ -21,7 +22,7 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
     ]);
 
     return !result.includes(false);
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     return false;
   }

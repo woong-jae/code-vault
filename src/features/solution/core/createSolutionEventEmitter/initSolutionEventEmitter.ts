@@ -13,10 +13,10 @@ export function initSolutionEventEmitter({
   networkInterceptor,
   packetInterpreter,
 }: Dependencies) {
-  networkInterceptor.onIntercept(packet => {
+  networkInterceptor.onIntercept(async packet => {
     if (!packet) return;
 
-    const parsedPacket = packetInterpreter.parse(packet);
+    const parsedPacket = await packetInterpreter.parse(packet);
     if (!parsedPacket) return;
 
     eventBus.emit({

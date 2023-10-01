@@ -1,10 +1,10 @@
 import type PacketInterpreter from '../../../core/PacketInterpreter';
-import { Process, type SolutionStatus } from '../../../../types';
+import { Process } from '../../../../types';
 
 export default class LeetcodePacketToSolutionStatusMapper
   implements PacketInterpreter
 {
-  parse(packet: string): SolutionStatus | undefined {
+  async parse(packet: string) {
     const data = JSON.parse(packet);
 
     if (data.status_code !== 10 || data.code_answer) return;

@@ -12,6 +12,7 @@ export type ProgrammingLanguage =
 export type Solution = {
   problemId: string;
   platform: Platform;
+  title: string;
   language: ProgrammingLanguage;
   code: string;
   time: MilliSecond;

@@ -26,11 +26,12 @@ export default class SolutionTracker {
   }
 
   get solution(): Solution | null {
-    const { problemId, platform, code, language, time, memory, link } =
+    const { problemId, platform, title, code, language, time, memory, link } =
       this._solutionData;
 
     if (problemId === undefined) return null;
     if (platform === undefined) return null;
+    if (title === undefined) return null;
     if (code === undefined) return null;
     if (language === undefined) return null;
     if (time === undefined) return null;
@@ -38,6 +39,7 @@ export default class SolutionTracker {
     if (link === undefined) return null;
 
     return {
+      title,
       problemId,
       platform,
       code,

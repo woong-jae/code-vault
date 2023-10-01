@@ -3,7 +3,6 @@ import {
   Process,
   type ProgrammingLanguage,
   type Solution,
-  type SolutionStatus,
 } from '~/features/solution/core/types';
 
 import {
@@ -18,7 +17,7 @@ export default class ProgrammersPacketToSolutionStatusMapper
   private readonly platform = 'programmers';
   // private messageRegex = /\d+\.?\d+/g;
 
-  parse(packet: string): SolutionStatus | undefined {
+  async parse(packet: string) {
     const programmersPacket = JSON.parse(packet) as ProgrammersPacket;
     const process = this.parseProcess(programmersPacket);
     if (!process) return;
