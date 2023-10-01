@@ -1,8 +1,8 @@
 import createEventBus from '~/shared/infrastructure/eventBus';
 import type { CreateSolutionEventEmitter } from '../../../ports.input';
 import { Process, type SolutionStatus } from '../../../types';
-import BojPacketToSolutionStatusMapper from '../../core/PacketInterpreter/BojPacketToSolutionStatusMapper';
-import BojSolutionInterceptor from '../../core/SolutionInterceptor/BojSolutionInterceptor';
+import BojPacketToSolutionStatusMapper from './BojPacketToSolutionStatusMapper';
+import BojSolutionInterceptor from './BojSolutionInterceptor';
 import { initSolutionEventEmitter } from '../../initSolutionEventEmitter';
 import parseBojLanguage from './parseBojLanguage';
 

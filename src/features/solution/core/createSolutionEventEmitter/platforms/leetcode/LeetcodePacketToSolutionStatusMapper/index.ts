@@ -1,4 +1,4 @@
-import type PacketInterpreter from '..';
+import type PacketInterpreter from '../../../core/PacketInterpreter';
 import { Process, type SolutionStatus } from '../../../../types';
 
 export default class LeetcodePacketToSolutionStatusMapper

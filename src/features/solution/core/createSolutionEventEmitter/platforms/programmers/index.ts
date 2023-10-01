@@ -1,7 +1,7 @@
 import createEventBus from '~/shared/infrastructure/eventBus';
 import type { CreateSolutionEventEmitter } from '../../../ports.input';
-import ProgrammersPacketToSolutionStatusMapper from '../../core/PacketInterpreter/ProgrammersPacketToSolutionStatusMapper';
-import ProgrammersSolutionInterceptor from '../../core/SolutionInterceptor/ProgrammersSolutionInterceptor';
+import ProgrammersPacketToSolutionStatusMapper from './ProgrammersPacketToSolutionStatusMapper';
+import ProgrammersSolutionInterceptor from './ProgrammersSolutionInterceptor';
 import { initSolutionEventEmitter } from '../../initSolutionEventEmitter';
 
 export const initProgrammersSolutionEventEmitter: CreateSolutionEventEmitter =

@@ -1,4 +1,4 @@
-import BaseSolutionInterceptor from './BaseSolutionInterceptor';
+import BaseSolutionInterceptor from '../../core/SolutionInterceptor/BaseSolutionInterceptor';
 
 interface PusherChannel {
   [channelName: string]: {

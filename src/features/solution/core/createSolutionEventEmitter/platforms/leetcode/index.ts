@@ -1,8 +1,8 @@
 import createEventBus from '~/shared/infrastructure/eventBus';
 import type { CreateSolutionEventEmitter } from '../../../ports.input';
 import { Process, type SolutionStatus } from '../../../types';
-import LeetcodeSolutionInterceptor from '../../core/SolutionInterceptor/LeetcodeSolutionInterceptor';
-import LeetcodePacketToSolutionStatusMapper from '../../core/PacketInterpreter/LeetcodePacketToSolutionStatusMapper';
+import LeetcodeSolutionInterceptor from './LeetcodeSolutionInterceptor';
+import LeetcodePacketToSolutionStatusMapper from './LeetcodePacketToSolutionStatusMapper';
 import { initSolutionEventEmitter } from '../../initSolutionEventEmitter';
 
 export const initLeetcodeSolutionEventEmitter: CreateSolutionEventEmitter =
