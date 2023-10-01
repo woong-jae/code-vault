@@ -1,5 +1,6 @@
-const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
 
 const src = path.join(__dirname, 'src');
 
@@ -7,6 +8,8 @@ const mode = process.env.NODE_ENV ?? 'development';
 const isProduction = mode === 'production';
 
 const port = 8080;
+const hotScript = 'webpack/hot/dev-server';
+const clientScript = `webpack-dev-server/client?hot=true&protocol=ws&hostname=localhost&port=${port}`;
 
 module.exports = {
   mode,
@@ -22,7 +25,7 @@ module.exports = {
     common_isolated: [
       path.join(src, 'app/chrome-extension/scripts/common-isolated/index.ts'),
     ],
-    setting: [path.join(src, 'app/setting/index.ts')],
+    setting: [path.join(src, 'app/setting/index.ts'), hotScript, clientScript],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -68,9 +71,12 @@ module.exports = {
       patterns: [{ from: '.', to: '.', context: 'public' }],
       options: {},
     }),
+    ...(isProduction ? [] : [new webpack.HotModuleReplacementPlugin()]),
   ],
   devServer: {
     port,
+    hot: false,
+    client: false,
     allowedHosts: 'all',
     devMiddleware: {
       writeToDisk: true,
