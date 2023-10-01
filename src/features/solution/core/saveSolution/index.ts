@@ -6,11 +6,15 @@ import { createMessage } from '../domain/createMessage';
 import { getFileExtension } from '../domain/getFileExtension';
 
 const saveSolution: SaveSolution = async (solution: Solution) => {
-  const dir = `${solution.platform}/[${solution.problemId}] ${solution.title}`;
+  const dir =
+    solution.platform === 'leetcode'
+      ? `${solution.platform}/${solution.title}`
+      : `${solution.platform}/[${solution.problemId}] ${solution.title}`;
+
   const descriptionPath = `${dir}/README.md`;
-  const codePath = `${dir}/${solution.problemId}.${getFileExtension(
-    solution.language,
-  )}`;
+  const codePath = `${dir}/${
+    solution.platform === 'leetcode' ? solution.title : solution.problemId
+  }.${getFileExtension(solution.language)}`;
 
   const description = createMarkdown(solution);
   const message = createMessage(solution);

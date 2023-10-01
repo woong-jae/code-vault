@@ -60,7 +60,10 @@ export default class ProgrammersPacketToSolutionStatusMapper
       const key = Object.keys(codes)[0];
       const code = codes[key];
 
+      const $title = document.querySelector('.algorithm-title') as HTMLElement;
+
       return {
+        title: $title.textContent?.trim(),
         platform: this.platform,
         problemId: problemId.toString(),
         code,

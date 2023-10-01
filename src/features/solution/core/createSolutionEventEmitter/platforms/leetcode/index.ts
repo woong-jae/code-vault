@@ -33,7 +33,7 @@ export const initLeetcodeSolutionEventEmitterFromBackground: CreateSolutionEvent
           payload: JSON.stringify({
             process: Process.START,
             payload: {
-              link: details.url.split('/').slice(0, -1).join('/'),
+              link: details.url.split('/').slice(0, -2).join('/'),
               platform: 'leetcode',
               language: lang,
               problemId: question_id,
