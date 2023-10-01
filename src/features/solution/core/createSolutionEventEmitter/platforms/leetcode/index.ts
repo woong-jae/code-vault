@@ -19,6 +19,7 @@ export const initLeetcodeSolutionEventEmitterFromBackground: CreateSolutionEvent
     const eventBus = createEventBus('background');
     chrome.webRequest.onBeforeRequest.addListener(
       details => {
+        console.log("🚀 ~ file: index.ts:22 ~ details:", details)
         if (details.method !== 'POST') return;
 
         if (!details.requestBody?.raw) return;
@@ -33,6 +34,7 @@ export const initLeetcodeSolutionEventEmitterFromBackground: CreateSolutionEvent
           payload: JSON.stringify({
             process: Process.START,
             payload: {
+              link: details.url.split('/').slice(0, -1).join('/'),
               platform: 'leetcode',
               language: lang,
               problemId: question_id,

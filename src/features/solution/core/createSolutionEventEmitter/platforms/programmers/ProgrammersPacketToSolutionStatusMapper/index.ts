@@ -66,6 +66,7 @@ export default class ProgrammersPacketToSolutionStatusMapper
         problemId: problemId.toString(),
         code,
         language: this.parseLanguage(language),
+        link: `https://school.programmers.co.kr/learn/courses/30/lessons/${problemId}`,
       };
     }
 

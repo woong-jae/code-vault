@@ -10,6 +10,7 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
   const codePath = `${solution.platform}/${solution.problemId}/${
     solution.problemId
   }.${getFileExtension(solution.language)}`;
+
   const description = createMarkdown(solution);
   const message = createMessage(solution);
 
@@ -20,7 +21,8 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
     ]);
 
     return !result.includes(false);
-  } catch {
+  } catch(error) {
+    console.log(error);
     return false;
   }
 };

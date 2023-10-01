@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 const src = path.join(__dirname, 'src');
@@ -71,7 +73,15 @@ module.exports = {
       patterns: [{ from: '.', to: '.', context: 'public' }],
       options: {},
     }),
-    ...(isProduction ? [] : [new webpack.HotModuleReplacementPlugin()]),
+    new CleanWebpackPlugin(),
+    ...(isProduction
+      ? []
+      : [
+          new webpack.HotModuleReplacementPlugin(),
+          new ReactRefreshWebpackPlugin({
+            overlay: false,
+          }),
+        ]),
   ],
   devServer: {
     port,
@@ -80,6 +90,9 @@ module.exports = {
     allowedHosts: 'all',
     devMiddleware: {
       writeToDisk: true,
+    },
+    static: {
+      watch: false,
     },
   },
 };

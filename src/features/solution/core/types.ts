@@ -1,7 +1,5 @@
 /* Solution */
 export type Platform = 'programmers' | 'boj' | 'leetcode';
-export type MilliSecond = number;
-export type MegaByte = number;
 export type ProgrammingLanguage =
   | 'javascript'
   | 'typescript'
@@ -18,6 +16,7 @@ export type Solution = {
   code: string;
   time: MilliSecond;
   memory: MegaByte;
+  link: Url;
 };
 
 /* SolutionTracker */

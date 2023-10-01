@@ -32,6 +32,7 @@ export const initBojSolutionEventEmitterFromBackground: CreateSolutionEventEmitt
           payload: JSON.stringify({
             process: Process.START,
             payload: {
+              link: `https://www.acmicpc.net/problem/${problemId}`,
               platform: 'boj',
               code,
               problemId,
