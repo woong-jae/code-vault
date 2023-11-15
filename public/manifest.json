@@ -13,7 +13,6 @@
   "permissions": [
     "tabs",
     "activeTab",
-    "scripting",
     "webRequest",
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
