@@ -8,11 +8,11 @@ import type {
   PersistContent,
   RetrieveUserProfile,
 } from '../../core/ports.output';
-import Github from '~/services/Github';
+import Github from '~/shared/services/github';
 import {
   chromeLocalStoragePersist,
   chromeLocalStorageRetrieve,
-} from '~/services/persistence/chromeLocalStorage';
+} from '~/shared/infrastructure/persistence/chromeLocalStorage';
 
 export const repositoryTokenKey = 'repository-token:code-vault';
 export const selectedRepositoryKey = 'selected-repository:code-vault';

@@ -1,4 +1,4 @@
-import Github from '~/services/Github';
+import Github from '~/shared/services/github';
 import type { GetInitialToken } from '../../core/ports.output';
 
 export const getInitialToken: GetInitialToken = async () => {

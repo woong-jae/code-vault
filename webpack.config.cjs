@@ -73,7 +73,7 @@ module.exports = {
   devtool: isProduction ? false : 'inline-source-map',
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: '.', to: '.', context: 'public' }],
+      patterns: [{ from: 'src/assets', to: '.' }],
       options: {},
     }),
     new CleanWebpackPlugin(),
