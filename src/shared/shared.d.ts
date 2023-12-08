@@ -1,4 +1,4 @@
-// EventBus:
+/* EventBus */
 type Context = 'world' | 'isolated' | 'background';
 type EmittedEvent = {
   from: Context;
@@ -18,7 +18,7 @@ interface EventBus {
   emit(event: Omit<EmittedEvent, 'from'>): void;
 }
 
-// Persistence:
+/* Persistence */
 type PersistenceKey = string;
 type Persist = <T>(key: PersistenceKey, value: T) => Promise<void>;
 type Retrieve = <T>(key: PersistenceKey) => Promise<T | null>;

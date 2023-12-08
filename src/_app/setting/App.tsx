@@ -1,4 +1,4 @@
-import SettingPage from '~/pages/Setting';
+import SettingPage from '~/_pages/Setting';
 
 export default function SettingApp() {
   return <SettingPage />;

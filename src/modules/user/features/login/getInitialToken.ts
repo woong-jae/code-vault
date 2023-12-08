@@ -1,0 +1,16 @@
+import Github from '~/shared/services/github';
+import type { RepositoryToken } from '../../domain/types';
+
+type GetInitialToken = () => Promise<RepositoryToken | null>;
+
+const getInitialToken: GetInitialToken = async () => {
+  const code = new URLSearchParams(location.search).get('code');
+  if (!code) return null;
+
+  history.replaceState('', '', location.pathname);
+
+  const token = await Github.getAccessToken(code);
+  return token;
+};
+
+export default getInitialToken;
