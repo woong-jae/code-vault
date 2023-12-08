@@ -1,7 +1,4 @@
-import {
-  onAlert,
-  onCrossContextConfirm,
-} from '~/shared/infras/chrome-extension';
+import { onAlert, onCrossContextConfirm } from '~/shared/infras/chrome-extension';
 import createEventBus from '~/shared/infras/event-bus';
 
 createEventBus('isolated');

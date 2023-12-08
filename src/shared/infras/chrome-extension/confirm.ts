@@ -1,5 +1,5 @@
 import type { Context } from '~/_shared/kernel';
-import createEventBus from '../eventBus';
+import createEventBus from '../event-bus';
 
 export const crossContextConfirm = async (
   context: Context,

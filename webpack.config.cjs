@@ -28,7 +28,7 @@ module.exports = {
       path.join(src, 'app/chrome-extension/scripts/common-isolated/index.ts'),
     ],
     setting: [
-      path.join(src, 'app/setting/index.ts'),
+      path.join(src, 'app/user-config/index.ts'),
       ...(isProduction ? [] : [hotScript, clientScript]),
     ],
   },

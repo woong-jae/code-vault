@@ -18,7 +18,11 @@
     "declarativeNetRequestWithHostAccess",
     "storage"
   ],
-  "host_permissions": ["https://*/*"],
+  "host_permissions": [
+    "https://school.programmers.co.kr/learn/courses/30/lessons/*",
+    "https://www.acmicpc.net/status*",
+    "https://leetcode.com/problems/*"
+  ],
   "declarative_net_request": {
     "rule_resources": [
       {
@@ -57,7 +61,11 @@
     },
     {
       "id": "CodeVault-common_isolated",
-      "matches": ["https://*/*"],
+      "matches": [
+        "https://school.programmers.co.kr/learn/courses/30/lessons/*",
+        "https://www.acmicpc.net/status*",
+        "https://leetcode.com/problems/*"
+      ],
       "js": ["common_isolated.js"]
     }
   ]

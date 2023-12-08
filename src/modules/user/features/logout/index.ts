@@ -1,14 +1,14 @@
 import { persistRepositoryToken } from '../../infras/persistence';
-import setSelectedRepository from '../setSelectedRepository';
+import setSelectedRepository from '../set-selected-repository';
 import type { Logout } from '../types';
 
 const logout: Logout = async () => {
-  await Promise.allSettled([
+  return await Promise.allSettled([
     persistRepositoryToken(null),
     setSelectedRepository(null),
-  ]);
-
-  return true;
+  ])
+    .then(() => true)
+    .catch(() => false);
 };
 
 export default logout;

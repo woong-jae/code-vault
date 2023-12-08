@@ -1,4 +1,4 @@
-import { saveSolution } from '~/modules/solution';
+import { Solution } from '~/modules/solution';
 import { initBojSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/boj';
 import { initLeetcodeSolutionSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/leetcode';
 import createSolutionTracker from '~/modules/solution/infras/solution-tracker';
@@ -21,7 +21,7 @@ solutionTracker.onSolve(async solution => {
 
   if (!isConfirm) return;
 
-  const isSuccess = await saveSolution(solution);
+  const isSuccess = await Solution.saveSolution(solution);
 
   alertToWorld(isSuccess ? '성공적으로 저장했습니다' : '저장에 실패했습니다');
 });

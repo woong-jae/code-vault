@@ -1,4 +1,4 @@
-import { saveContent } from '~/modules/user';
+import { User } from '~/modules/user';
 import { createMarkdown } from '../../domain/content/createMarkdown';
 import { createMessage } from '../../domain/content/createMessage';
 import { getFileExtension } from '../../domain/content/getFileExtension';
@@ -21,8 +21,8 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
 
   try {
     const result = await Promise.all([
-      saveContent(descriptionPath, description, message),
-      saveContent(codePath, solution.code, message),
+      User.saveContent(descriptionPath, description, message),
+      User.saveContent(codePath, solution.code, message),
     ]);
 
     return !result.includes(false);

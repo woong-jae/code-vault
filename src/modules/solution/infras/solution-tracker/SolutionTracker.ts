@@ -10,8 +10,8 @@ export default class SolutionTracker {
   private solveListeners: SolveListener[] = [];
   private _solutionData: Partial<Solution> = {};
 
-  constructor(private solutionEventBus: SolutionBus) {
-    this.solutionEventBus.onIntercept(packet => {
+  constructor(private solutionBus: SolutionBus) {
+    this.solutionBus.onIntercept(packet => {
       this.handlePacket(packet);
     });
   }

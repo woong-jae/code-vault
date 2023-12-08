@@ -1,7 +1,5 @@
 import Github from '~/shared/services/github';
-import type { RepositoryToken } from '../../domain/types';
-
-type GetInitialToken = () => Promise<RepositoryToken | null>;
+import type { GetInitialToken } from './types';
 
 const getInitialToken: GetInitialToken = async () => {
   const code = new URLSearchParams(location.search).get('code');

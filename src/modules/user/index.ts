@@ -1,3 +1,7 @@
-import saveContent from './features/saveContent';
+import saveContent from './features/save-content';
+import LoginButton from './ui/LoginButton';
 
-export { saveContent };
+export const User = { saveContent };
+export const UserUI = {
+  LoginButton,
+};

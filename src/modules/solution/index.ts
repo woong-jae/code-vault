@@ -1,3 +1,3 @@
-import saveSolution from './features/saveSolution';
+import saveSolution from './features/save-solution';
 
-export { saveSolution };
+export const Solution = { saveSolution };
