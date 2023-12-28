@@ -1,3 +1,12 @@
+import { useQueryClient, QueryClientProvider } from '@tanstack/react-query';
+import UserSettingPage from '~/pages/user-setting';
+
+const queryClient = useQueryClient();
+
 export default function App() {
-  return <div>user config app</div>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <UserSettingPage />
+    </QueryClientProvider>
+  );
 }

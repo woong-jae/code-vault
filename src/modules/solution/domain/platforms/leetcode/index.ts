@@ -1,12 +1,12 @@
 import LeetcodeSolutionInterceptor from './LeetcodeSolutionInterceptor';
 import LeetcodePacketToSolutionStatusMapper from './LeetcodePacketToSolutionStatusMapper';
-import type { CreateSolutionCatcher } from '~/modules/solution/infras/solution-tracker/solution-catcher/types';
-import { initSolutionCatcher } from '~/modules/solution/infras/solution-tracker/solution-catcher/initSolutionCatcher';
-import createEventBus from '~/shared/infras/event-bus';
+import type { CreateSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
+import { initSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/initSolutionCatcher';
+import createEventBus from '~/base/infra/event-bus';
 import {
   Process,
   type SolutionStatus,
-} from '~/modules/solution/infras/solution-tracker/types';
+} from '~/modules/solution/infra/solution-tracker/types';
 
 export const initLeetcodeSolutionCatcher: CreateSolutionCatcher = () => {
   initSolutionCatcher({

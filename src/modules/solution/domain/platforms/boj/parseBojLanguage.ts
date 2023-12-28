@@ -1,4 +1,4 @@
-import type { ProgrammingLanguage } from '../../types';
+import type { ProgrammingLanguage } from '../../../types';
 
 const parseBojLanguage = (langNum: string): ProgrammingLanguage => {
   switch (langNum) {

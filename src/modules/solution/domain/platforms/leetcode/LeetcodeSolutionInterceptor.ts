@@ -1,4 +1,4 @@
-import BaseSolutionInterceptor from '~/modules/solution/infras/solution-tracker/solution-catcher/BaseSolutionInterceptor';
+import BaseSolutionInterceptor from '~/modules/solution/infra/solution-tracker/solution-catcher/BaseSolutionInterceptor';
 
 export default class LeetcodeSolutionInterceptor extends BaseSolutionInterceptor {
   constructor() {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import Url from '~/_shared/const/Url';
-import { Button } from '~/_shared/ui/Button';
-import login from '../features/login';
+import login from '../use-case/login';
+import Url from '@base/const/Url';
+import { Button } from '@base/ui/Button';
 
 interface Props {
   onLoginSuccess: () => void;

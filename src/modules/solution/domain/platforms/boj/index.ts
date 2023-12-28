@@ -1,22 +1,21 @@
-import createEventBus from '~/_shared/infrastructure/eventBus';
 import BojPacketToSolutionStatusMapper from './BojPacketToSolutionStatusMapper';
 import BojSolutionInterceptor from './BojSolutionInterceptor';
 import parseBojLanguage from './parseBojLanguage';
-import type { CreateSolutionCatcher } from '~/modules/solution/infras/solution-tracker/solution-catcher/types';
-import { initSolutionCatcher } from '~/modules/solution/infras/solution-tracker/solution-catcher/initSolutionCatcher';
+import type { CreateSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
+import { initSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/initSolutionCatcher';
 import {
   Process,
   type SolutionStatus,
-} from '~/modules/solution/infras/solution-tracker/types';
+} from '~/modules/solution/infra/solution-tracker/types';
+import createEventBus from '@base/infra/event-bus';
 
-export const initBojSolutionCatcherFromWorld: CreateSolutionCatcher =
-  () => {
-    initSolutionCatcher({
-      eventBus: createEventBus('world'),
-      networkInterceptor: new BojSolutionInterceptor(),
-      packetInterpreter: new BojPacketToSolutionStatusMapper(),
-    });
-  };
+export const initBojSolutionCatcherFromWorld: CreateSolutionCatcher = () => {
+  initSolutionCatcher({
+    eventBus: createEventBus('world'),
+    networkInterceptor: new BojSolutionInterceptor(),
+    packetInterpreter: new BojPacketToSolutionStatusMapper(),
+  });
+};
 
 export const initBojSolutionCatcherFromBackground: CreateSolutionCatcher =
   () => {

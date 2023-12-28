@@ -1,12 +1,12 @@
 import { Solution } from '~/modules/solution';
 import { initBojSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/boj';
 import { initLeetcodeSolutionSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/leetcode';
-import createSolutionTracker from '~/modules/solution/infras/solution-tracker';
-import Url from '~/shared/const/Url';
+import createSolutionTracker from '~/modules/solution/infra/solution-tracker';
+import Url from '~/base/const/Url';
 import {
   alertToWorld,
   crossContextConfirm,
-} from '~/shared/infras/chrome-extension';
+} from '~/base/infra/chrome-extension';
 
 initBojSolutionCatcherFromBackground();
 initLeetcodeSolutionSolutionCatcherFromBackground();

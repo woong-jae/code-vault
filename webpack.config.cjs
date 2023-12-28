@@ -68,6 +68,7 @@ module.exports = {
     extensions: ['.ts', '.js', '.jsx', '.tsx'],
     alias: {
       '~': path.resolve(__dirname, 'src'),
+      '@base': path.resolve(__dirname, 'src/base'),
     },
   },
   devtool: isProduction ? false : 'inline-source-map',
