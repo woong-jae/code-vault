@@ -1,7 +1,7 @@
-import { useQueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UserSettingPage from '~/pages/user-setting';
 
-const queryClient = useQueryClient();
+const queryClient = new QueryClient();
 
 export default function App() {
   return (

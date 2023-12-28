@@ -2,7 +2,7 @@ import { Solution } from '~/modules/solution';
 import { initBojSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/boj';
 import { initLeetcodeSolutionSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/leetcode';
 import createSolutionTracker from '~/modules/solution/infra/solution-tracker';
-import Url from '~/base/const/Url';
+import Url from '@base/const/url';
 import {
   alertToWorld,
   crossContextConfirm,

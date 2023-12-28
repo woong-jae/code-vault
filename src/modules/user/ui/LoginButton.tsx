@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import login from '../use-case/login';
-import Url from '@base/const/Url';
+import Url from '@base/const/url';
 import { Button } from '@base/ui/Button';
 
 interface Props {

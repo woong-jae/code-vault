@@ -1,4 +1,8 @@
 /* Solution */
+type MilliSecond = string;
+type MegaByte = string;
+type Url = string;
+
 export type Platform = 'programmers' | 'boj' | 'leetcode';
 export type ProgrammingLanguage =
   | 'javascript'
