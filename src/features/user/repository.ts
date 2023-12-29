@@ -61,3 +61,29 @@ export async function persistContent({
     message,
   });
 }
+
+export async function createRepository({
+  repositoryName,
+  accessToken,
+}: {
+  repositoryName: string;
+  accessToken: AccessToken;
+}) {
+  if (!repositoryName) return false;
+
+  const githubRepository = new Github(accessToken);
+  const isSuccess = await githubRepository.createRepository({
+    name: repositoryName,
+    description: 'Code-Vault 풀이 저장소',
+  });
+
+  if (!isSuccess) return false;
+
+  return persistContent({
+    accessToken,
+    path: 'README.md',
+    content:
+      '#Code-Vault 풀이 저장소\n\n Code-Vault에서 생성된 알고리즘 문제 풀이 저장소',
+    message: 'Initial commit - by Code-Vault',
+  });
+}

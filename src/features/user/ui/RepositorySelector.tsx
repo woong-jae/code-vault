@@ -7,11 +7,9 @@ import {
   CardTitle,
 } from '@base/components/Card';
 import { Label } from '@base/components/Label';
-import { ScrollArea } from '@base/components/ScrollArea';
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -59,16 +57,12 @@ export default function RepositorySelector({
               <SelectTrigger id="selected-repository">
                 <SelectValue placeholder="저장소를 선택해주세요" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <ScrollArea className="h-[200px]">
-                    {repositories?.map((repositoryName) => (
-                      <SelectItem key={repositoryName} value={repositoryName}>
-                        {repositoryName}
-                      </SelectItem>
-                    ))}
-                  </ScrollArea>
-                </SelectGroup>
+              <SelectContent className="max-h-[240px]">
+                {repositories?.map((repositoryName) => (
+                  <SelectItem key={repositoryName} value={repositoryName}>
+                    {repositoryName}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

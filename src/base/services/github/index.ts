@@ -101,7 +101,6 @@ export class Github {
 
       const base64Content = stringToBase64(content);
 
-      this.githubApiClient.rest.git.createTree;
       this.githubApiClient.rest.repos.createOrUpdateFileContents({
         owner,
         repo,
@@ -120,5 +119,22 @@ export class Github {
       console.log(e);
       return false;
     }
+  }
+
+  async createRepository({
+    name,
+    description,
+  }: {
+    name: string;
+    description: string;
+  }) {
+    const { data } =
+      await this.githubApiClient.rest.repos.createForAuthenticatedUser({
+        name,
+        description,
+      });
+
+    if (!data) return false;
+    return true;
   }
 }
