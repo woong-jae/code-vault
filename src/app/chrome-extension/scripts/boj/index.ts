@@ -1,5 +1,5 @@
-import { initBojSolutionEventEmitterFromWorld } from '~/features/solution/core/createSolutionEventEmitter';
+import { initBojSolutionCatcherFromWorld } from '~/modules/solution/domain/platforms/boj';
 
 console.log('CodeVault loaded...');
 
-initBojSolutionEventEmitterFromWorld();
+initBojSolutionCatcherFromWorld();

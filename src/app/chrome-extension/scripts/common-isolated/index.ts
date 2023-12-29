@@ -1,16 +1,13 @@
-import createEventBus from '~/shared/infrastructure/eventBus';
-import {
-  onAlert,
-  onCrossContextConfirm,
-} from '~/shared/infrastructure/chrome-extension';
+import { onAlert, onCrossContextConfirm } from '~/base/infra/chrome-extension';
+import createEventBus from '~/base/infra/event-bus';
 
 createEventBus('isolated');
 
-onCrossContextConfirm('isolated', message => {
+onCrossContextConfirm('isolated', (message) => {
   const isConfirm = confirm(message);
   return isConfirm;
 });
 
-onAlert(message => {
+onAlert((message) => {
   alert(message);
 });

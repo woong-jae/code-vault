@@ -1,5 +1,5 @@
-import { initProgrammersSolutionEventEmitter } from '~/features/solution/core/createSolutionEventEmitter';
+import { initProgrammersSolutionCatcher } from '~/modules/solution/domain/platforms/programmers';
 
 console.log('CodeVault loaded...');
 
-initProgrammersSolutionEventEmitter();
+initProgrammersSolutionCatcher();

@@ -1,5 +1,5 @@
-import { initLeetcodeSolutionEventEmitter } from "~/features/solution/core/createSolutionEventEmitter";
+import { initLeetcodeSolutionCatcher } from '~/modules/solution/domain/platforms/leetcode';
 
 console.log('CodeVault loaded...');
 
-initLeetcodeSolutionEventEmitter();
+initLeetcodeSolutionCatcher();

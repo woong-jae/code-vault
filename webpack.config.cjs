@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 const src = path.join(__dirname, 'src');
 
@@ -28,7 +28,7 @@ module.exports = {
       path.join(src, 'app/chrome-extension/scripts/common-isolated/index.ts'),
     ],
     setting: [
-      path.join(src, 'app/setting/index.ts'),
+      path.join(src, 'app/user-config/index.ts'),
       ...(isProduction ? [] : [hotScript, clientScript]),
     ],
   },
@@ -68,6 +68,7 @@ module.exports = {
     extensions: ['.ts', '.js', '.jsx', '.tsx'],
     alias: {
       '~': path.resolve(__dirname, 'src'),
+      '@base': path.resolve(__dirname, 'src/base'),
     },
   },
   devtool: isProduction ? false : 'inline-source-map',
