@@ -52,7 +52,7 @@ export default function UserSettingPage() {
         )}
       </div>
       <div className="mb-8 mt-4 text-center">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground">
           문의사항 및 개선사항은{' '}
           <a
             className="text-primary underline"
@@ -62,9 +62,7 @@ export default function UserSettingPage() {
           </a>
           를 통해 알려주세요
         </p>
-        <p className="text-sm text-muted-foreground">
-          Star는 개발자에게 힘이 됩니다
-        </p>
+        <p className="text-muted-foreground">Star는 개발자에게 힘이 됩니다</p>
         <p className="text-muted-foreground">
           from{' '}
           <a className="text-primary" href="https://woong-jae.com">
