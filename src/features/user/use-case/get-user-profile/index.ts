@@ -1,14 +1,8 @@
-import {
-  retrieveRepositoryToken,
-  retrieveUserProfile,
-} from '../../infra/persistence';
-import type { GetUserProfile } from '../types';
+import type { AccessToken } from '~/features/auth';
+import { retrieveUserProfile } from '../../infra/persistence';
 
-const getUserProfile: GetUserProfile = async () => {
-  const repositoryToken = await retrieveRepositoryToken();
-  if (!repositoryToken) return null;
-
-  const userProfile = await retrieveUserProfile(repositoryToken);
+const getUserProfile = async (accessToken: AccessToken) => {
+  const userProfile = await retrieveUserProfile(accessToken);
   return userProfile;
 };
 

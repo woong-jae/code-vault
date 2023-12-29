@@ -1,13 +1,8 @@
-import {
-  retrieveRepositoryToken,
-  retrieveRepositories,
-} from '../../infra/persistence';
+import type { AccessToken } from '~/features/auth';
+import { retrieveRepositories } from '../../infra/persistence';
 
-const getRepositories = async () => {
-  const repositoryToken = await retrieveRepositoryToken();
-  if (!repositoryToken) return null;
-
-  return retrieveRepositories(repositoryToken);
+const getRepositories = async (accessToken: AccessToken) => {
+  return retrieveRepositories(accessToken);
 };
 
 export { getRepositories };

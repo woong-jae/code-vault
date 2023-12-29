@@ -3,6 +3,7 @@ import {
   alertToWorld,
   crossContextConfirm,
 } from '~/base/infra/chrome-extension';
+import { accessTokenStorage } from '~/features/auth';
 import { Solution } from '~/features/solution';
 import { initBojSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/boj';
 import { initLeetcodeSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/leetcode';
@@ -21,8 +22,13 @@ solutionTracker.onSolve(async (solution) => {
 
   if (!isConfirm) return;
 
-  const isSuccess = await Solution.saveSolution(solution);
+  const accessToken = await accessTokenStorage.retrieve();
+  if (!accessToken) {
+    alertToWorld('저장에 실패했습니다');
+    return;
+  }
 
+  const isSuccess = await Solution.saveSolution({ solution, accessToken });
   alertToWorld(isSuccess ? '성공적으로 저장했습니다' : '저장에 실패했습니다');
 });
 

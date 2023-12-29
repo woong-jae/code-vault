@@ -16,15 +16,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@base/components/Select';
+import type { AccessToken } from '~/features/auth';
 import { useUserStore } from '../infra/store';
 import { getRepositories } from '../use-case/get-repositories';
 import getSelectedRepository from '../use-case/get-selected-repository';
 import setSelectedRepository from '../use-case/set-selected-repository';
 
-export default function RepositorySelector() {
+export default function RepositorySelector({
+  accessToken,
+}: {
+  accessToken: AccessToken;
+}) {
   const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
-    queryKey: ['repositories'],
-    queryFn: getRepositories,
+    queryKey: [accessToken, 'repositories'],
+    queryFn: () => getRepositories(accessToken),
   });
   const { isLoading: isLoadingSelectedRepository } = useQuery({
     queryKey: ['selectedRepository'],

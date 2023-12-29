@@ -1,11 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { Avatar, AvatarFallback, AvatarImage } from '@base/components/Avatar';
+import type { AccessToken } from '~/features/auth';
 import getUserProfile from '../use-case/get-user-profile';
 
-export default function UserProfile() {
+export default function UserProfile({
+  accessToken,
+}: {
+  accessToken: AccessToken;
+}) {
   const { data: userProfile, isLoading } = useQuery({
-    queryKey: ['userProfile'],
-    queryFn: getUserProfile,
+    queryKey: [accessToken, 'userProfile'],
+    queryFn: () => getUserProfile(accessToken),
   });
 
   const loaded = !isLoading;

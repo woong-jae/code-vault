@@ -12,8 +12,13 @@ import {
 import { Button } from '@base/components/Button';
 import { useAuth } from '../context';
 
-export default function LogoutButton() {
+export default function LogoutButton({ onLogout }: { onLogout?: () => void }) {
   const { logout } = useAuth();
+
+  async function handleLogout() {
+    await logout();
+    onLogout?.();
+  }
 
   return (
     <AlertDialog>
@@ -31,7 +36,7 @@ export default function LogoutButton() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>취소</AlertDialogCancel>
-          <AlertDialogAction onClick={logout}>확인</AlertDialogAction>
+          <AlertDialogAction onClick={handleLogout}>확인</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

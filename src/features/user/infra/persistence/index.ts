@@ -3,13 +3,12 @@ import {
   chromeLocalStorageRetrieve,
 } from '~/base/infra/persistence/chromeLocalStorage';
 import { Github } from '~/base/services/github';
-import type { RepositoryToken, RepositoryName } from '../../types';
+import type { AccessToken } from '~/features/auth';
 import type {
   PersistRepositoryToken,
   RetrieveRepositoryToken,
   RetrieveUserProfile,
   RetrieveRepositories,
-  PersistContent,
   PersistSelectedRepository,
   RetrieveSelectedRepository,
 } from './types';
@@ -18,18 +17,18 @@ export const repositoryTokenKey = 'repository-token:code-vault';
 export const selectedRepositoryKey = 'selected-repository:code-vault';
 
 export const persistRepositoryToken: PersistRepositoryToken = async (
-  repositoryToken: RepositoryToken | null,
+  accessToken: AccessToken,
 ) => {
-  await chromeLocalStoragePersist(repositoryTokenKey, repositoryToken);
+  await chromeLocalStoragePersist(repositoryTokenKey, accessToken);
 };
 export const retrieveRepositoryToken: RetrieveRepositoryToken = async () => {
   return chromeLocalStorageRetrieve(repositoryTokenKey);
 };
 
 export const retrieveUserProfile: RetrieveUserProfile = async (
-  repositoryToken: RepositoryToken,
+  accessToken: AccessToken,
 ) => {
-  const githubRepository = new Github(repositoryToken);
+  const githubRepository = new Github(accessToken);
 
   const userRichProfile = await githubRepository.getUserStatus();
 
@@ -40,29 +39,29 @@ export const retrieveUserProfile: RetrieveUserProfile = async (
   };
 };
 export const retrieveRepositories: RetrieveRepositories = async (
-  repositoryToken: RepositoryToken,
+  accessToken: AccessToken,
 ) => {
-  const githubRepository = new Github(repositoryToken);
+  const githubRepository = new Github(accessToken);
 
   const repositories = await githubRepository.getRepositories();
   if (!repositories) return [];
 
   return repositories.map(({ name }) => name);
 };
-export const persistContent: PersistContent = async ({
+export const persistContent = async ({
   repositoryName,
-  repositoryToken,
+  accessToken,
   path,
   content,
   message,
 }: {
-  repositoryName: RepositoryName;
-  repositoryToken: RepositoryToken;
+  repositoryName: string;
+  accessToken: AccessToken;
   path: string;
   content: string;
   message: string;
 }) => {
-  const githubRepository = new Github(repositoryToken);
+  const githubRepository = new Github(accessToken);
 
   const userProfile = await githubRepository.getUserStatus();
   const primaryEmail = await githubRepository.getUserPrimaryEmail();

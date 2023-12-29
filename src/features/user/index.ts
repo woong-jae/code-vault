@@ -1,7 +1,4 @@
-import UserProfile from './ui/UserProfile';
-import saveContent from './use-case/save-content';
+import RepositorySelector from './components/RepositorySelector';
+import UserProfile from './components/UserProfile';
 
-export const User = { saveContent };
-export const UserUI = {
-  UserProfile,
-};
+export { UserProfile, RepositorySelector };

@@ -1,18 +1,26 @@
+import type { AccessToken } from '~/features/auth';
 import {
-  retrieveRepositoryToken,
   retrieveSelectedRepository,
   persistContent,
 } from '../../infra/persistence';
-import type { SaveContent } from '../types';
 
-const saveContent: SaveContent = async (path, content, message) => {
-  const repositoryToken = await retrieveRepositoryToken();
+const saveContent = async ({
+  path,
+  content,
+  message,
+  accessToken,
+}: {
+  path: string;
+  content: string;
+  message: string;
+  accessToken: AccessToken;
+}) => {
   const selectedRepositoryName = await retrieveSelectedRepository();
 
-  if (!repositoryToken || !selectedRepositoryName) return false;
+  if (!accessToken || !selectedRepositoryName) return false;
 
   return persistContent({
-    repositoryToken,
+    accessToken,
     repositoryName: selectedRepositoryName,
     path,
     content,

@@ -1,11 +1,17 @@
-import { User } from '~/features/user';
+import type { AccessToken } from '~/features/auth';
+import saveContent from '~/features/user/use-case/save-content';
 import { createMarkdown } from '../../domain/content/createMarkdown';
 import { createMessage } from '../../domain/content/createMessage';
 import { getFileExtension } from '../../domain/content/getFileExtension';
 import type { Solution } from '../../types';
-import type { SaveSolution } from '../types';
 
-const saveSolution: SaveSolution = async (solution: Solution) => {
+const saveSolution = async ({
+  solution,
+  accessToken,
+}: {
+  solution: Solution;
+  accessToken: AccessToken;
+}) => {
   const dir =
     solution.platform === 'leetcode'
       ? `${solution.platform}/${solution.title}`
@@ -21,8 +27,18 @@ const saveSolution: SaveSolution = async (solution: Solution) => {
 
   try {
     const result = await Promise.all([
-      User.saveContent(descriptionPath, description, message),
-      User.saveContent(codePath, solution.code, message),
+      saveContent({
+        path: descriptionPath,
+        message,
+        content: description,
+        accessToken,
+      }),
+      saveContent({
+        path: codePath,
+        content: solution.code,
+        message,
+        accessToken,
+      }),
     ]);
 
     return !result.includes(false);
