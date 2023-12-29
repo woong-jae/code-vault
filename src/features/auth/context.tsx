@@ -36,7 +36,7 @@ export function createAuthProvider(initialValue: {
       await logout();
 
       setAccessToken('' as AccessToken);
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
     }
 
     return (

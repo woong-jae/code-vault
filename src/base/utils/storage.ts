@@ -8,7 +8,6 @@ export function defineBrowserStorage<T>({
 }: {
   storage: Storage;
   key: string;
-  initialData?: T;
 }) {
   const enrichedKey = createStorageKey(key);
   return {
@@ -36,10 +35,10 @@ export function defineChromeExtensionStorage<T>({
     async persist(data: T) {
       await storage.set({ [enrichedKey]: JSON.stringify(data) });
     },
-    async retrieve() {
+    async retrieve(): Promise<T | null> {
       const res = await storage.get(enrichedKey);
       const value = res?.[enrichedKey];
-      return value ? JSON.parse(value) : null;
+      return value === undefined || value === null ? null : JSON.parse(value);
     },
     async clear() {
       await storage.remove(enrichedKey);

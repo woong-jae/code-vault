@@ -1,26 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
 import Typography from '@base/components/Typography';
-import LoginButton from '~/features/user/ui/LoginButton';
-import LogoutButton from '~/features/user/ui/LogoutButton';
+import { LoginButton, LogoutButton } from '~/features/auth';
+import { useAuth } from '~/features/auth/context';
 import UserProfile from '~/features/user/ui/UserProfile';
 import UserRepository from '~/features/user/ui/UserRepository';
-import isLoggedIn from '~/features/user/use-case/is-logged-in';
 
 function Section({ children }: { children: ReactElement }) {
   return <div className="mt-5">{children}</div>;
 }
 
 export default function UserSettingPage() {
-  const { data } = useQuery({
-    queryKey: ['isUserLoggedIn'],
-    queryFn: isLoggedIn,
-  });
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className="mx-auto flex min-h-screen max-w-[600px] flex-col justify-between px-5">
       <div>
-        {data ? (
+        {isLoggedIn ? (
           <>
             <div className="mt-5">
               <Typography.h2>Code-Vault 설정</Typography.h2>
