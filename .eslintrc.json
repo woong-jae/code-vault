@@ -108,7 +108,7 @@
   },
   "overrides": [
     {
-      "files": ["*.js"],
+      "files": ["*.?(c)js"],
       "env": {
         "node": true,
         "browser": false

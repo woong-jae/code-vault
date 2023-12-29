@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 const src = path.join(__dirname, 'src');
 
