@@ -1,4 +1,4 @@
-import type { Solution } from '../../types';
+import type { Solution } from '../types';
 
 export type CreateMarkdown = (solution: Solution) => string;
 

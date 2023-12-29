@@ -1,3 +1,3 @@
-import saveSolution from './use-case/save-solution';
+import { saveSolution } from './save-solution';
 
-export const Solution = { saveSolution };
+export { saveSolution };

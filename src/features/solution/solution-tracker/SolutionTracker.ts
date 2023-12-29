@@ -1,4 +1,4 @@
-import type { Solution } from '../../types';
+import type { Solution } from '../types';
 import {
   type SolveListener,
   type SolutionStatus,

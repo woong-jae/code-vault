@@ -1,10 +1,10 @@
 import createEventBus from '@base/infra/event-bus';
-import { initSolutionCatcher } from '~/features/solution/infra/solution-tracker/solution-catcher/initSolutionCatcher';
-import type { CreateSolutionCatcher } from '~/features/solution/infra/solution-tracker/solution-catcher/types';
+import { initSolutionCatcher } from '~/features/solution/solution-tracker/solution-catcher/initSolutionCatcher';
+import type { CreateSolutionCatcher } from '~/features/solution/solution-tracker/solution-catcher/types';
 import {
   Process,
   type SolutionStatus,
-} from '~/features/solution/infra/solution-tracker/types';
+} from '~/features/solution/solution-tracker/types';
 import BojPacketToSolutionStatusMapper from './BojPacketToSolutionStatusMapper';
 import BojSolutionInterceptor from './BojSolutionInterceptor';
 import parseBojLanguage from './parseBojLanguage';

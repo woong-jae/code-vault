@@ -4,10 +4,10 @@ import {
   crossContextConfirm,
 } from '~/base/infra/chrome-extension';
 import { accessTokenStorage } from '~/features/auth';
-import { Solution } from '~/features/solution';
-import { initBojSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/boj';
-import { initLeetcodeSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/leetcode';
-import createSolutionTracker from '~/features/solution/infra/solution-tracker';
+import { saveSolution } from '~/features/solution';
+import { initBojSolutionCatcherFromBackground } from '~/features/solution/platforms/boj';
+import { initLeetcodeSolutionCatcherFromBackground } from '~/features/solution/platforms/leetcode';
+import createSolutionTracker from '~/features/solution/solution-tracker';
 
 initBojSolutionCatcherFromBackground();
 initLeetcodeSolutionCatcherFromBackground();
@@ -28,7 +28,7 @@ solutionTracker.onSolve(async (solution) => {
     return;
   }
 
-  const isSuccess = await Solution.saveSolution({ solution, accessToken });
+  const isSuccess = await saveSolution({ solution, accessToken });
   alertToWorld(isSuccess ? '성공적으로 저장했습니다' : '저장에 실패했습니다');
 });
 

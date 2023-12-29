@@ -1,9 +1,9 @@
 import type { AccessToken } from '~/features/auth';
 import saveContent from '~/features/user/use-case/save-content';
-import { createMarkdown } from '../../domain/content/createMarkdown';
-import { createMessage } from '../../domain/content/createMessage';
-import { getFileExtension } from '../../domain/content/getFileExtension';
-import type { Solution } from '../../types';
+import { createMarkdown } from './content/createMarkdown';
+import { createMessage } from './content/createMessage';
+import { getFileExtension } from './content/getFileExtension';
+import type { Solution } from './types';
 
 const saveSolution = async ({
   solution,
@@ -48,4 +48,4 @@ const saveSolution = async ({
   }
 };
 
-export default saveSolution;
+export { saveSolution };

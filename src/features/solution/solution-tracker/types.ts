@@ -1,4 +1,4 @@
-import type { Solution } from '../../types';
+import type { Solution } from '../types';
 
 /* SolutionTracker */
 export type SolveListener = (solution: Solution) => void;

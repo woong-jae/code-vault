@@ -1,4 +1,4 @@
-import BaseSolutionInterceptor from '~/features/solution/infra/solution-tracker/solution-catcher/BaseSolutionInterceptor';
+import BaseSolutionInterceptor from '~/features/solution/solution-tracker/solution-catcher/BaseSolutionInterceptor';
 
 class ProgrammersSolutionInterceptor extends BaseSolutionInterceptor {
   constructor() {
