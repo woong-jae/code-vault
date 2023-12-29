@@ -1,6 +1,6 @@
-import RepositorySelector from './ui/RepositorySelector';
+import RepositorySetting from './ui/RepositorySetting';
 import UserProfile from './ui/UserProfile';
 
 export * from './profile';
 export * from './repository';
-export { UserProfile, RepositorySelector };
+export { UserProfile, RepositorySetting };

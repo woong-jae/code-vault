@@ -6,8 +6,17 @@ export const selectedRepositoryStorage = defineChromeExtensionStorage<string>({
   key: 'selected-repository',
 });
 
-export async function getSelectedRepository() {
-  return selectedRepositoryStorage.retrieve();
+export async function getSelectedRepository(accessToken: AccessToken) {
+  const selectedRepositoryName = await selectedRepositoryStorage.retrieve();
+  if (!selectedRepositoryName) return null;
+
+  const repositories = await retrieveRepositories(accessToken);
+  if (!repositories.includes(selectedRepositoryName)) {
+    await clearSelectedRepository();
+    return null;
+  }
+
+  return selectedRepositoryName;
 }
 
 export async function setSelectedRepository(value: string) {
@@ -38,7 +47,7 @@ export async function persistContent({
   content: string;
   message: string;
 }) {
-  const selectedRepositoryName = await getSelectedRepository();
+  const selectedRepositoryName = await getSelectedRepository(accessToken);
 
   if (!accessToken || !selectedRepositoryName) return false;
 
@@ -77,13 +86,17 @@ export async function createRepository({
     description: 'Code-Vault 풀이 저장소',
   });
 
+  await setSelectedRepository(repositoryName);
+
   if (!isSuccess) return false;
 
-  return persistContent({
+  await persistContent({
     accessToken,
     path: 'README.md',
     content:
-      '#Code-Vault 풀이 저장소\n\n Code-Vault에서 생성된 알고리즘 문제 풀이 저장소',
+      '# Code-Vault 풀이 저장소\n\n Code-Vault에서 생성된 알고리즘 문제 풀이 저장소',
     message: 'Initial commit - by Code-Vault',
   });
+
+  return true;
 }

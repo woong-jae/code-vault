@@ -3,7 +3,7 @@ import Typography from '@base/components/Typography';
 import { LoginButton, LogoutButton } from '~/features/auth';
 import { useAuth } from '~/features/auth/context';
 import {
-  RepositorySelector,
+  RepositorySetting,
   UserProfile,
   clearSelectedRepository,
 } from '~/features/user';
@@ -55,7 +55,7 @@ export default function UserSettingPage() {
               <UserProfile accessToken={accessToken} />
             </Section>
             <Section>
-              <RepositorySelector accessToken={accessToken} />
+              <RepositorySetting accessToken={accessToken} />
             </Section>
             <Section>
               <LogoutButton onLogout={handleLogout} />
