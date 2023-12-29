@@ -1,5 +1,5 @@
 import { Octokit } from 'octokit';
-import { stringToBase64 } from '~/base/lib/file';
+import { stringToBase64 } from '@base/utils/file';
 
 const clientId = 'e1f73f73ee1f2865bcd5';
 const clientSecret = 'aceb34e7192ba7b6181d0c0649373b9fce57cda0';

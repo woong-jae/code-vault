@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import Url from '@base/const/url';
-import { Button } from '@base/ui/Button';
+import { Button } from '@base/components/Button';
 import login from '../use-case/login';
 
 export default function LoginButton() {

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Avatar, AvatarFallback, AvatarImage } from '@base/ui/Avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@base/components/Avatar';
 import getUserProfile from '../use-case/get-user-profile';
 
 export default function UserProfile() {

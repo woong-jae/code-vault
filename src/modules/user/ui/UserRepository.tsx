@@ -5,9 +5,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@base/ui/Card';
-import { Label } from '@base/ui/Label';
-import { ScrollArea } from '@base/ui/ScrollArea';
+} from '@base/components/Card';
+import { Label } from '@base/components/Label';
+import { ScrollArea } from '@base/components/ScrollArea';
 import {
   Select,
   SelectContent,
@@ -15,7 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@base/ui/Select';
+} from '@base/components/Select';
 import { useUserStore } from '../infra/store';
 import getRepositories from '../use-case/get-repositories';
 import getSelectedRepository from '../use-case/get-selected-repository';

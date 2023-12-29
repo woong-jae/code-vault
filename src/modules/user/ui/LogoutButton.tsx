@@ -9,8 +9,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@base/ui/AlertDialog';
-import { Button } from '@base/ui/Button';
+} from '@base/components/AlertDialog';
+import { Button } from '@base/components/Button';
 import logout from '../use-case/logout';
 
 export default function LogoutButton() {
