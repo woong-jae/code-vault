@@ -19,6 +19,7 @@ import {
 } from '@base/ui/Select';
 import { ScrollArea } from '@base/ui/ScrollArea';
 import { useQuery } from '@tanstack/react-query';
+import { Label } from '@base/ui/Label';
 
 export default function RepositorySelector() {
   const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
@@ -40,30 +41,33 @@ export default function RepositorySelector() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Repository</CardTitle>
-        <CardDescription>선택한 저장소</CardDescription>
+        <CardTitle>저장소 설정</CardTitle>
+        <CardDescription>선택된 저장소에 풀이가 저장됩니다.</CardDescription>
       </CardHeader>
       <CardContent>
         {loaded && (
-          <Select
-            onValueChange={handleSelectChange}
-            value={selectedRepository || undefined}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="저장소를 선택해주세요" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <ScrollArea>
-                  {repositories?.map((repositoryName) => (
-                    <SelectItem key={repositoryName} value={repositoryName}>
-                      {repositoryName}
-                    </SelectItem>
-                  ))}
-                </ScrollArea>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="selected-repository">선택한 저장소</Label>
+            <Select
+              onValueChange={handleSelectChange}
+              value={selectedRepository || undefined}
+            >
+              <SelectTrigger id="selected-repository">
+                <SelectValue placeholder="저장소를 선택해주세요" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <ScrollArea className="h-[200px]">
+                    {repositories?.map((repositoryName) => (
+                      <SelectItem key={repositoryName} value={repositoryName}>
+                        {repositoryName}
+                      </SelectItem>
+                    ))}
+                  </ScrollArea>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
         )}
       </CardContent>
     </Card>

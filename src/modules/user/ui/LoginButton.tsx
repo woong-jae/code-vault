@@ -2,18 +2,19 @@ import { useEffect } from 'react';
 import login from '../use-case/login';
 import Url from '@base/const/url';
 import { Button } from '@base/ui/Button';
+import { useQueryClient } from '@tanstack/react-query';
 
-interface Props {
-  onLoginSuccess: () => void;
-}
+export default function LoginButton() {
+  const queryClient = useQueryClient();
 
-export default function LoginButton({ onLoginSuccess }: Props) {
   useEffect(() => {
     async function tryLogin() {
       const isLoginSuccess = await login();
       if (!isLoginSuccess) return;
 
-      onLoginSuccess();
+      queryClient.invalidateQueries({
+        queryKey: ['isUserLoggedIn'],
+      });
     }
 
     tryLogin();

@@ -18,11 +18,7 @@
     "declarativeNetRequestWithHostAccess",
     "storage"
   ],
-  "host_permissions": [
-    "https://school.programmers.co.kr/learn/courses/30/lessons/*",
-    "https://www.acmicpc.net/status*",
-    "https://leetcode.com/problems/*"
-  ],
+  "host_permissions": ["https://*/*"],
   "declarative_net_request": {
     "rule_resources": [
       {

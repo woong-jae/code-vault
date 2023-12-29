@@ -11,8 +11,11 @@ import {
   AlertDialogTrigger,
 } from '@base/ui/AlertDialog';
 import { Button } from '@base/ui/Button';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function LogoutButton() {
+  const queryClient = useQueryClient();
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -29,7 +32,16 @@ export default function LogoutButton() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>취소</AlertDialogCancel>
-          <AlertDialogAction onClick={logout}>확인</AlertDialogAction>
+          <AlertDialogAction
+            onClick={async () => {
+              await logout();
+              queryClient.invalidateQueries({
+                queryKey: ['isUserLoggedIn'],
+              });
+            }}
+          >
+            확인
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
