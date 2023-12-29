@@ -12,7 +12,7 @@ export function initSolutionCatcher({
   networkInterceptor,
   packetInterpreter,
 }: Dependencies) {
-  networkInterceptor.onIntercept(async packet => {
+  networkInterceptor.onIntercept(async (packet) => {
     if (!packet) return;
 
     const parsedPacket = await packetInterpreter.parse(packet);

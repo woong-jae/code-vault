@@ -1,5 +1,5 @@
-import { Process } from '~/modules/solution/infra/solution-tracker/types';
 import type { PacketInterpreter } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
+import { Process } from '~/modules/solution/infra/solution-tracker/types';
 
 export default class LeetcodePacketToSolutionStatusMapper
   implements PacketInterpreter

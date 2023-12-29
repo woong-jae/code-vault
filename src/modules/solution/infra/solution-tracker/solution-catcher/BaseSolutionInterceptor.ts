@@ -8,6 +8,6 @@ export default abstract class BaseSolutionInterceptor {
   }
 
   protected notify(interceptedPacket: string): void {
-    this.interceptListeners.forEach(listener => listener(interceptedPacket));
+    this.interceptListeners.forEach((listener) => listener(interceptedPacket));
   }
 }

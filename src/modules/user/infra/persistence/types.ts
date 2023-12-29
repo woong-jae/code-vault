@@ -1,8 +1,4 @@
-import type {
-  RepositoryToken,
-  UserProfile,
-  RepositoryName,
-} from '../../types';
+import type { RepositoryToken, UserProfile, RepositoryName } from '../../types';
 
 export type RetrieveUserProfile = (
   token: RepositoryToken,

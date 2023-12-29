@@ -1,4 +1,4 @@
-import logout from '../use-case/logout';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from '@base/ui/AlertDialog';
 import { Button } from '@base/ui/Button';
-import { useQueryClient } from '@tanstack/react-query';
+import logout from '../use-case/logout';
 
 export default function LogoutButton() {
   const queryClient = useQueryClient();

@@ -1,7 +1,7 @@
-import type { PersistRepositoryToken } from '../../infra/persistence/types';
-import getInitialToken from './getInitialToken';
-import type { Login } from '../types';
 import type { GetInitialToken } from '~/_features/user/core/ports.output';
+import type { PersistRepositoryToken } from '../../infra/persistence/types';
+import type { Login } from '../types';
+import getInitialToken from './getInitialToken';
 
 type Dependencies = {
   persistRepositoryToken: PersistRepositoryToken;

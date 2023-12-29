@@ -1,6 +1,6 @@
 import BaseSolutionInterceptor from '~/modules/solution/infra/solution-tracker/solution-catcher/BaseSolutionInterceptor';
 
-export default class ProgrammersSolutionInterceptor extends BaseSolutionInterceptor {
+class ProgrammersSolutionInterceptor extends BaseSolutionInterceptor {
   constructor() {
     super();
     this.injectWsRequestInterceptor();
@@ -10,7 +10,7 @@ export default class ProgrammersSolutionInterceptor extends BaseSolutionIntercep
   private injectWsRequestInterceptor() {
     const notify = this.notify.bind(this);
 
-    (send => {
+    ((send) => {
       window.WebSocket.prototype.send = function sendWrapper(
         data: string | ArrayBufferLike | Blob | ArrayBufferView,
       ) {
@@ -49,3 +49,5 @@ export default class ProgrammersSolutionInterceptor extends BaseSolutionIntercep
     Object.defineProperty(MessageEvent.prototype, 'data', property);
   }
 }
+
+export default ProgrammersSolutionInterceptor;

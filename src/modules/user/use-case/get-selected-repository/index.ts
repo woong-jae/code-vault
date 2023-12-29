@@ -1,6 +1,6 @@
-import type { GetSelectedRepository } from '../types';
 import { retrieveSelectedRepository } from '../../infra/persistence';
 import { saveUser } from '../../infra/store';
+import type { GetSelectedRepository } from '../types';
 
 const getSelectedRepository: GetSelectedRepository = async () => {
   const selectedRepository = await retrieveSelectedRepository();

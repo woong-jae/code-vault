@@ -24,13 +24,14 @@ export default class BojSolutionInterceptor extends BaseSolutionInterceptor {
 
   injectPusherMessageInterceptor() {
     (() => {
-      if (window?.pusher === undefined)
+      if (window?.pusher === undefined) {
         throw new Error('pusher가 window에 존재하지 않음');
+      }
 
       const { channels } = window.pusher.channels;
-      Object.keys(channels).forEach(channelName => {
+      Object.keys(channels).forEach((channelName) => {
         // Channel에서 listen할 이벤트 타입에 대한 콜백을 bind 한다.
-        channels[channelName].bind('update', data => {
+        channels[channelName].bind('update', (data) => {
           this.notify(JSON.stringify(data));
         });
       });

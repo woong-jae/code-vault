@@ -7,7 +7,7 @@ export const createMarkdown: CreateMarkdown = (solution: Solution) => {
     solution.platform === 'leetcode'
       ? `# ${solution.title
           .split('-')
-          .map(text => `${text.slice(0, 1).toUpperCase()}${text.slice(1)}`)
+          .map((text) => `${text.slice(0, 1).toUpperCase()}${text.slice(1)}`)
           .join(' ')}`
       : `# [${solution.problemId}] ${solution.title}`;
 

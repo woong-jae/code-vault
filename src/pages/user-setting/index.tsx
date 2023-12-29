@@ -1,6 +1,6 @@
-import Typography from '@base/ui/Typography';
 import { useQuery } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
+import Typography from '@base/ui/Typography';
 import LoginButton from '~/modules/user/ui/LoginButton';
 import LogoutButton from '~/modules/user/ui/LogoutButton';
 import UserProfile from '~/modules/user/ui/UserProfile';

@@ -1,8 +1,8 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import login from '../use-case/login';
 import Url from '@base/const/url';
 import { Button } from '@base/ui/Button';
-import { useQueryClient } from '@tanstack/react-query';
+import login from '../use-case/login';
 
 export default function LoginButton() {
   const queryClient = useQueryClient();
@@ -18,7 +18,7 @@ export default function LoginButton() {
     }
 
     tryLogin();
-  }, []);
+  }, [queryClient]);
 
   return (
     <Button className="w-fit" asChild>

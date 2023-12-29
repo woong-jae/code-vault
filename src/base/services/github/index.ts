@@ -42,7 +42,7 @@ export class Github {
   async getUserPrimaryEmail() {
     const res =
       await this.githubApiClient.rest.users.listEmailsForAuthenticatedUser();
-    return res.data.find(addedEmail => addedEmail.primary)?.email || null;
+    return res.data.find((addedEmail) => addedEmail.primary)?.email || null;
   }
 
   async getRepositories() {

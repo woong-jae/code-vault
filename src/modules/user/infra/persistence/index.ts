@@ -1,3 +1,7 @@
+import {
+  chromeLocalStoragePersist,
+  chromeLocalStorageRetrieve,
+} from '~/base/infra/persistence/chromeLocalStorage';
 import { Github } from '~/base/services/github';
 import type { RepositoryToken, RepositoryName } from '../../types';
 import type {
@@ -9,10 +13,6 @@ import type {
   PersistSelectedRepository,
   RetrieveSelectedRepository,
 } from './types';
-import {
-  chromeLocalStoragePersist,
-  chromeLocalStorageRetrieve,
-} from '~/base/infra/persistence/chromeLocalStorage';
 
 export const repositoryTokenKey = 'repository-token:code-vault';
 export const selectedRepositoryKey = 'selected-repository:code-vault';
@@ -82,10 +82,11 @@ export const persistContent: PersistContent = async ({
   });
 };
 
-export const persistSelectedRepository: PersistSelectedRepository =
-  async repositoryName => {
-    await chromeLocalStoragePersist(selectedRepositoryKey, repositoryName);
-  };
+export const persistSelectedRepository: PersistSelectedRepository = async (
+  repositoryName,
+) => {
+  await chromeLocalStoragePersist(selectedRepositoryKey, repositoryName);
+};
 
 export const retrieveSelectedRepository: RetrieveSelectedRepository =
   async () => {

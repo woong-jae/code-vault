@@ -11,7 +11,7 @@ export default class SolutionTracker {
   private _solutionData: Partial<Solution> = {};
 
   constructor(private solutionBus: SolutionBus) {
-    this.solutionBus.onIntercept(packet => {
+    this.solutionBus.onIntercept((packet) => {
       this.handlePacket(packet);
     });
   }
@@ -20,7 +20,7 @@ export default class SolutionTracker {
     this.solveListeners.push(callback);
     return () => {
       this.solveListeners = this.solveListeners.filter(
-        listener => listener !== callback,
+        (listener) => listener !== callback,
       );
     };
   }
@@ -51,7 +51,7 @@ export default class SolutionTracker {
   }
 
   private notify(solution: Solution) {
-    this.solveListeners.forEach(listener => listener({ ...solution }));
+    this.solveListeners.forEach((listener) => listener({ ...solution }));
   }
 
   private handlePacket({ process, payload }: SolutionStatus) {

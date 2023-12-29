@@ -1,11 +1,11 @@
 import { Process } from '~/modules/solution/infra/solution-tracker/types';
-import PacketInterpreter from '.';
+import type { ProgrammingLanguage, Solution } from '../../../../types';
 import {
   type ProgrammersCode,
   type ProgrammersIdentifier,
   type ProgrammersPacket,
 } from './types';
-import type { ProgrammingLanguage, Solution } from '../../../../types';
+import PacketInterpreter from '.';
 
 export default class ProgrammersPacketToSolutionStatusMapper
   implements PacketInterpreter

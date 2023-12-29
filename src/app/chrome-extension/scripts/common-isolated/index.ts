@@ -3,11 +3,11 @@ import createEventBus from '~/base/infra/event-bus';
 
 createEventBus('isolated');
 
-onCrossContextConfirm('isolated', message => {
+onCrossContextConfirm('isolated', (message) => {
   const isConfirm = confirm(message);
   return isConfirm;
 });
 
-onAlert(message => {
+onAlert((message) => {
   alert(message);
 });

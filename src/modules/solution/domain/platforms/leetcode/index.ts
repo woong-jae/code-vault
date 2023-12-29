@@ -1,12 +1,12 @@
-import LeetcodeSolutionInterceptor from './LeetcodeSolutionInterceptor';
-import LeetcodePacketToSolutionStatusMapper from './LeetcodePacketToSolutionStatusMapper';
-import type { CreateSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
-import { initSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/initSolutionCatcher';
 import createEventBus from '~/base/infra/event-bus';
+import { initSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/initSolutionCatcher';
+import type { CreateSolutionCatcher } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
 import {
   Process,
   type SolutionStatus,
 } from '~/modules/solution/infra/solution-tracker/types';
+import LeetcodePacketToSolutionStatusMapper from './LeetcodePacketToSolutionStatusMapper';
+import LeetcodeSolutionInterceptor from './LeetcodeSolutionInterceptor';
 
 export const initLeetcodeSolutionCatcher: CreateSolutionCatcher = () => {
   initSolutionCatcher({
@@ -16,11 +16,11 @@ export const initLeetcodeSolutionCatcher: CreateSolutionCatcher = () => {
   });
 };
 
-export const initLeetcodeSolutionSolutionCatcherFromBackground: CreateSolutionCatcher =
+export const initLeetcodeSolutionCatcherFromBackground: CreateSolutionCatcher =
   () => {
     const eventBus = createEventBus('background');
     chrome.webRequest.onBeforeRequest.addListener(
-      details => {
+      (details) => {
         if (details.method !== 'POST') return;
 
         if (!details.requestBody?.raw) return;

@@ -10,8 +10,9 @@ export default class EventBusService implements EventBus {
     private readonly currentContext: Context,
     private readonly window?: Window,
   ) {
-    if (EventBusService._eventBusInstance)
+    if (EventBusService._eventBusInstance) {
       return EventBusService._eventBusInstance;
+    }
 
     if (currentContext !== 'world') {
       chrome.runtime.onMessage.addListener((event: EmittedEvent) => {
@@ -24,7 +25,7 @@ export default class EventBusService implements EventBus {
     }
 
     if (currentContext !== 'background') {
-      this.window?.addEventListener('message', event => {
+      this.window?.addEventListener('message', (event) => {
         const { data }: { data: EmittedEvent } = event;
         if (data.from === currentContext) return;
         if (currentContext === 'isolated') {
@@ -40,7 +41,7 @@ export default class EventBusService implements EventBus {
   listen(listener: EventBusListener) {
     this.listeners.push(listener);
     return () => {
-      this.listeners = this.listeners.filter(item => item !== listener);
+      this.listeners = this.listeners.filter((item) => item !== listener);
     };
   }
 
@@ -73,7 +74,7 @@ export default class EventBusService implements EventBus {
   }
 
   private notify(event: Omit<EmittedEvent, 'from'>) {
-    this.listeners.forEach(listener => listener(event));
+    this.listeners.forEach((listener) => listener(event));
   }
 
   private pipeFromIsolated(event: EmittedEvent) {
@@ -90,7 +91,7 @@ export default class EventBusService implements EventBus {
   }
 
   private emitFromBackground(event: EmittedEvent) {
-    this.getCurrentTab().then(tab => {
+    this.getCurrentTab().then((tab) => {
       if (!tab?.id) return;
 
       chrome.tabs.sendMessage(tab.id, event).catch(() => {

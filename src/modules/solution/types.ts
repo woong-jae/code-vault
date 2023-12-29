@@ -1,6 +1,6 @@
 /* Solution */
-type MilliSecond = string;
-type MegaByte = string;
+type MilliSecond = number;
+type MegaByte = number;
 type Url = string;
 
 export type Platform = 'programmers' | 'boj' | 'leetcode';

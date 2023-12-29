@@ -1,6 +1,6 @@
-import EventHubAdaptor from './EventBusAdaptor';
-import type { SolutionBus } from '../types';
 import createEventBus from '@base/infra/event-bus';
+import type { SolutionBus } from '../types';
+import EventHubAdaptor from './EventBusAdaptor';
 
 type CreateSolutionBus = () => SolutionBus;
 

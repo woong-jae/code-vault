@@ -4,7 +4,7 @@ export type GetFileExtension = (
   programmingLanguage: ProgrammingLanguage,
 ) => string;
 
-export const getFileExtension: GetFileExtension = programmingLanguage => {
+export const getFileExtension: GetFileExtension = (programmingLanguage) => {
   switch (programmingLanguage) {
     case 'c':
     case 'cpp':

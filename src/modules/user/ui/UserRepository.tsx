@@ -1,7 +1,4 @@
-import getRepositories from '../use-case/get-repositories';
-import getSelectedRepository from '../use-case/get-selected-repository';
-import setSelectedRepository from '../use-case/set-selected-repository';
-import { useUserStore } from '../infra/store';
+import { useQuery } from '@tanstack/react-query';
 import {
   Card,
   CardContent,
@@ -9,6 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@base/ui/Card';
+import { Label } from '@base/ui/Label';
+import { ScrollArea } from '@base/ui/ScrollArea';
 import {
   Select,
   SelectContent,
@@ -17,9 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@base/ui/Select';
-import { ScrollArea } from '@base/ui/ScrollArea';
-import { useQuery } from '@tanstack/react-query';
-import { Label } from '@base/ui/Label';
+import { useUserStore } from '../infra/store';
+import getRepositories from '../use-case/get-repositories';
+import getSelectedRepository from '../use-case/get-selected-repository';
+import setSelectedRepository from '../use-case/set-selected-repository';
 
 export default function RepositorySelector() {
   const { data: repositories, isLoading: isLoadingRepositories } = useQuery({

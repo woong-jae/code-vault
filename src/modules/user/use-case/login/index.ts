@@ -1,6 +1,6 @@
 import { persistRepositoryToken } from '../../infra/persistence';
-import getInitialToken from './getInitialToken';
 import { createLogin } from './createLogin';
+import getInitialToken from './getInitialToken';
 
 const login = createLogin({
   getInitialToken,

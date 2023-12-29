@@ -5,7 +5,7 @@ export const crossContextConfirm = async (
   context: Context,
   message: string,
 ): Promise<boolean> => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const eventBus = createEventBus(context);
 
     eventBus.emit({
