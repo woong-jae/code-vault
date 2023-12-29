@@ -3,6 +3,7 @@ import Typography from '@base/components/Typography';
 import { LoginButton, LogoutButton } from '~/features/auth';
 import { useAuth } from '~/features/auth/context';
 import { RepositorySelector, UserProfile } from '~/features/user';
+import setSelectedRepository from '~/features/user/use-case/set-selected-repository';
 
 function Section({ children }: { children: ReactElement }) {
   return <div className="mt-5">{children}</div>;
@@ -35,7 +36,9 @@ function Footer() {
 export default function UserSettingPage() {
   const { isLoggedIn, accessToken } = useAuth();
 
-  function handleLogout() {}
+  function handleLogout() {
+    setSelectedRepository('');
+  }
 
   return (
     <div className="mx-auto flex min-h-screen max-w-[600px] flex-col justify-between px-5">
