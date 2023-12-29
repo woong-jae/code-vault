@@ -16,7 +16,7 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "webpack serve",
     "build": "webpack",
-    "build:production": "NODE_ENV=production webpack",
+    "build:production": "NODE_ENV=production webpack && zip -r dist.zip dist",
     "test": "pnpm jest --watch"
   },
   "devDependencies": {
