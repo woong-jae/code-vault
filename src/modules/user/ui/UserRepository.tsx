@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@base/components/Select';
 import { useUserStore } from '../infra/store';
-import getRepositories from '../use-case/get-repositories';
+import { getRepositories } from '../use-case/get-repositories';
 import getSelectedRepository from '../use-case/get-selected-repository';
 import setSelectedRepository from '../use-case/set-selected-repository';
 
