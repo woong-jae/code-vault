@@ -1,4 +1,5 @@
-import RepositorySelector from './components/RepositorySelector';
-import UserProfile from './components/UserProfile';
+import RepositorySelector from './ui/RepositorySelector';
+import UserProfile from './ui/UserProfile';
 
+export * from './repository';
 export { UserProfile, RepositorySelector };

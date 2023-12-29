@@ -1,6 +1,5 @@
 import { createContext, useContext, type ReactElement, useState } from 'react';
 import { login, logout } from './auth';
-import type { AccessToken } from './types';
 
 const AuthContext = createContext<{
   isLoggedIn: boolean;

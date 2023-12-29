@@ -3,12 +3,10 @@ import {
   chromeLocalStorageRetrieve,
 } from '~/base/infra/persistence/chromeLocalStorage';
 import { Github } from '~/base/services/github';
-import type { AccessToken } from '~/features/auth';
 import type {
   PersistRepositoryToken,
   RetrieveRepositoryToken,
   RetrieveUserProfile,
-  RetrieveRepositories,
   PersistSelectedRepository,
   RetrieveSelectedRepository,
 } from './types';
@@ -38,9 +36,7 @@ export const retrieveUserProfile: RetrieveUserProfile = async (
     avatarUrl: userRichProfile.avatar_url,
   };
 };
-export const retrieveRepositories: RetrieveRepositories = async (
-  accessToken: AccessToken,
-) => {
+export const retrieveRepositories = async (accessToken: AccessToken) => {
   const githubRepository = new Github(accessToken);
 
   const repositories = await githubRepository.getRepositories();

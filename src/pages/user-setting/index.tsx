@@ -2,8 +2,11 @@ import type { ReactElement } from 'react';
 import Typography from '@base/components/Typography';
 import { LoginButton, LogoutButton } from '~/features/auth';
 import { useAuth } from '~/features/auth/context';
-import { RepositorySelector, UserProfile } from '~/features/user';
-import setSelectedRepository from '~/features/user/use-case/set-selected-repository';
+import {
+  RepositorySelector,
+  UserProfile,
+  clearSelectedRepository,
+} from '~/features/user';
 
 function Section({ children }: { children: ReactElement }) {
   return <div className="mt-5">{children}</div>;
@@ -37,7 +40,7 @@ export default function UserSettingPage() {
   const { isLoggedIn, accessToken } = useAuth();
 
   function handleLogout() {
-    setSelectedRepository('');
+    clearSelectedRepository();
   }
 
   return (

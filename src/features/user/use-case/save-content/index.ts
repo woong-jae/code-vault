@@ -1,4 +1,3 @@
-import type { AccessToken } from '~/features/auth';
 import {
   retrieveSelectedRepository,
   persistContent,

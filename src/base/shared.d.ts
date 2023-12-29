@@ -23,6 +23,9 @@ type PersistenceKey = string;
 type Persist = <T>(key: PersistenceKey, value: T) => Promise<void>;
 type Retrieve = <T>(key: PersistenceKey) => Promise<T | null>;
 
+/* Github */
+type AccessToken = Brand<string, 'accessToken'>;
+
 /* Utility Type */
 type Brand<T, K extends string> = T & {
   _brand: K;

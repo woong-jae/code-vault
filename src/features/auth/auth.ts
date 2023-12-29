@@ -1,6 +1,5 @@
 import { Github } from '@base/services/github';
 import { defineChromeExtensionStorage } from '@base/utils/storage';
-import type { AccessToken } from './types';
 
 const accessTokenStorage = defineChromeExtensionStorage<AccessToken>({
   storage: chrome.storage.local,

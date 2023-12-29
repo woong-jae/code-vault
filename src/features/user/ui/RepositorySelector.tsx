@@ -16,11 +16,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@base/components/Select';
-import type { AccessToken } from '~/features/auth';
-import { useUserStore } from '../infra/store';
-import { getRepositories } from '../use-case/get-repositories';
-import getSelectedRepository from '../use-case/get-selected-repository';
-import setSelectedRepository from '../use-case/set-selected-repository';
+import {
+  getSelectedRepository,
+  retrieveRepositories,
+  setSelectedRepository,
+} from '../repository';
 
 export default function RepositorySelector({
   accessToken,
@@ -29,15 +29,14 @@ export default function RepositorySelector({
 }) {
   const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
     queryKey: [accessToken, 'repositories'],
-    queryFn: () => getRepositories(accessToken),
+    queryFn: () => retrieveRepositories(accessToken),
   });
-  const { isLoading: isLoadingSelectedRepository } = useQuery({
-    queryKey: ['selectedRepository'],
-    queryFn: getSelectedRepository,
-  });
+  const { data: selectedRepository, isLoading: isLoadingSelectedRepository } =
+    useQuery({
+      queryKey: ['selectedRepository'],
+      queryFn: getSelectedRepository,
+    });
   const loaded = !isLoadingRepositories && !isLoadingSelectedRepository;
-
-  const selectedRepository = useUserStore((user) => user.selectedRepository);
 
   function handleSelectChange(value: string) {
     setSelectedRepository(value);

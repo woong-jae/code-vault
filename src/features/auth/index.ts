@@ -1,6 +1,5 @@
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
+import LoginButton from './ui/LoginButton';
+import LogoutButton from './ui/LogoutButton';
 
 export * from './auth';
-export * from './types';
 export { LoginButton, LogoutButton };

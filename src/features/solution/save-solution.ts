@@ -1,4 +1,3 @@
-import type { AccessToken } from '~/features/auth';
 import saveContent from '~/features/user/use-case/save-content';
 import { createMarkdown } from './content/createMarkdown';
 import { createMessage } from './content/createMessage';
