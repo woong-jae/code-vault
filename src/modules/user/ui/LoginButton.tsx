@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import Url from '@base/const/url';
 import { Button } from '@base/components/Button';
+import { url } from '@base/const/_url';
 import login from '../use-case/login';
 
 export default function LoginButton() {
@@ -22,7 +22,7 @@ export default function LoginButton() {
 
   return (
     <Button className="w-fit" asChild>
-      <a href={Url.GITHUB_OAUTH_CODE}>GitHub 로그인</a>
+      <a href={url.GITHUB_OAUTH_CODE}>GitHub 로그인</a>
     </Button>
   );
 }

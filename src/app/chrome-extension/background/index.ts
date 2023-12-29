@@ -1,4 +1,4 @@
-import Url from '@base/const/url';
+import { url } from '@base/const/_url';
 import {
   alertToWorld,
   crossContextConfirm,
@@ -29,7 +29,7 @@ solutionTracker.onSolve(async (solution) => {
 /* Chrome extension 아이콘 클릭시 설정 페이지 탭 열기 */
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
-    url: Url.SETTING_PAGE,
+    url: url.SETTING_PAGE,
   });
 });
 
@@ -37,6 +37,6 @@ chrome.action.onClicked.addListener(() => {
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== 'install') return;
   chrome.tabs.create({
-    url: Url.SETTING_PAGE,
+    url: url.SETTING_PAGE,
   });
 });
