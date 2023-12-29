@@ -26,3 +26,38 @@ export async function retrieveRepositories(accessToken: AccessToken) {
 
   return repositories.map(({ name }) => name);
 }
+
+export async function persistContent({
+  accessToken,
+  path,
+  content,
+  message,
+}: {
+  accessToken: AccessToken;
+  path: string;
+  content: string;
+  message: string;
+}) {
+  const selectedRepositoryName = await getSelectedRepository();
+
+  if (!accessToken || !selectedRepositoryName) return false;
+
+  const githubRepository = new Github(accessToken);
+
+  const userProfile = await githubRepository.getUserStatus();
+  const primaryEmail = await githubRepository.getUserPrimaryEmail();
+
+  if (!primaryEmail) {
+    throw new Error('No primary email set for user');
+  }
+
+  return githubRepository.createRepositoryContent({
+    owner: userProfile.login,
+    repo: selectedRepositoryName,
+    path,
+    content,
+    userName: userProfile.login,
+    email: primaryEmail,
+    message,
+  });
+}

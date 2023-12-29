@@ -1,4 +1,4 @@
-import saveContent from '~/features/user/use-case/save-content';
+import { persistContent } from '../user';
 import { createMarkdown } from './content/createMarkdown';
 import { createMessage } from './content/createMessage';
 import { getFileExtension } from './content/getFileExtension';
@@ -26,13 +26,13 @@ const saveSolution = async ({
 
   try {
     const result = await Promise.all([
-      saveContent({
+      persistContent({
         path: descriptionPath,
         message,
         content: description,
         accessToken,
       }),
-      saveContent({
+      persistContent({
         path: codePath,
         content: solution.code,
         message,
