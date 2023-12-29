@@ -22,3 +22,8 @@ interface EventBus {
 type PersistenceKey = string;
 type Persist = <T>(key: PersistenceKey, value: T) => Promise<void>;
 type Retrieve = <T>(key: PersistenceKey) => Promise<T | null>;
+
+/* Utility Type */
+type Brand<T, K extends string> = T & {
+  _brand: K;
+};
