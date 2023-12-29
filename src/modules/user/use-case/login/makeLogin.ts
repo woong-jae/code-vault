@@ -1,14 +1,14 @@
-import type { GetInitialToken } from '~/_features/user/core/ports.output';
 import type { PersistRepositoryToken } from '../../infra/persistence/types';
 import type { Login } from '../types';
 import getInitialToken from './getInitialToken';
+import type { GetInitialToken } from './types';
 
 type Dependencies = {
   persistRepositoryToken: PersistRepositoryToken;
   getInitialToken: GetInitialToken;
 };
 
-export const createLogin =
+export const makeLogin =
   ({ persistRepositoryToken }: Dependencies): Login =>
   async () => {
     const token = await getInitialToken();

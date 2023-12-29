@@ -1,8 +1,8 @@
 import { persistRepositoryToken } from '../../infra/persistence';
-import { createLogin } from './createLogin';
 import getInitialToken from './getInitialToken';
+import { makeLogin } from './makeLogin';
 
-const login = createLogin({
+const login = makeLogin({
   getInitialToken,
   persistRepositoryToken,
 });
