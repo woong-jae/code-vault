@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
 import Typography from '@base/components/Typography';
-import LoginButton from '~/modules/user/ui/LoginButton';
-import LogoutButton from '~/modules/user/ui/LogoutButton';
-import UserProfile from '~/modules/user/ui/UserProfile';
-import UserRepository from '~/modules/user/ui/UserRepository';
-import isLoggedIn from '~/modules/user/use-case/is-logged-in';
+import LoginButton from '~/features/user/ui/LoginButton';
+import LogoutButton from '~/features/user/ui/LogoutButton';
+import UserProfile from '~/features/user/ui/UserProfile';
+import UserRepository from '~/features/user/ui/UserRepository';
+import isLoggedIn from '~/features/user/use-case/is-logged-in';
 
 function Section({ children }: { children: ReactElement }) {
   return <div className="mt-5">{children}</div>;

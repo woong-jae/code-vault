@@ -1,4 +1,4 @@
-import { User } from '~/modules/user';
+import { User } from '~/features/user';
 import { createMarkdown } from '../../domain/content/createMarkdown';
 import { createMessage } from '../../domain/content/createMessage';
 import { getFileExtension } from '../../domain/content/getFileExtension';

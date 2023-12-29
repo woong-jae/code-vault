@@ -1,4 +1,4 @@
-import { initLeetcodeSolutionCatcher } from '~/modules/solution/domain/platforms/leetcode';
+import { initLeetcodeSolutionCatcher } from '~/features/solution/domain/platforms/leetcode';
 
 console.log('CodeVault loaded...');
 

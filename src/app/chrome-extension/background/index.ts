@@ -3,10 +3,10 @@ import {
   alertToWorld,
   crossContextConfirm,
 } from '~/base/infra/chrome-extension';
-import { Solution } from '~/modules/solution';
-import { initBojSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/boj';
-import { initLeetcodeSolutionCatcherFromBackground } from '~/modules/solution/domain/platforms/leetcode';
-import createSolutionTracker from '~/modules/solution/infra/solution-tracker';
+import { Solution } from '~/features/solution';
+import { initBojSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/boj';
+import { initLeetcodeSolutionCatcherFromBackground } from '~/features/solution/domain/platforms/leetcode';
+import createSolutionTracker from '~/features/solution/infra/solution-tracker';
 
 initBojSolutionCatcherFromBackground();
 initLeetcodeSolutionCatcherFromBackground();

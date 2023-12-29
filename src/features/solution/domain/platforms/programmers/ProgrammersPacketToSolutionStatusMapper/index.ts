@@ -1,4 +1,4 @@
-import { Process } from '~/modules/solution/infra/solution-tracker/types';
+import { Process } from '~/features/solution/infra/solution-tracker/types';
 import type { ProgrammingLanguage, Solution } from '../../../../types';
 import {
   type ProgrammersCode,

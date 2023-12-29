@@ -1,5 +1,5 @@
-import type { PacketInterpreter } from '~/modules/solution/infra/solution-tracker/solution-catcher/types';
-import { Process } from '~/modules/solution/infra/solution-tracker/types';
+import type { PacketInterpreter } from '~/features/solution/infra/solution-tracker/solution-catcher/types';
+import { Process } from '~/features/solution/infra/solution-tracker/types';
 import type { BojPacket } from './types';
 
 export default class BojPacketToSolutionStatusMapper
