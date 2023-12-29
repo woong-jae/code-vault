@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
 import LoginButton from '~/modules/user/ui/LoginButton';
 import LogoutButton from '~/modules/user/ui/LogoutButton';
+import UserProfile from '~/modules/user/ui/UserProfile';
 import UserRepository from '~/modules/user/ui/UserRepository';
 import isLoggedIn from '~/modules/user/use-case/is-logged-in';
 
@@ -23,9 +24,9 @@ export default function UserSettingPage() {
           <div className="mt-5">
             <Typography.h2>Code-Vault 설정</Typography.h2>
           </div>
-          {/* <Section>
+          <Section>
             <UserProfile />
-          </Section> */}
+          </Section>
           <Section>
             <UserRepository />
           </Section>

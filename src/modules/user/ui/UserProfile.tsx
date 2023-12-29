@@ -1,13 +1,8 @@
 import { Fragment } from 'react';
 import getUserProfile from '../use-case/get-user-profile';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@base/ui/Card';
 import { useQuery } from '@tanstack/react-query';
+import { Avatar, AvatarFallback, AvatarImage } from '@base/ui/Avatar';
+import Typography from '@base/ui/Typography';
 
 export default function UserProfile() {
   const { data: userProfile, isLoading } = useQuery({
@@ -18,24 +13,16 @@ export default function UserProfile() {
   const loaded = !isLoading;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Profile</CardTitle>
-        <CardDescription>유저 프로필</CardDescription>
-      </CardHeader>
-      <CardContent>
-        {loaded && (
-          <Fragment>
-            <img className="rounded-full" src={userProfile?.avatarUrl} />
-            <div className="mt-2">
-              <p className="text-sm">Name</p>
-              <p className="line-clamp-1 rounded-sm border px-2 py-1 text-base text-neutral-700">
-                {userProfile?.id}
-              </p>
-            </div>
-          </Fragment>
-        )}
-      </CardContent>
-    </Card>
+    <div>
+      {loaded && (
+        <div className="flex items-center space-x-3">
+          <Avatar>
+            <AvatarImage src={userProfile?.avatarUrl} />
+            <AvatarFallback>{userProfile?.id.slice(0, 2)}</AvatarFallback>
+          </Avatar>
+          <p className='text-sm'>{`안녕하세요, ${userProfile?.id}님`}</p>
+        </div>
+      )}
+    </div>
   );
 }
