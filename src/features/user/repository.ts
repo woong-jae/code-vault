@@ -86,9 +86,9 @@ export async function createRepository({
     description: 'Code-Vault 풀이 저장소',
   });
 
-  await setSelectedRepository(repositoryName);
-
   if (!isSuccess) return false;
+
+  await setSelectedRepository(repositoryName);
 
   await persistContent({
     accessToken,
