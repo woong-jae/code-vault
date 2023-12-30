@@ -100,3 +100,9 @@ export async function createRepository({
 
   return true;
 }
+
+const repositoryNameRegex = /^[\w_.-]+$/;
+
+export function validateRepositoryName(name: string) {
+  return repositoryNameRegex.test(name);
+}
