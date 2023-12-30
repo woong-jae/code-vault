@@ -1,17 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState, type ReactElement } from 'react';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@base/components/AlertDialog';
-import { Button } from '@base/components/Button';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { type ReactElement } from 'react';
 import {
   Card,
   CardContent,
@@ -19,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@base/components/Card';
-import { Input } from '@base/components/Input';
 import { Label } from '@base/components/Label';
 import {
   Select,
@@ -29,11 +16,11 @@ import {
   SelectValue,
 } from '@base/components/Select';
 import {
-  createRepository,
   getSelectedRepository,
   retrieveRepositories,
   setSelectedRepository,
 } from '../repository';
+import { CreateRepository } from './CreateRepository';
 
 function withLabel({
   labelName,
@@ -57,7 +44,6 @@ export default function RepositorySetting({
 }: {
   accessToken: AccessToken;
 }) {
-  const [repositoryName, setRepositoryName] = useState('');
   const queryClient = useQueryClient();
   const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
     queryKey: [accessToken, 'repositories'],
@@ -68,28 +54,6 @@ export default function RepositorySetting({
       queryKey: [accessToken, 'selectedRepository'],
       queryFn: () => getSelectedRepository(accessToken),
     });
-  const createRepositoryMutation = useMutation({
-    mutationFn: (repositoryName: string) => {
-      return createRepository({
-        accessToken,
-        repositoryName,
-      });
-    },
-    onSuccess: (isSuccess) => {
-      if (!isSuccess) return;
-
-      queryClient.invalidateQueries({
-        queryKey: [accessToken, 'repositories'],
-        type: 'active',
-      });
-      queryClient.invalidateQueries({
-        queryKey: [accessToken, 'selectedRepository'],
-        type: 'active',
-      });
-
-      setRepositoryName('');
-    },
-  });
 
   const loaded = !isLoadingRepositories && !isLoadingSelectedRepository;
 
@@ -135,45 +99,21 @@ export default function RepositorySetting({
               labelId: 'create-repository',
               labelName: '저장소 생성하기',
               children: (
-                <div className="flex items-center space-x-2">
-                  <Input
-                    id="create-repository"
-                    placeholder="저장소 이름을 입력해주세요"
-                    value={repositoryName}
-                    onChange={({ target: { value } }) =>
-                      setRepositoryName(value)
-                    }
-                  />
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button disabled={!repositoryName} className="w-[64px]">
-                        생성
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          정말 생성하시겠습니까?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          {
-                            '새로운 저장소가 생성되고 "선택한 저장소"로 지정됩니다.'
-                          }
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>취소</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => {
-                            createRepositoryMutation.mutate(repositoryName);
-                          }}
-                        >
-                          확인
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
+                <CreateRepository
+                  accessToken={accessToken}
+                  onSuccess={async (isSuccess) => {
+                    if (!isSuccess) return;
+
+                    queryClient.invalidateQueries({
+                      queryKey: [accessToken, 'repositories'],
+                      type: 'active',
+                    });
+                    queryClient.invalidateQueries({
+                      queryKey: [accessToken, 'selectedRepository'],
+                      type: 'active',
+                    });
+                  }}
+                />
               ),
             })}
           </div>
