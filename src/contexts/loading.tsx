@@ -7,7 +7,7 @@ export function Loading() {
 
   return (
     <div>
-      {!isMutating &&
+      {isMutating &&
         createPortal(
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="flex flex-col items-center space-y-2 pb-3">
