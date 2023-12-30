@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,6 +35,23 @@ import {
   setSelectedRepository,
 } from '../repository';
 
+function withLabel({
+  labelName,
+  labelId,
+  children,
+}: {
+  labelName: string;
+  labelId: string;
+  children: ReactElement;
+}) {
+  return (
+    <div className="flex flex-col space-y-1.5">
+      <Label htmlFor={labelId}>{labelName}</Label>
+      {children}
+    </div>
+  );
+}
+
 export default function RepositorySetting({
   accessToken,
 }: {
@@ -59,10 +76,6 @@ export default function RepositorySetting({
       });
     },
     onSuccess: (isSuccess) => {
-      console.log(
-        '🚀 ~ file: RepositorySetting.tsx:76 ~ isSuccess:',
-        isSuccess,
-      );
       if (!isSuccess) return;
 
       queryClient.invalidateQueries({
@@ -97,64 +110,72 @@ export default function RepositorySetting({
       <CardContent>
         {loaded && (
           <div className="flex flex-col space-y-6">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="selected-repository">선택한 저장소</Label>
-              <Select
-                onValueChange={handleSelectChange}
-                value={selectedRepository || undefined}
-              >
-                <SelectTrigger id="selected-repository">
-                  <SelectValue placeholder="저장소를 선택해주세요" />
-                </SelectTrigger>
-                <SelectContent className="max-h-[240px]">
-                  {repositories?.map((repositoryName) => (
-                    <SelectItem key={repositoryName} value={repositoryName}>
-                      {repositoryName}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="create-repository">저쟁소 생성하기</Label>
-              <div className="flex w-full items-center space-x-2">
-                <Input
-                  id="create-repository"
-                  placeholder="저장소 이름을 입력해주세요"
-                  value={repositoryName}
-                  onChange={({ target: { value } }) => setRepositoryName(value)}
-                />
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button disabled={!repositoryName} className="w-[64px]">
-                      생성
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        정말 생성하시겠습니까?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        {
-                          '새로운 저장소가 생성되고 "선택한 저장소"로 지정됩니다.'
-                        }
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>취소</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => {
-                          createRepositoryMutation.mutate(repositoryName);
-                        }}
-                      >
-                        확인
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            </div>
+            {withLabel({
+              labelId: 'selected-repository',
+              labelName: '선택한 저장소',
+              children: (
+                <Select
+                  onValueChange={handleSelectChange}
+                  value={selectedRepository || undefined}
+                >
+                  <SelectTrigger id="selected-repository">
+                    <SelectValue placeholder="저장소를 선택해주세요" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-[240px]">
+                    {repositories?.map((repositoryName) => (
+                      <SelectItem key={repositoryName} value={repositoryName}>
+                        {repositoryName}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              ),
+            })}
+            {withLabel({
+              labelId: 'create-repository',
+              labelName: '저장소 생성하기',
+              children: (
+                <div className="flex items-center space-x-2">
+                  <Input
+                    id="create-repository"
+                    placeholder="저장소 이름을 입력해주세요"
+                    value={repositoryName}
+                    onChange={({ target: { value } }) =>
+                      setRepositoryName(value)
+                    }
+                  />
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button disabled={!repositoryName} className="w-[64px]">
+                        생성
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          정말 생성하시겠습니까?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {
+                            '새로운 저장소가 생성되고 "선택한 저장소"로 지정됩니다.'
+                          }
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>취소</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => {
+                            createRepositoryMutation.mutate(repositoryName);
+                          }}
+                        >
+                          확인
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+              ),
+            })}
           </div>
         )}
       </CardContent>
