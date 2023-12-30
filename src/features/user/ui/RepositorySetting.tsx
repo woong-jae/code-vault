@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import {
   AlertDialog,
@@ -51,12 +51,39 @@ export default function RepositorySetting({
       queryKey: [accessToken, 'selectedRepository'],
       queryFn: () => getSelectedRepository(accessToken),
     });
+  const createRepositoryMutation = useMutation({
+    mutationFn: (repositoryName: string) => {
+      return createRepository({
+        accessToken,
+        repositoryName,
+      });
+    },
+    onSuccess: (isSuccess) => {
+      console.log(
+        '🚀 ~ file: RepositorySetting.tsx:76 ~ isSuccess:',
+        isSuccess,
+      );
+      if (!isSuccess) return;
+
+      queryClient.invalidateQueries({
+        queryKey: [accessToken, 'repositories'],
+        type: 'active',
+      });
+      queryClient.invalidateQueries({
+        queryKey: [accessToken, 'selectedRepository'],
+        type: 'active',
+      });
+
+      setRepositoryName('');
+    },
+  });
+
   const loaded = !isLoadingRepositories && !isLoadingSelectedRepository;
 
   async function handleSelectChange(value: string) {
     await setSelectedRepository(value);
     queryClient.refetchQueries({
-      queryKey: ['selectedRepository'],
+      queryKey: [accessToken, 'selectedRepository'],
       type: 'active',
     });
   }
@@ -117,23 +144,8 @@ export default function RepositorySetting({
                     <AlertDialogFooter>
                       <AlertDialogCancel>취소</AlertDialogCancel>
                       <AlertDialogAction
-                        onClick={async () => {
-                          const isSuccess = await createRepository({
-                            accessToken,
-                            repositoryName,
-                          });
-                          if (!isSuccess) return;
-
-                          queryClient.invalidateQueries({
-                            queryKey: [accessToken, 'repositories'],
-                            type: 'active',
-                          });
-                          queryClient.invalidateQueries({
-                            queryKey: [accessToken, 'selectedRepository'],
-                            type: 'active',
-                          });
-
-                          setRepositoryName('');
+                        onClick={() => {
+                          createRepositoryMutation.mutate(repositoryName);
                         }}
                       >
                         확인

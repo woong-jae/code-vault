@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import '../index.css';
 import { accessTokenStorage } from '~/features/auth';
 import { createAuthProvider } from '~/features/auth/context';
-import type { AccessToken } from '~/features/auth/types';
 import App from './App';
 
 const queryClient = new QueryClient();
