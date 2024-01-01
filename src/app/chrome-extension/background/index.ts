@@ -24,12 +24,16 @@ solutionTracker.onSolve(async (solution) => {
 
   const accessToken = await accessTokenStorage.retrieve();
   if (!accessToken) {
-    alertToWorld('저장에 실패했습니다');
+    alertToWorld('저장에 실패했습니다. 깃허브 계정과 연동을 진행해주세요.');
     return;
   }
 
   const isSuccess = await saveSolution({ solution, accessToken });
-  alertToWorld(isSuccess ? '성공적으로 저장했습니다' : '저장에 실패했습니다');
+  alertToWorld(
+    isSuccess
+      ? '성공적으로 저장했습니다.'
+      : '저장에 실패했습니다. 선택된 저장소가 있는지 확인해주세요.',
+  );
 });
 
 /* Chrome extension 아이콘 클릭시 설정 페이지 탭 열기 */

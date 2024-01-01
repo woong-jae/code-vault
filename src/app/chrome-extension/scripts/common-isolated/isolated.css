@@ -1,0 +1,4 @@
+/* 백준 전역 css override */
+html {
+  font-size: initial;
+}

@@ -4,6 +4,7 @@ import { AlertProvider } from '@base/components/Alert';
 import { ConfirmProvider } from '@base/components/Confirm';
 import { ProblemSolvingPage } from '~/pages/problem-solving';
 import '~/app/index.css';
+import './isolated.css';
 
 function Panel({ children }: { children: ReactElement }) {
   return (
