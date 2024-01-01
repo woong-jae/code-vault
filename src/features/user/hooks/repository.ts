@@ -1,5 +1,6 @@
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useToast } from '@base/components/Toaster';
 import {
   createRepository,
   getSelectedRepository,
@@ -38,11 +39,18 @@ export function useSelectRepository({
       queryFn: () => getSelectedRepository(accessToken),
     });
 
+  const { toast } = useToast();
+
   async function selectRepository(repositoryName: string) {
     await setSelectedRepository(repositoryName);
     queryClient.refetchQueries({
       queryKey: [accessToken, 'selectedRepository'],
       type: 'active',
+    });
+
+    toast({
+      title: `'${repositoryName}'가 선택됐습니다.`,
+      description: `'${repositoryName}' 저장소에 풀이가 저장됩니다.`,
     });
   }
 
@@ -58,9 +66,12 @@ export function useSelectRepository({
 
 export function useCreateRepository({
   accessToken,
+  onSettled,
 }: {
   accessToken: AccessToken;
+  onSettled?: () => void;
 }) {
+  const { toast } = useToast();
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (repositoryName: string) => {
@@ -70,7 +81,15 @@ export function useCreateRepository({
       });
     },
     onSettled: (isSuccess) => {
-      if (!isSuccess) return;
+      onSettled?.();
+
+      if (!isSuccess) {
+        toast({
+          title: '저장소 생성에 실패했습니다.',
+          description: '이미 존재하는 저장소 이름인지 확인해보세요.',
+        });
+        return;
+      }
 
       queryClient.invalidateQueries({
         queryKey: [accessToken, 'repositories'],
@@ -79,6 +98,11 @@ export function useCreateRepository({
       queryClient.invalidateQueries({
         queryKey: [accessToken, 'selectedRepository'],
         type: 'active',
+      });
+
+      toast({
+        title: '저장소 생성에 성공했습니다.',
+        description: '생성된 저장소에 풀이가 저장됩니다.',
       });
     },
   });

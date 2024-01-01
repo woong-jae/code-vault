@@ -79,6 +79,48 @@ export class Github {
     }
   }
 
+  async uploadContent({
+    owner,
+    repo,
+    path,
+    userName,
+    email,
+    content,
+    message,
+  }: {
+    owner: string;
+    repo: string;
+    path: string;
+    userName: string;
+    email: string;
+    content: string;
+    message: string;
+  }) {
+    try {
+      const oldContent = await this.getRepositoryContent({ owner, repo, path });
+
+      const base64Content = stringToBase64(content);
+
+      this.githubApiClient.rest.repos.createOrUpdateFileContents({
+        owner,
+        repo,
+        path,
+        message,
+        committer: {
+          name: userName,
+          email: email,
+        },
+        content: base64Content,
+        sha: oldContent?.sha,
+      });
+
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
   async uploadContents({
     repo,
     owner,
@@ -99,13 +141,22 @@ export class Github {
   }) {
     try {
       const {
+        data: { default_branch },
+      } = await this.githubApiClient.rest.repos.get({
+        owner,
+        repo,
+      });
+
+      const ref = `heads/${default_branch}`;
+
+      const {
         data: {
           object: { sha: refSha },
         },
       } = await this.githubApiClient.rest.git.getRef({
         owner,
         repo,
-        ref: 'heads/main',
+        ref,
       });
 
       const blobs = await Promise.all(
@@ -157,7 +208,7 @@ export class Github {
 
       await this.githubApiClient.rest.git.updateRef({
         owner,
-        ref: 'heads/main',
+        ref,
         repo,
         sha: commitSha,
         force: true,
@@ -180,6 +231,7 @@ export class Github {
       await this.githubApiClient.rest.repos.createForAuthenticatedUser({
         name,
         description,
+        auto_init: true,
       });
 
     if (!data) return false;

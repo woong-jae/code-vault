@@ -6,7 +6,7 @@ export function Loading() {
   const isMutating = useIsMutating();
 
   return (
-    <div>
+    <>
       {isMutating &&
         createPortal(
           <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -17,6 +17,6 @@ export function Loading() {
           </div>,
           document.body,
         )}
-    </div>
+    </>
   );
 }

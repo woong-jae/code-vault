@@ -21,6 +21,9 @@ export function CreateRepository({
   const { repositoryName, setRepositoryName, isValid } = useRepositoryName();
   const createRepository = useCreateRepository({
     accessToken,
+    onSettled: () => {
+      setRepositoryName('');
+    },
   });
 
   return (
