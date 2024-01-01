@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { type ReactElement } from 'react';
 import {
   Card,
@@ -15,11 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@base/components/Select';
-import {
-  getSelectedRepository,
-  retrieveRepositories,
-  setSelectedRepository,
-} from '../repository';
+import { useSelectRepository } from '../hooks/repository';
 import { CreateRepository } from './CreateRepository';
 
 function withLabel({
@@ -45,25 +41,8 @@ export default function RepositorySetting({
   accessToken: AccessToken;
 }) {
   const queryClient = useQueryClient();
-  const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
-    queryKey: [accessToken, 'repositories'],
-    queryFn: () => retrieveRepositories(accessToken),
-  });
-  const { data: selectedRepository, isLoading: isLoadingSelectedRepository } =
-    useQuery({
-      queryKey: [accessToken, 'selectedRepository'],
-      queryFn: () => getSelectedRepository(accessToken),
-    });
-
-  const loaded = !isLoadingRepositories && !isLoadingSelectedRepository;
-
-  async function handleSelectChange(value: string) {
-    await setSelectedRepository(value);
-    queryClient.refetchQueries({
-      queryKey: [accessToken, 'selectedRepository'],
-      type: 'active',
-    });
-  }
+  const { repositories, selectedRepository, isLoaded, selectRepository } =
+    useSelectRepository({ accessToken });
 
   return (
     <Card>
@@ -72,14 +51,14 @@ export default function RepositorySetting({
         <CardDescription>선택된 저장소에 풀이가 저장됩니다.</CardDescription>
       </CardHeader>
       <CardContent>
-        {loaded && (
+        {isLoaded && (
           <div className="flex flex-col space-y-6">
             {withLabel({
               labelId: 'selected-repository',
               labelName: '선택한 저장소',
               children: (
                 <Select
-                  onValueChange={handleSelectChange}
+                  onValueChange={selectRepository}
                   value={selectedRepository || undefined}
                 >
                   <SelectTrigger id="selected-repository">

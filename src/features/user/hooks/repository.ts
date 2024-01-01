@@ -1,5 +1,11 @@
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { validateRepositoryName } from '..';
+import {
+  getSelectedRepository,
+  retrieveRepositories,
+  setSelectedRepository,
+  validateRepositoryName,
+} from '../repository';
 
 export function useRepositoryName() {
   const [repositoryName, setRepositoryName] = useState('');
@@ -12,5 +18,39 @@ export function useRepositoryName() {
       setRepositoryName(newValue);
     },
     isValid,
+  };
+}
+
+export function useSelectRepository({
+  accessToken,
+}: {
+  accessToken: AccessToken;
+}) {
+  const queryClient = useQueryClient();
+  const { data: repositories, isLoading: isLoadingRepositories } = useQuery({
+    queryKey: [accessToken, 'repositories'],
+    queryFn: () => retrieveRepositories(accessToken),
+  });
+  const { data: selectedRepository, isLoading: isLoadingSelectedRepository } =
+    useQuery({
+      queryKey: [accessToken, 'selectedRepository'],
+      queryFn: () => getSelectedRepository(accessToken),
+    });
+
+  async function selectRepository(repositoryName: string) {
+    await setSelectedRepository(repositoryName);
+    queryClient.refetchQueries({
+      queryKey: [accessToken, 'selectedRepository'],
+      type: 'active',
+    });
+  }
+
+  const isLoaded = !isLoadingRepositories && !isLoadingSelectedRepository;
+
+  return {
+    repositories,
+    selectedRepository,
+    selectRepository,
+    isLoaded,
   };
 }
