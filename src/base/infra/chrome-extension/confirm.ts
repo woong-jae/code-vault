@@ -1,4 +1,3 @@
-import type { Context } from '~/_shared/kernel';
 import createEventBus from '../event-bus';
 
 export const crossContextConfirm = async (
@@ -27,7 +26,7 @@ export const crossContextConfirm = async (
 
 export const onCrossContextConfirm = (
   context: Context,
-  confirm: (message: string) => boolean,
+  confirm: (message: string, onConfirm: (isConfirmed: boolean) => void) => void,
 ) => {
   const eventBus = createEventBus(context);
 
@@ -36,11 +35,11 @@ export const onCrossContextConfirm = (
 
     const message = payload ?? '';
 
-    const isConfirm = confirm(message);
-
-    eventBus.emit({
-      type: 'CROSS_CONTEXT_CONFIRM_RESPONSE',
-      payload: JSON.stringify(isConfirm),
+    confirm(message, (isConfirmed) => {
+      eventBus.emit({
+        type: 'CROSS_CONTEXT_CONFIRM_RESPONSE',
+        payload: JSON.stringify(isConfirmed),
+      });
     });
   });
 };

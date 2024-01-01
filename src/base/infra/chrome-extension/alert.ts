@@ -8,7 +8,7 @@ export const alertToWorld = (message: string) => {
 };
 
 export const onAlert = (alert: (message: string) => void) => {
-  createEventBus('world').listen(({ type, payload }) => {
+  createEventBus('isolated').listen(({ type, payload }) => {
     if (type !== 'ALERT') return;
 
     const message = payload ?? '';

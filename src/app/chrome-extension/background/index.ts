@@ -17,7 +17,7 @@ const solutionTracker = createSolutionTracker();
 solutionTracker.onSolve(async (solution) => {
   const isConfirm = await crossContextConfirm(
     'background',
-    '[Code-Vault]\n정답입니다!🎉 풀이를 저장하겠습니까?',
+    '정답입니다!🎉 풀이를 저장하겠습니까?',
   );
 
   if (!isConfirm) return;

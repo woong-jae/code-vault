@@ -63,7 +63,9 @@ export function AlertProvider({
                 <CardDescription>{content.description}</CardDescription>
               </CardHeader>
               <CardFooter className="flex flex-row-reverse">
-                <Button onClick={() => setIsAlerting(false)}>확인</Button>
+                <Button size="sm" onClick={() => setIsAlerting(false)}>
+                  확인
+                </Button>
               </CardFooter>
             </Card>
           </Wrapper>,
