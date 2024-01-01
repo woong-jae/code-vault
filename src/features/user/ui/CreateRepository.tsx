@@ -15,18 +15,12 @@ import { useCreateRepository, useRepositoryName } from '../hooks/repository';
 
 export function CreateRepository({
   accessToken,
-  onSettled,
 }: {
   accessToken: AccessToken;
-  onSettled: (isSuccess: boolean) => void;
 }) {
   const { repositoryName, setRepositoryName, isValid } = useRepositoryName();
   const createRepository = useCreateRepository({
     accessToken,
-    onSettled: (isSuccess) => {
-      setRepositoryName('');
-      onSettled(isSuccess);
-    },
   });
 
   return (

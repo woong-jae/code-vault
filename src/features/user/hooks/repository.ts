@@ -58,11 +58,10 @@ export function useSelectRepository({
 
 export function useCreateRepository({
   accessToken,
-  onSettled,
 }: {
   accessToken: AccessToken;
-  onSettled?: (isSuccess: boolean) => void;
 }) {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (repositoryName: string) => {
       return createRepository({
@@ -71,7 +70,16 @@ export function useCreateRepository({
       });
     },
     onSettled: (isSuccess) => {
-      onSettled?.(isSuccess || false);
+      if (!isSuccess) return;
+
+      queryClient.invalidateQueries({
+        queryKey: [accessToken, 'repositories'],
+        type: 'active',
+      });
+      queryClient.invalidateQueries({
+        queryKey: [accessToken, 'selectedRepository'],
+        type: 'active',
+      });
     },
   });
 

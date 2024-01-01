@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { type ReactElement } from 'react';
 import {
   Card,
@@ -40,7 +39,6 @@ export default function RepositorySetting({
 }: {
   accessToken: AccessToken;
 }) {
-  const queryClient = useQueryClient();
   const { repositories, selectedRepository, isLoaded, selectRepository } =
     useSelectRepository({ accessToken });
 
@@ -77,23 +75,7 @@ export default function RepositorySetting({
             {withLabel({
               labelId: 'create-repository',
               labelName: '저장소 생성하기',
-              children: (
-                <CreateRepository
-                  accessToken={accessToken}
-                  onSettled={async (isSuccess) => {
-                    if (!isSuccess) return;
-
-                    queryClient.invalidateQueries({
-                      queryKey: [accessToken, 'repositories'],
-                      type: 'active',
-                    });
-                    queryClient.invalidateQueries({
-                      queryKey: [accessToken, 'selectedRepository'],
-                      type: 'active',
-                    });
-                  }}
-                />
-              ),
+              children: <CreateRepository accessToken={accessToken} />,
             })}
           </div>
         )}
