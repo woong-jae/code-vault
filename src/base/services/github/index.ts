@@ -79,41 +79,89 @@ export class Github {
     }
   }
 
-  async createRepositoryContent({
-    owner,
+  async uploadContents({
     repo,
-    path,
+    owner,
     userName,
     email,
-    content,
+    contents,
     message,
   }: {
-    owner: string;
     repo: string;
-    path: string;
+    owner: string;
     userName: string;
     email: string;
-    content: string;
+    contents: {
+      content: string;
+      path: string;
+    }[];
     message: string;
   }) {
     try {
-      const oldContent = await this.getRepositoryContent({ owner, repo, path });
-
-      const base64Content = stringToBase64(content);
-
-      this.githubApiClient.rest.repos.createOrUpdateFileContents({
+      const {
+        data: {
+          object: { sha: refSha },
+        },
+      } = await this.githubApiClient.rest.git.getRef({
         owner,
         repo,
-        path,
-        message,
-        committer: {
-          name: userName,
-          email: email,
-        },
-        content: base64Content,
-        sha: oldContent?.sha,
+        ref: 'heads/main',
       });
 
+      const blobs = await Promise.all(
+        contents.map(async ({ content, path }) => {
+          const {
+            data: { sha },
+          } = await this.githubApiClient.rest.git.createBlob({
+            owner,
+            repo,
+            content: stringToBase64(content),
+            encoding: 'base64',
+          });
+
+          return {
+            path,
+            sha,
+          };
+        }),
+      );
+
+      const {
+        data: { sha: treeSha },
+      } = await this.githubApiClient.rest.git.createTree({
+        owner,
+        repo,
+        tree: blobs.map((blob) => {
+          return {
+            ...blob,
+            mode: '100644',
+            type: 'blob',
+          };
+        }),
+        base_tree: refSha,
+      });
+
+      const {
+        data: { sha: commitSha },
+      } = await this.githubApiClient.rest.git.createCommit({
+        owner,
+        repo,
+        tree: treeSha,
+        message,
+        parents: [refSha],
+        committer: {
+          name: userName,
+          email,
+        },
+      });
+
+      await this.githubApiClient.rest.git.updateRef({
+        owner,
+        ref: 'heads/main',
+        repo,
+        sha: commitSha,
+        force: true,
+      });
       return true;
     } catch (e) {
       console.log(e);

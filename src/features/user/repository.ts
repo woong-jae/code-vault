@@ -38,14 +38,12 @@ export async function retrieveRepositories(accessToken: AccessToken) {
 
 export async function persistContent({
   accessToken,
-  path,
-  content,
   message,
+  contents,
 }: {
   accessToken: AccessToken;
-  path: string;
-  content: string;
   message: string;
+  contents: { path: string; content: string }[];
 }) {
   const selectedRepositoryName = await getSelectedRepository(accessToken);
 
@@ -60,14 +58,13 @@ export async function persistContent({
     throw new Error('No primary email set for user');
   }
 
-  return githubRepository.createRepositoryContent({
+  return githubRepository.uploadContents({
     owner: userProfile.login,
     repo: selectedRepositoryName,
-    path,
-    content,
     userName: userProfile.login,
     email: primaryEmail,
     message,
+    contents,
   });
 }
 
@@ -92,10 +89,14 @@ export async function createRepository({
 
   await persistContent({
     accessToken,
-    path: 'README.md',
-    content:
-      '# Code-Vault 풀이 저장소\n\n Code-Vault에서 생성된 알고리즘 문제 풀이 저장소',
     message: 'Initial commit - by Code-Vault',
+    contents: [
+      {
+        path: 'README.md',
+        content:
+          '# Code-Vault 풀이 저장소\n\n Code-Vault에서 생성된 알고리즘 문제 풀이 저장소',
+      },
+    ],
   });
 
   return true;
