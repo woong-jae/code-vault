@@ -1,5 +1,6 @@
-import { onAlert, onCrossContextConfirm } from '~/base/infra/chrome-extension';
+import { onCrossContextConfirm } from '~/base/infra/chrome-extension';
 import createEventBus from '~/base/infra/event-bus';
+import { runApp } from './runApp';
 
 createEventBus('isolated');
 
@@ -8,6 +9,4 @@ onCrossContextConfirm('isolated', (message) => {
   return isConfirm;
 });
 
-onAlert((message) => {
-  alert(message);
-});
+runApp();
