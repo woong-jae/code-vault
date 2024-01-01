@@ -1,6 +1,7 @@
-import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import {
+  createRepository,
   getSelectedRepository,
   retrieveRepositories,
   setSelectedRepository,
@@ -53,4 +54,26 @@ export function useSelectRepository({
     selectRepository,
     isLoaded,
   };
+}
+
+export function useCreateRepository({
+  accessToken,
+  onSettled,
+}: {
+  accessToken: AccessToken;
+  onSettled?: (isSuccess: boolean) => void;
+}) {
+  const mutation = useMutation({
+    mutationFn: (repositoryName: string) => {
+      return createRepository({
+        accessToken,
+        repositoryName,
+      });
+    },
+    onSettled: (isSuccess) => {
+      onSettled?.(isSuccess || false);
+    },
+  });
+
+  return mutation;
 }

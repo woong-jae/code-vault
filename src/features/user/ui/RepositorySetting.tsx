@@ -80,7 +80,7 @@ export default function RepositorySetting({
               children: (
                 <CreateRepository
                   accessToken={accessToken}
-                  onSuccess={async (isSuccess) => {
+                  onSettled={async (isSuccess) => {
                     if (!isSuccess) return;
 
                     queryClient.invalidateQueries({
