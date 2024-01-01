@@ -24,27 +24,20 @@ const saveSolution = async ({
   const description = createMarkdown(solution);
   const message = createMessage(solution);
 
-  try {
-    const result = await Promise.all([
-      persistContent({
+  return persistContent({
+    accessToken,
+    message,
+    contents: [
+      {
         path: descriptionPath,
-        message,
         content: description,
-        accessToken,
-      }),
-      persistContent({
+      },
+      {
         path: codePath,
         content: solution.code,
-        message,
-        accessToken,
-      }),
-    ]);
-
-    return !result.includes(false);
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+      },
+    ],
+  });
 };
 
 export { saveSolution };

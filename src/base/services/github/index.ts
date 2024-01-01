@@ -79,7 +79,7 @@ export class Github {
     }
   }
 
-  async createRepositoryContent({
+  async uploadContent({
     owner,
     repo,
     path,
@@ -121,6 +121,105 @@ export class Github {
     }
   }
 
+  async uploadContents({
+    repo,
+    owner,
+    userName,
+    email,
+    contents,
+    message,
+  }: {
+    repo: string;
+    owner: string;
+    userName: string;
+    email: string;
+    contents: {
+      content: string;
+      path: string;
+    }[];
+    message: string;
+  }) {
+    try {
+      const {
+        data: { default_branch },
+      } = await this.githubApiClient.rest.repos.get({
+        owner,
+        repo,
+      });
+
+      const ref = `heads/${default_branch}`;
+
+      const {
+        data: {
+          object: { sha: refSha },
+        },
+      } = await this.githubApiClient.rest.git.getRef({
+        owner,
+        repo,
+        ref,
+      });
+
+      const blobs = await Promise.all(
+        contents.map(async ({ content, path }) => {
+          const {
+            data: { sha },
+          } = await this.githubApiClient.rest.git.createBlob({
+            owner,
+            repo,
+            content: stringToBase64(content),
+            encoding: 'base64',
+          });
+
+          return {
+            path,
+            sha,
+          };
+        }),
+      );
+
+      const {
+        data: { sha: treeSha },
+      } = await this.githubApiClient.rest.git.createTree({
+        owner,
+        repo,
+        tree: blobs.map((blob) => {
+          return {
+            ...blob,
+            mode: '100644',
+            type: 'blob',
+          };
+        }),
+        base_tree: refSha,
+      });
+
+      const {
+        data: { sha: commitSha },
+      } = await this.githubApiClient.rest.git.createCommit({
+        owner,
+        repo,
+        tree: treeSha,
+        message,
+        parents: [refSha],
+        committer: {
+          name: userName,
+          email,
+        },
+      });
+
+      await this.githubApiClient.rest.git.updateRef({
+        owner,
+        ref,
+        repo,
+        sha: commitSha,
+        force: true,
+      });
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
   async createRepository({
     name,
     description,
@@ -132,6 +231,7 @@ export class Github {
       await this.githubApiClient.rest.repos.createForAuthenticatedUser({
         name,
         description,
+        auto_init: true,
       });
 
     if (!data) return false;

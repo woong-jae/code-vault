@@ -1,4 +1,3 @@
-import { useMutation } from '@tanstack/react-query';
 import {
   AlertDialogHeader,
   AlertDialogFooter,
@@ -12,28 +11,18 @@ import {
 } from '@base/components/AlertDialog';
 import { Button } from '@base/components/Button';
 import { Input } from '@base/components/Input';
-import { createRepository } from '..';
-import { useRepositoryName } from '../hooks/repository';
+import { useCreateRepository, useRepositoryName } from '../hooks/repository';
 
 export function CreateRepository({
   accessToken,
-  onSuccess,
 }: {
   accessToken: AccessToken;
-  onSuccess: (isSuccess: boolean) => void;
 }) {
   const { repositoryName, setRepositoryName, isValid } = useRepositoryName();
-
-  const createRepositoryMutation = useMutation({
-    mutationFn: (repositoryName: string) => {
-      return createRepository({
-        accessToken,
-        repositoryName,
-      });
-    },
-    onSuccess: (isSuccess) => {
+  const createRepository = useCreateRepository({
+    accessToken,
+    onSettled: () => {
       setRepositoryName('');
-      onSuccess(isSuccess);
     },
   });
 
@@ -63,7 +52,7 @@ export function CreateRepository({
               <AlertDialogCancel>취소</AlertDialogCancel>
               <AlertDialogAction
                 onClick={() => {
-                  createRepositoryMutation.mutate(repositoryName);
+                  createRepository.mutate(repositoryName);
                 }}
               >
                 확인
