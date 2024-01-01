@@ -1,4 +1,4 @@
-import { url } from '@base/const/_url';
+import { url } from '@base/const/url';
 import {
   alertToWorld,
   crossContextConfirm,

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Button } from '@base/components/Button';
-import { url } from '@base/const/_url';
+import { url } from '@base/const/url';
 import { useAuth } from '../context';
 
 export default function LoginButton() {
