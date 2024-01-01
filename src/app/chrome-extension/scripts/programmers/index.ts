@@ -1,4 +1,4 @@
-import { initProgrammersSolutionCatcher } from '~/modules/solution/domain/platforms/programmers';
+import { initProgrammersSolutionCatcher } from '~/features/solution/platforms/programmers';
 
 console.log('CodeVault loaded...');
 
