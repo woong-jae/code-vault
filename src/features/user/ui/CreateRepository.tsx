@@ -52,6 +52,7 @@ export function CreateRepository({
               <AlertDialogCancel>취소</AlertDialogCancel>
               <AlertDialogAction
                 onClick={() => {
+                  if (createRepository.isPending) return;
                   createRepository.mutate(repositoryName);
                 }}
               >
