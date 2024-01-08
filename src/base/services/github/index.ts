@@ -48,6 +48,9 @@ export class Github {
   async getRepositories() {
     const res = await this.githubApiClient.rest.repos.listForAuthenticatedUser({
       type: 'owner',
+      headers: {
+        'cache-control': 'no-cache',
+      },
     });
 
     if (!res.data) return null;
