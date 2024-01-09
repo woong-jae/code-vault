@@ -26,7 +26,10 @@ export const crossContextConfirm = async (
 
 export const onCrossContextConfirm = (
   context: Context,
-  confirm: (message: string, onConfirm: (isConfirmed: boolean) => void) => void,
+  confirm: (
+    message: string,
+    handleConfirm: (isConfirmed: boolean) => void,
+  ) => void,
 ) => {
   const eventBus = createEventBus(context);
 

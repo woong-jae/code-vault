@@ -46,7 +46,10 @@ export default function RepositorySetting({
     <Card>
       <CardHeader>
         <CardTitle>저장소 설정</CardTitle>
-        <CardDescription>선택된 저장소에 풀이가 저장됩니다.</CardDescription>
+        <CardDescription>
+          선택된 저장소에 풀이가 저장됩니다. 원하는 저장소가 없는 경우 저장소를
+          생성해보세요.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {isLoaded && (
