@@ -1,4 +1,5 @@
 import type { ReactElement } from 'react';
+import { Badge } from '@base/components/Badge';
 import Typography from '@base/components/Typography';
 import { LoginButton, LogoutButton } from '~/features/auth';
 import { useAuth } from '~/features/auth/context';
@@ -53,6 +54,19 @@ export default function UserSettingPage() {
             </div>
             <Section>
               <UserProfile accessToken={accessToken} />
+            </Section>
+            <Section>
+              <div className="flex space-x-2">
+                <a href="https://www.acmicpc.net/">
+                  <Badge>백준</Badge>
+                </a>
+                <a href="https://school.programmers.co.kr/learn/challenges">
+                  <Badge>프로그래머스</Badge>
+                </a>
+                <a href="https://leetcode.com/problemset/">
+                  <Badge>LeetCode</Badge>
+                </a>
+              </div>
             </Section>
             <Section>
               <RepositorySetting accessToken={accessToken} />
