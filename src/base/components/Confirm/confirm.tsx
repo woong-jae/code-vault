@@ -34,7 +34,7 @@ export function ConfirmProvider({
   children: ReactElement;
   Wrapper: (prop: { children: ReactElement }) => ReactElement;
 }) {
-  const [isConfirming, setIsConfirming] = useState(false);
+  const [pendingConfirm, setPendingConfirm] = useState(false);
   const [props, setProps] = useState<ConfirmProps>({
     title: '',
     description: '',
@@ -44,9 +44,9 @@ export function ConfirmProvider({
   const confirm = useCallback(
     (props: ConfirmProps) => {
       setProps(props);
-      setIsConfirming(true);
+      setPendingConfirm(true);
     },
-    [setIsConfirming, setProps],
+    [setPendingConfirm, setProps],
   );
 
   return (
@@ -56,7 +56,7 @@ export function ConfirmProvider({
       }}
     >
       {children}
-      {isConfirming &&
+      {pendingConfirm &&
         createPortal(
           <Wrapper>
             <Card>
@@ -69,7 +69,7 @@ export function ConfirmProvider({
                   size="sm"
                   variant={'outline'}
                   onClick={() => {
-                    setIsConfirming(false);
+                    setPendingConfirm(false);
                     props.onConfirm(false);
                   }}
                 >
@@ -78,7 +78,7 @@ export function ConfirmProvider({
                 <Button
                   size="sm"
                   onClick={() => {
-                    setIsConfirming(false);
+                    setPendingConfirm(false);
                     props.onConfirm(true);
                   }}
                 >
