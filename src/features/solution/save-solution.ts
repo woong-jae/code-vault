@@ -13,13 +13,14 @@ const saveSolution = async ({
 }) => {
   const dir =
     solution.platform === 'leetcode'
-      ? `${solution.platform}/${solution.title}`
-      : `${solution.platform}/[${solution.problemId}] ${solution.title}`;
+      ? `${solution.platform}/${solution.title}/${solution.language}`
+      : `${solution.platform}/[${solution.problemId}] ${solution.title}/${solution.language}`;
 
+  const fileExtension = getFileExtension(solution.language);
   const descriptionPath = `${dir}/README.md`;
   const codePath = `${dir}/${
     solution.platform === 'leetcode' ? solution.title : solution.problemId
-  }.${getFileExtension(solution.language)}`;
+  }.${fileExtension}`;
 
   const description = createMarkdown(solution);
   const message = createMessage(solution);

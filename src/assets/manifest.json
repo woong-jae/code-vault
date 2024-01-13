@@ -6,6 +6,9 @@
   "version_name": "1.0.0-beta.6",
   "author": "jwchung0828@gmail.com",
   "homepage_url": "https://github.com/woong-jae/code-vault",
+  "icons": {
+    "128": "logo-128.png"
+  },
   "action": {},
   "background": {
     "service_worker": "background.js"
