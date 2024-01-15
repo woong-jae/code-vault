@@ -30,3 +30,12 @@ type AccessToken = Brand<string, 'accessToken'>;
 type Brand<T, K extends string> = T & {
   _brand: K;
 };
+
+/* Request */
+type RequestFail = {
+  reason: string;
+};
+type RequestSuccess<T> = {
+  data: T;
+};
+type RequestResult<T> = RequestSuccess<T> | RequestFail;

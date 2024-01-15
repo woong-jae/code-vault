@@ -32,17 +32,13 @@ export class Github {
 
   async getUserStatus() {
     const res = await this.githubApiClient.rest.users.getAuthenticated();
-
-    if (!res.data) {
-      throw new Error('Not authenticated');
-    }
     return res.data;
   }
 
   async getUserPrimaryEmail() {
     const res =
       await this.githubApiClient.rest.users.listEmailsForAuthenticatedUser();
-    return res.data.find((addedEmail) => addedEmail.primary)?.email || null;
+    return res.data.find((addedEmail) => addedEmail.primary)?.email as string;
   }
 
   async getRepositories() {
@@ -218,7 +214,6 @@ export class Github {
       });
       return true;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }

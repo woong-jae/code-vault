@@ -44,28 +44,44 @@ export async function persistContent({
   accessToken: AccessToken;
   message: string;
   contents: { path: string; content: string }[];
-}) {
+}): Promise<RequestResult<boolean>> {
   const selectedRepositoryName = await getSelectedRepository(accessToken);
 
-  if (!accessToken || !selectedRepositoryName) return false;
+  if (!selectedRepositoryName) {
+    return {
+      reason: '선택된 저장소가 없습니다. 저장소를 선택해주세요.',
+    };
+  }
 
   const githubRepository = new Github(accessToken);
 
-  const userProfile = await githubRepository.getUserStatus();
-  const primaryEmail = await githubRepository.getUserPrimaryEmail();
+  try {
+    const userProfile = await githubRepository.getUserStatus();
+    const primaryEmail = await githubRepository.getUserPrimaryEmail();
+    const isSuccess = await githubRepository.uploadContents({
+      owner: userProfile.login,
+      repo: selectedRepositoryName,
+      userName: userProfile.login,
+      email: primaryEmail,
+      message,
+      contents,
+    });
 
-  if (!primaryEmail) {
-    throw new Error('No primary email set for user');
+    if (!isSuccess) {
+      return {
+        reason: '저장에 실패했습니다. 선택된 저장소가 존재하는지 확인해보세요.',
+      };
+    }
+
+    return {
+      data: isSuccess,
+    };
+  } catch {
+    return {
+      reason:
+        '일시적인 오류가 발생했습니다. 네트워크를 확인해보거나 다시 로그인을 해보세요.',
+    };
   }
-
-  return githubRepository.uploadContents({
-    owner: userProfile.login,
-    repo: selectedRepositoryName,
-    userName: userProfile.login,
-    email: primaryEmail,
-    message,
-    contents,
-  });
 }
 
 export async function createRepository({
