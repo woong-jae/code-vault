@@ -1,18 +1,11 @@
+import type { ProgrammingLanguage } from './programming-language';
+
 /* Solution */
 type MilliSecond = number;
 type MegaByte = number;
 type Url = string;
 
 export type Platform = 'programmers' | 'boj' | 'leetcode';
-export type ProgrammingLanguage =
-  | 'javascript'
-  | 'typescript'
-  | 'java'
-  | 'kotlin'
-  | 'c'
-  | 'cpp'
-  | 'python'
-  | 'unknown';
 export type Solution = {
   problemId: string;
   platform: Platform;

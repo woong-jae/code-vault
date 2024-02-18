@@ -1,5 +1,9 @@
+import {
+  ProgrammingLanguageEnum,
+  type ProgrammingLanguage,
+} from '~/features/solution/programming-language';
 import { Process } from '~/features/solution/solution-tracker/types';
-import type { ProgrammingLanguage, Solution } from '../../../types';
+import type { Solution } from '../../../types';
 import {
   type ProgrammersCode,
   type ProgrammersIdentifier,
@@ -90,22 +94,9 @@ export default class ProgrammersPacketToSolutionStatusMapper
   }
 
   private parseLanguage(language: string): ProgrammingLanguage {
-    switch (language) {
-      case 'c':
-        return 'c';
-      case 'cpp':
-        return 'cpp';
-      case 'java':
-        return 'java';
-      case 'kotlin':
-        return 'kotlin';
-      case 'javascript':
-        return 'javascript';
-      case 'python':
-      case 'python3':
-        return 'python';
-      default:
-        return 'unknown';
+    if (language.includes('python')) {
+      return 'python';
     }
+    return ProgrammingLanguageEnum.parse(language);
   }
 }

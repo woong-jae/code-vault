@@ -23,7 +23,7 @@ Code-Vault에서 제공하는 크롬 확장도구입니다.
 
 ### 언어
 
-c, cpp, java, javascript, typescript, python, kotlin
+c, cpp, java, javascript, typescript, python, kotlin, go, rust
 
 ## 사용법
 

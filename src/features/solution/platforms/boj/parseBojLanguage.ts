@@ -1,4 +1,4 @@
-import type { ProgrammingLanguage } from '../../types';
+import type { ProgrammingLanguage } from '../../programming-language';
 
 const parseBojLanguage = (langNum: string): ProgrammingLanguage => {
   switch (langNum) {
@@ -17,14 +17,14 @@ const parseBojLanguage = (langNum: string): ProgrammingLanguage => {
       return 'java';
     case '69':
       return 'kotlin';
-    // case '12':
-    //   return 'go';
+    case '12':
+      return 'go';
     // case '68':
     //   return 'ruby';
     // case '74':
     //   return 'swift';
-    // case '94':
-    //   return 'rust';
+    case '94':
+      return 'rust';
     default:
       return 'unknown';
   }

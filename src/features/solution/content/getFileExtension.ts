@@ -1,4 +1,4 @@
-import type { ProgrammingLanguage } from '../types';
+import type { ProgrammingLanguage } from '../programming-language';
 
 export type GetFileExtension = (
   programmingLanguage: ProgrammingLanguage,
@@ -9,6 +9,7 @@ export const getFileExtension: GetFileExtension = (programmingLanguage) => {
     case 'c':
     case 'cpp':
     case 'java':
+    case 'go':
       return programmingLanguage;
     case 'python':
       return 'py';
@@ -18,6 +19,8 @@ export const getFileExtension: GetFileExtension = (programmingLanguage) => {
       return 'js';
     case 'typescript':
       return 'ts';
+    case 'rust':
+      return 'rs';
     default:
       return 'txt';
   }
