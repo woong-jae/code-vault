@@ -5,6 +5,7 @@ import {
   Process,
   type SolutionStatus,
 } from '~/features/solution/solution-tracker/types';
+import { ProgrammingLanguageEnum } from '../../programming-language';
 import LeetcodePacketToSolutionStatusMapper from './LeetcodePacketToSolutionStatusMapper';
 import LeetcodeSolutionInterceptor from './LeetcodeSolutionInterceptor';
 
@@ -37,7 +38,7 @@ export const initLeetcodeSolutionCatcherFromBackground: CreateSolutionCatcher =
             payload: {
               link: details.url.split('/').slice(0, -2).join('/'),
               platform: 'leetcode',
-              language: lang,
+              language: ProgrammingLanguageEnum.parse(lang),
               problemId: question_id,
               code: typed_code,
             },

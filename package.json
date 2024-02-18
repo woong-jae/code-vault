@@ -16,9 +16,11 @@
     "start": "webpack serve",
     "build": "webpack",
     "build:production": "NODE_ENV=production webpack && zip -r dist.zip dist",
-    "test": "pnpm jest --watch"
+    "test": "pnpm jest --watch",
+    "update:version": "node bin/version"
   },
   "devDependencies": {
+    "@inquirer/prompts": "^4.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.86",
@@ -75,6 +77,7 @@
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4",
     "zustand": "^4.4.1"
   }
 }
