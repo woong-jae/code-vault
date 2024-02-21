@@ -1,8 +1,10 @@
 # code-vault <!-- omit from toc -->
 
-Code-Vault에서 제공하는 크롬 확장도구입니다.
+<img width="273" alt="image" src="https://github.com/woong-jae/code-vault/assets/33976823/26f9897e-db01-4dfa-b2b5-11be2a9d437f">
 
 프로그래머스, 백준, leetcode에서 푼 문제를 깃허브에 자동 업로드 해주는 크롬 확장 도구입니다. 깃허브에 직접 코드를 올릴 필요 없이, 문제를 해결한 곳에서 등록한 깃허브 저장소에 코드와 문제 요약을 저장할 수 있습니다.
+
+[웹 스토어 링크](https://chromewebstore.google.com/detail/code-vault/okgcpkdicamjapkonlhhanphcgbcamod?hl=ko)
 
 ## Table of Contents <!-- omit from toc -->
 
